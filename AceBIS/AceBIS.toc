@@ -1,0 +1,13 @@
+## Interface: 20502
+## Title: AceBIS
+## Version: 2.2.0
+## OptionalDeps: LibExtraTip
+## SavedVariablesPerCharacter: AceBISGears
+##
+## Thank Fazers, he provides all the data.
+## Credit: https://docs.google.com/spreadsheets/d/e/2PACX-1vRZe43kmwCozOehCabXaXG1mdefA9QvYwb7sHH0y-Ugn3EW3F8J20mKluivPv465A9u0P9VAWxf1yZC/pubhtml#
+
+libs\libs.xml
+
+AceBIS.lua
+Data\BIS.xml

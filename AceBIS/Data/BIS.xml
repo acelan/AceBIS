@@ -1,0 +1,24 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="AfflictionWarlock.lua" />
+  <Script file="ArcaneMage.lua" />
+  <Script file="ArmsWarrior.lua" />
+  <Script file="BalanceDruid.lua" />
+  <Script file="BeastMasteryHunter.lua" />
+  <Script file="CombatRogue.lua" />
+  <Script file="DestructionWarlock.lua" />
+  <Script file="EnhancementShaman.lua" />
+  <Script file="ElementalShaman.lua" />
+  <Script file="FireMage.lua" />
+  <Script file="Feral(Tank)Druid.lua" />
+  <Script file="Feral(DPS)Druid.lua" />
+  <Script file="FuryWarrior.lua" />
+  <Script file="HolyPaladin.lua" />
+  <Script file="HolyPriest.lua" />
+  <Script file="ProtectionPaladin.lua" />
+  <Script file="ProtectionWarrior.lua" />
+  <Script file="RestorationDruid.lua" />
+  <Script file="RestorationShaman.lua" />
+  <Script file="RetributionPaladin.lua" />
+  <Script file="ShadowPriest.lua" />
+  <Script file="SurvivalHunter.lua" />
+</Ui>
