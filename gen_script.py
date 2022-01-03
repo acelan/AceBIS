@@ -162,10 +162,10 @@ def build_list():
                             if itemsubclass in ["Mail", "Plate"]:
                                 continue
                         if cclass in ["Hunter", "Shaman"]:
-                            if itemsubclass in ["Plate", "Cloth"]:
+                            if itemsubclass in ["Plate"]:
                                 continue
                         if cclass in ["Paladin", "Warrior"]:
-                            if itemsubclass in ["Leather","Cloth"]:
+                            if itemsubclass in []:
                                 continue
 
                     if itemclass == "Weapon" and itemsubclass == "Shield":
@@ -225,8 +225,8 @@ def build_list():
                             continue
 
                     item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": row[i], "location": row[col_location]}
-                    #if itemid == "28599":
-                    #    print(item)
+                    if itemid == "28660":
+                        print(item)
                     bis_list[cclass][spec][phase][s][itemid] = item
 
     return bis_list
