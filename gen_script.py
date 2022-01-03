@@ -17,6 +17,7 @@ col_InventoryType = 1
 col_itemclass = 2
 col_subclass = 3
 col_name = 4
+col_class = 9
 col_prot = 10
 col_arms = 11
 col_fury = 12
@@ -69,7 +70,7 @@ def build_list():
     
         with open(os.path.join(root, filename), newline='') as csvfile:
             print("Reading %s..." % filename)
-            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
             for row in spamreader:
                 itemid = row[col_entry]
                 phase = row[col_phase]
@@ -144,6 +145,12 @@ def build_list():
                         cclass = "Shaman"
                         spec = "Restoration"
 
+                    # class specific gear
+                    if row[col_class] != "NA" and row[col_class] != "Class" and row[col_class] != "10":
+                        if cclass not in row[col_class]:
+                            print("%s not in %s" % (cclass, row[col_class]))
+                            continue
+
                     itemclass = row[col_itemclass]
                     itemsubclass = row[col_subclass]
                     itemtype = row[col_InventoryType]
@@ -155,10 +162,10 @@ def build_list():
                             if itemsubclass in ["Mail", "Plate"]:
                                 continue
                         if cclass in ["Hunter", "Shaman"]:
-                            if itemsubclass in ["Plate"]:
+                            if itemsubclass in ["Plate", "Cloth"]:
                                 continue
                         if cclass in ["Paladin", "Warrior"]:
-                            if itemsubclass in [""]:
+                            if itemsubclass in ["Leather","Cloth"]:
                                 continue
 
                     if itemclass == "Weapon" and itemsubclass == "Shield":
@@ -218,9 +225,10 @@ def build_list():
                             continue
 
                     item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": row[i], "location": row[col_location]}
-                    #if itemid == "32236":
+                    #if itemid == "28599":
                     #    print(item)
                     bis_list[cclass][spec][phase][s][itemid] = item
+
     return bis_list
 
 bis_list = build_list()
@@ -255,7 +263,7 @@ for cclass in classes:
                         continue
 
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)
-                    if cclass == "Mage" and s == "OFFHAND":
+                    if cclass == "Hunter" and s == "HEAD":
                         print("%s %s %s %s %s #%s" % (spec, cclass, itemid, items[itemid]["score"], p, index))
                     #print(output)
                     index += 1
