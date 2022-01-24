@@ -1,5 +1,6 @@
 local LibExtraTip = LibStub("LibExtraTip-1")
 local LibQTip = LibStub('LibQTip-1.0')
+local L = LibStub("AceLocale-3.0"):GetLocale("AceBIS")
 AceBIS = LibStub("AceAddon-3.0"):NewAddon("AceBIS")
 AceBIS.BIS = {}
 AceBIS.Items = {}
@@ -45,25 +46,25 @@ function AceBIS:OnInitialize()
 				get = "GetPhase"
 			},
 			Warrior = {
-				name = "Warrior",
+				name = L["Warrior"],
 				type = "group",
 				args = {
 					Protection = {
-						name = "Protection",
+						name = L["ProtectionWarrior"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Arms = {
-						name = "Arms",
+						name = L["ArmsWarrior"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Fury = {
-						name = "Fury",
+						name = L["FuryWarrior"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -72,18 +73,18 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Priest = {
-				name = "Priest",
+				name = L["Priest"],
 				type = "group",
 				args = {
 					Holy = {
-						name = "Holy",
+						name = L["HolyPriest"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Shadow = {
-						name = "Shadow",
+						name = L["ShadowPriest"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -92,18 +93,18 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Mage = {
-				name = "Mage",
+				name = L["Mage"],
 				type = "group",
 				args = {
 					Arcane = {
-						name = "Arcane",
+						name = L["ArcaneMage"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Fire = {
-						name = "Fire",
+						name = L["FireMage"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -112,18 +113,18 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Warlock = {
-				name = "Warlock",
+				name = L["Warlock"],
 				type = "group",
 				args = {
 					Affliction = {
-						name = "Affliction",
+						name = L["AfflictionWarlock"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Destruction = {
-						name = "Destruction",
+						name = L["DestructionWarlock"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -132,32 +133,32 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Druid = {
-				name = "Druid",
+				name = L["Druid"],
 				type = "group",
 				args = {
 					Balance = {
-						name = "Balance",
+						name = L["BalanceDruid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					FeralDPS = {
-						name = "Feral(DPS)",
+						name = L["Feral(DPS)Druid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					FeralTank = {
-						name = "Feral(Tank)",
+						name = L["Feral(Tank)Druid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Restoration = {
-						name = "Restoration",
+						name = L["RestorationDruid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -166,11 +167,11 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Rogue = {
-				name = "Rogue",
+				name = L["Rogue"],
 				type = "group",
 				args = {
 					Combat = {
-						name = "Combat",
+						name = L["CombatRogue"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -179,18 +180,18 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Hunter = {
-				name = "Hunter",
+				name = L["Hunter"],
 				type = "group",
 				args = {
 					BeastMastery = {
-						name = "BeastMastery",
+						name = L["BeastMasteryHunter"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Survival = {
-						name = "Survival",
+						name = L["SurvivalHunter"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -199,25 +200,25 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Shaman = {
-				name = "Shaman",
+				name = L["Shaman"],
 				type = "group",
 				args = {
 					Elemental = {
-						name = "Elemental",
+						name = L["ElementalShaman"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Enhancement = {
-						name = "Enhancement",
+						name = L["EnhancementShaman"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Restoration = {
-						name = "Restoration",
+						name = L["RestorationShaman"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -226,25 +227,25 @@ function AceBIS:OnInitialize()
 				}
 			},
 			Paladin = {
-				name = "Paladin",
+				name = L["Paladin"],
 				type = "group",
 				args = {
 					Holy = {
-						name = "Holy",
+						name = L["HolyPaladin"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Protection = {
-						name = "Protection",
+						name = L["ProtectionPaladin"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
 					},
 					Retribution = {
-						name = "Retribution",
+						name = L["RetributionPaladin"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -291,7 +292,7 @@ function AceBIS:Set(info, val)
 	class = info[1]
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
-	AceBISGears[spec .. class] = val
+	AceBISGears[spec .. L[class]] = val
 end
 
 function AceBIS:Get(info)
@@ -299,9 +300,9 @@ function AceBIS:Get(info)
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
 	if AceBISGears[spec .. class] == nil then
-		AceBISGears[spec .. class] = true
+		AceBISGears[spec .. L[class]] = true
 	end
-	return AceBISGears[spec .. class]
+	return AceBISGears[spec .. L[class]]
 end
 
 local function iconOffset(col, row)
@@ -318,7 +319,8 @@ local function buildExtraTip(tooltip, entry)
 	for k, v in pairs(entry) do
 		local entry = AceBIS.BIS[k]
 		local class = entry.class:upper()
-		local build = entry.spec
+		local spec = L[entry.spec]
+		local build = L[entry.spec] .. L[entry.class]
 		local slot = entry.slot
 		local color = RAID_CLASS_COLORS[class]
 		local coords = CLASS_ICON_TCOORDS[class]
@@ -330,8 +332,7 @@ local function buildExtraTip(tooltip, entry)
 			AceBISGears[entry.phase] = true
 		end
 		if AceBISGears[build] and AceBISGears[entry.phase] then
-		
-			LibExtraTip:AddDoubleLine(tooltip, classfontstring .. " " .. entry.class .. " " .. build, v, color.r, color.g, color.b, color.r, color.g, color.b, true)
+			LibExtraTip:AddDoubleLine(tooltip, classfontstring .. " " .. L[entry.class] .. " " .. spec, v, color.r, color.g, color.b, color.r, color.g, color.b, true)
 		end
 	end
 	
