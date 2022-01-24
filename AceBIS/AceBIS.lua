@@ -1,4 +1,5 @@
 local LibExtraTip = LibStub("LibExtraTip-1")
+local LibQTip = LibStub('LibQTip-1.0')
 AceBIS = LibStub("AceAddon-3.0"):NewAddon("AceBIS")
 AceBIS.BIS = {}
 AceBIS.Items = {}
@@ -340,6 +341,7 @@ end
 local function onTooltipSetItem(tooltip, itemLink, quantity)
 	if not itemLink then return end
     
+	--print("OnTooltipSetItem: ", itemLink)
 	local itemString = string.match(itemLink, "item[%-?%d:]+")
 	local itemId = ({ string.split(":", itemString) })[2]
 
@@ -348,19 +350,44 @@ local function onTooltipSetItem(tooltip, itemLink, quantity)
 	end
 end
 
-local eventframe = CreateFrame("FRAME",addonName.."Events")
+local function AceBIS_OnTooltipSetItem(tooltip, itemLink, quantity)
+	if not itemLink then return end
 
-local function onEvent(self,event,arg)
-	if event == "PLAYER_ENTERING_WORLD" then
-		eventframe:UnregisterEvent("PLAYER_ENTERING_WORLD")
-		LibExtraTip:AddCallback({type = "item", callback = onTooltipSetItem, allevents = true})
-		LibExtraTip:RegisterTooltip(GameTooltip)
-		LibExtraTip:RegisterTooltip(ItemRefTooltip)
+	print("AceBIS_OnTooltipSetItem: ", itemLink)
+	local itemString = string.match(itemLink, "item[%-?%d:]+")
+	local itemId = ({ string.split(":", itemString) })[2]
+
+	if AceBIS.Items[itemId] then
+		local tooltip = LibQTip:Acquire("AceBISTooltip", 3, "LEFT", "CENTER", "RIGHT")
+		tooltip:AddLine('Hello', 'World', '!')
+		tooltip:SmartAnchorTo(self)
+		tooltip:Show()
+		LibQTip:Release(tooltip)
 	end
 end
 
-eventframe:RegisterEvent("PLAYER_ENTERING_WORLD")
-eventframe:SetScript("OnEvent", onEvent)
+function AceBIS:SlashCmd(cmd)
+	if not cmd then cmd="" end
+	print("AceBIS: SlashCmd", cmd)
+end
+
+function AceBIS:OnEnable()
+	print("AceBIS:OnEnable")
+
+	SLASH_ACEBIS1 = "/acebis";
+	SLASH_ACEBIS2 = "/ab";
+	SlashCmdList["ACEBIS"] = function(msg)
+		AceBIS:SlashCmd(msg);
+	end
+
+	GameTooltip:HookScript("OnTooltipSetItem", onTooltipSetItem)
+	ItemRefTooltip:HookScript("OnTooltipSetItem", onTooltipSetItem)
+
+	LibExtraTip:AddCallback({type = "item", callback = onTooltipSetItem, allevents = true})
+	LibExtraTip:RegisterTooltip(GameTooltip)
+	LibExtraTip:RegisterTooltip(ItemRefTooltip)
+
+end
 
 function AceBIS:RegisterBIS(class, build, phase, slot)
 	if not spec then spec = "" end
@@ -385,4 +412,28 @@ function AceBIS:BISitem(bisEntry, index, id, phase)
 	end
 
 	AceBIS.Items[id][bisEntry.ID] = phase .. " #" .. index
+end
+
+local function anchor_OnEnter(self)
+	-- Acquire a tooltip with 3 columns, respectively aligned to left, center and right
+	local tooltip = LibQTip:Acquire("FooBarTooltip", 3, "LEFT", "CENTER", "RIGHT")
+	self.tooltip = tooltip
+
+	-- Add an header filling only the first two columns
+	tooltip:AddHeader('Anchor', 'Tooltip')
+
+	-- Add an new line, using all columns
+	tooltip:AddLine('Hello', 'World', '!')
+
+	-- Use smart anchoring code to anchor the tooltip to our frame
+	tooltip:SmartAnchorTo(self)
+
+	-- Show it, et voilà !
+	tooltip:Show()
+end
+
+local function anchor_OnLeave(self)
+	-- Release the tooltip
+	LibQTip:Release(self.tooltip)
+	self.tooltip = nil
 end

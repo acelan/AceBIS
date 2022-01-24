@@ -148,7 +148,7 @@ def build_list():
                     # class specific gear
                     if row[col_class] != "NA" and row[col_class] != "Class" and row[col_class] != "10":
                         if cclass not in row[col_class]:
-                            print("%s not in %s" % (cclass, row[col_class]))
+                            #print("%s not in %s" % (cclass, row[col_class]))
                             continue
 
                     itemclass = row[col_itemclass]
@@ -225,7 +225,7 @@ def build_list():
                             continue
 
                     item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": row[i], "location": row[col_location]}
-                    if itemid == "28660":
+                    if itemid == "28599" or itemid == "31286":
                         print(item)
                     bis_list[cclass][spec][phase][s][itemid] = item
 
@@ -263,7 +263,7 @@ for cclass in classes:
                         continue
 
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)
-                    if cclass == "Hunter" and s == "HEAD":
+                    if cclass == "Hunter" and s == "CHEST":
                         print("%s %s %s %s %s #%s" % (spec, cclass, itemid, items[itemid]["score"], p, index))
                     #print(output)
                     index += 1

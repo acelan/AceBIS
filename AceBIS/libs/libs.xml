@@ -5,4 +5,5 @@
   <Include file="AceGUI-3.0\AceGUI-3.0.xml"/>
   <Include file="AceConfig-3.0\AceConfig-3.0.xml"/>
   <Include file="LibExtraTip\Load.xml"/>
+  <Include file="LibQTip-1.0\lib.xml"/>
 </Ui>
