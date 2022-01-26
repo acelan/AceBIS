@@ -292,17 +292,19 @@ function AceBIS:Set(info, val)
 	class = info[1]
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
-	AceBISGears[spec .. L[class]] = val
+	build = spec .. L[class]
+	AceBISGears[build] = val
 end
 
 function AceBIS:Get(info)
 	class = info[1]
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
-	if AceBISGears[spec .. class] == nil then
-		AceBISGears[spec .. L[class]] = true
+	build = spec .. L[class]
+	if AceBISGears[build] == nil then
+		AceBISGears[build] = true
 	end
-	return AceBISGears[spec .. L[class]]
+	return AceBISGears[build]
 end
 
 local function iconOffset(col, row)
