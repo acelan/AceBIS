@@ -1,5 +1,3 @@
-local LibExtraTip = LibStub("LibExtraTip-1")
-local LibQTip = LibStub('LibQTip-1.0')
 local L = LibStub("AceLocale-3.0"):GetLocale("AceBIS")
 AceBIS = LibStub("AceAddon-3.0"):NewAddon("AceBIS")
 AceBIS.BIS = {}
@@ -312,66 +310,51 @@ local function iconOffset(col, row)
 	return offsetString .. ":" .. (row * 64 + iconCutoff) .. ":" .. ((row + 1) * 64 - iconCutoff)
 end
 
-local function buildExtraTip(tooltip, entry)
-	local r,g,b = .9,.8,.5
-	LibExtraTip:AddLine(tooltip," ",r,g,b,true)
-	LibExtraTip:AddLine(tooltip,"# BIS:",r,g,b,true)
-
-	
-	for k, v in pairs(entry) do
-		local entry = AceBIS.BIS[k]
-		local class = entry.class:upper()
-		local spec = L[entry.spec]
-		local build = L[entry.spec] .. L[entry.class]
-		local slot = entry.slot
-		local color = RAID_CLASS_COLORS[class]
-		local coords = CLASS_ICON_TCOORDS[class]
-		local classfontstring = "|T" .. iconpath .. ":14:14:::256:256:" .. iconOffset(coords[1] * 4, coords[3] * 4) .. "|t"
-		if AceBISGears[build] == nil then
-			AceBISGears[build] = true
-		end
-		if AceBISGears[entry.phase] == nil then
-			AceBISGears[entry.phase] = true
-		end
-		if AceBISGears[build] and AceBISGears[entry.phase] then
-			LibExtraTip:AddDoubleLine(tooltip, classfontstring .. " " .. L[entry.class] .. " " .. spec, v, color.r, color.g, color.b, color.r, color.g, color.b, true)
-		end
-	end
-	
-	LibExtraTip:AddLine(tooltip," ",r,g,b,true)
-end
-
-local function onTooltipSetItem(tooltip, itemLink, quantity)
-	if not itemLink then return end
-    
-	--print("OnTooltipSetItem: ", itemLink)
-	local itemString = string.match(itemLink, "item[%-?%d:]+")
-	local itemId = ({ string.split(":", itemString) })[2]
-
-	if AceBIS.Items[itemId] then
-		buildExtraTip(tooltip, AceBIS.Items[itemId])
-	end
-end
-
-local function AceBIS_OnTooltipSetItem(tooltip, itemLink, quantity)
-	if not itemLink then return end
-
-	print("AceBIS_OnTooltipSetItem: ", itemLink)
-	local itemString = string.match(itemLink, "item[%-?%d:]+")
-	local itemId = ({ string.split(":", itemString) })[2]
-
-	if AceBIS.Items[itemId] then
-		local tooltip = LibQTip:Acquire("AceBISTooltip", 3, "LEFT", "CENTER", "RIGHT")
-		tooltip:AddLine('Hello', 'World', '!')
-		tooltip:SmartAnchorTo(self)
-		tooltip:Show()
-		LibQTip:Release(tooltip)
-	end
-end
-
 function AceBIS:SlashCmd(cmd)
 	if not cmd then cmd="" end
 	print("AceBIS: SlashCmd", cmd)
+end
+
+function AttachTooltip(self)
+	local itemLink = select(2, self:GetItem())
+	if not itemLink then
+		return false
+	end
+
+	local itemString = string.match(itemLink, "item[%-?%d:]+")
+	local itemId = ({ string.split(":", itemString) })[2]
+
+	if AceBIS.Items[itemId] then
+		local r,g,b = .9,.8,.5
+
+		self:AddLine(" ",r,g,b,true)
+		self:AddLine("# BIS:",r,g,b,true)
+		
+		for k, v in pairs(AceBIS.Items[itemId]) do
+			local entry = AceBIS.BIS[k]
+			local class = entry.class:upper()
+			local spec = L[entry.spec]
+			local build = L[entry.spec] .. L[entry.class]
+			local slot = entry.slot
+			local color = RAID_CLASS_COLORS[class]
+			local coords = CLASS_ICON_TCOORDS[class]
+			local classfontstring = "|T" .. iconpath .. ":14:14:::256:256:" .. iconOffset(coords[1] * 4, coords[3] * 4) .. "|t"
+			if AceBISGears[build] == nil then
+				AceBISGears[build] = true
+			end
+			if AceBISGears[entry.phase] == nil then
+				AceBISGears[entry.phase] = true
+			end
+			if AceBISGears[build] and AceBISGears[entry.phase] then
+				self:AddDoubleLine(classfontstring .. " " .. L[entry.class] .. " " .. spec, v, color.r, color.g, color.b, color.r, color.g, color.b, true)
+			end
+		end
+		
+		self:AddLine(" ",r,g,b,true)
+		self:Show()
+	end
+
+	return true
 end
 
 function AceBIS:OnEnable()
@@ -383,13 +366,8 @@ function AceBIS:OnEnable()
 		AceBIS:SlashCmd(msg);
 	end
 
-	GameTooltip:HookScript("OnTooltipSetItem", onTooltipSetItem)
-	ItemRefTooltip:HookScript("OnTooltipSetItem", onTooltipSetItem)
-
-	LibExtraTip:AddCallback({type = "item", callback = onTooltipSetItem, allevents = true})
-	LibExtraTip:RegisterTooltip(GameTooltip)
-	LibExtraTip:RegisterTooltip(ItemRefTooltip)
-
+	GameTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
+	ItemRefTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
 end
 
 function AceBIS:RegisterBIS(class, build, phase, slot)
@@ -417,26 +395,3 @@ function AceBIS:BISitem(bisEntry, index, id, phase)
 	AceBIS.Items[id][bisEntry.ID] = phase .. " #" .. index
 end
 
-local function anchor_OnEnter(self)
-	-- Acquire a tooltip with 3 columns, respectively aligned to left, center and right
-	local tooltip = LibQTip:Acquire("FooBarTooltip", 3, "LEFT", "CENTER", "RIGHT")
-	self.tooltip = tooltip
-
-	-- Add an header filling only the first two columns
-	tooltip:AddHeader('Anchor', 'Tooltip')
-
-	-- Add an new line, using all columns
-	tooltip:AddLine('Hello', 'World', '!')
-
-	-- Use smart anchoring code to anchor the tooltip to our frame
-	tooltip:SmartAnchorTo(self)
-
-	-- Show it, et voilà !
-	tooltip:Show()
-end
-
-local function anchor_OnLeave(self)
-	-- Release the tooltip
-	LibQTip:Release(self.tooltip)
-	self.tooltip = nil
-end
