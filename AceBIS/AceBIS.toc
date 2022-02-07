@@ -1,6 +1,6 @@
 ## Interface: 20503
 ## Title: AceBIS
-## Version: 2.2.7
+## Version: 2.2.8
 ## OptionalDeps: LibExtraTip
 ## SavedVariablesPerCharacter: AceBISGears
 ##

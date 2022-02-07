@@ -9,7 +9,7 @@ local iconCutoff = 6
 
 AceBISGears = {}
 
-function AceBIS:OnInitialize()
+function AceBIS:InitOptions()
 	local options = {
 		name = "AceBIS v" .. GetAddOnMetadata("AceBIS", "Version"),
 		handler = AceBIS,
@@ -257,6 +257,10 @@ function AceBIS:OnInitialize()
 	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("AceBIS", "AceBIS")
 end
 
+function AceBIS:OnInitialize()
+	AceBIS:InitOptions()
+end
+
 function AceBIS:SetPhase(info, val)
 	AceBISGears[info[#info]] = val
 end
@@ -368,6 +372,8 @@ function AceBIS:OnEnable()
 
 	GameTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
 	ItemRefTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
+	ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", AttachTooltip)
+	ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", AttachTooltip)
 end
 
 function AceBIS:RegisterBIS(class, build, phase, slot)
