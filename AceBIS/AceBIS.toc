@@ -1,7 +1,6 @@
 ## Interface: 20503
 ## Title: AceBIS
-## Version: 2.2.8
-## OptionalDeps: LibExtraTip
+## Version: 3.0.0
 ## SavedVariablesPerCharacter: AceBISGears
 ##
 ## Thank Fazers, he provides all the data.
@@ -11,4 +10,5 @@ libs\libs.xml
 locale\locale.xml
 
 AceBIS.lua
+GearWindow.lua
 Data\BIS.xml

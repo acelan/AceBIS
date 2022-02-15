@@ -35,3 +35,7 @@ L["RestorationShaman"] = "Restoration"
 L["RetributionPaladin"] = "Retribution"
 L["ShadowPriest"] = "Shadow"
 L["SurvivalHunter"] = "Survival"
+
+-- MainHand / OffHand
+L["MainHand"] = "Main Hand"
+L["OffHand"] = "Off-Hand"
