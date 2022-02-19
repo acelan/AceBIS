@@ -78,9 +78,6 @@ def build_list():
                 item = {}
                 for i in range(col_prot, col_res + 1):
                     score = row[i]
-                    if score == "0":
-                        continue
-
                     if i == col_prot:
                         cclass = "Warrior"
                         spec = "Protection"
@@ -157,9 +154,6 @@ def build_list():
                     itemclass = row[col_itemclass]
                     itemsubclass = row[col_subclass]
                     itemtype = row[col_InventoryType]
-                    if itemtype == "Held In Off-Hand":
-                        itemtype = "Off-Hand"
-
                     if itemclass == "Armor":
                         if cclass in ["Mage", "Priest", "Warlock"]:
                             if itemsubclass in ["Leather", "Mail", "Plate"]:
@@ -174,8 +168,9 @@ def build_list():
                             if itemsubclass in []:
                                 continue
 
-                    if itemsubclass == "Shield" and cclass not in ["Warrior", "Paladin", "Shaman"]:
-                        continue
+                    if itemclass == "Weapon" and itemsubclass == "Shield":
+                        if spec not in ["Protection", "Holy"]:
+                            continue
 
                     if itemtype == "Two-Hand":
                         if cclass in ["Rogue"]:
@@ -191,10 +186,7 @@ def build_list():
                                 continue
 
                     if itemtype in ["Main Hand", "One Hand"]:
-                        if cclass == "Rogue" and itemsubclass == "Dagger":
-                            continue
-                    if itemtype in ["Main Hand", "One Hand", "Off Hand"]:
-                        if cclass in ["Rogue", "Druid"]:
+                        if cclass in ["Rogue"]:
                             if itemsubclass in ["Axe"]:
                                 continue
                         if cclass in ["Mage", "Warlock"]:
@@ -203,8 +195,8 @@ def build_list():
                         if cclass in ["Priest"]:
                             if itemsubclass in ["Axe", "Sword", "Fist"]:
                                 continue
-                        if cclass in ["Shaman"]:
-                            if itemsubclass in ["Sword"]:
+                        if cclass in ["Druid", "Shaman"]:
+                            if itemsubclass in ["Axe", "Sword"]:
                                 continue
                         if cclass in ["Hunter"]:
                             if itemsubclass in ["Mace"]:
@@ -232,14 +224,15 @@ def build_list():
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
 
-                    item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score, "location": row[col_location]}
+                    item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": row[i], "location": row[col_location]}
                     if itemid == "28599" or itemid == "31286":
                         print(item)
-                    bis_list[cclass][spec][phase][itemtype.replace(" ", "").replace("-", "")][itemid] = item
+                    bis_list[cclass][spec][phase][s][itemid] = item
 
     return bis_list
 
 bis_list = build_list()
+#print(bis_list["Warrior"]["Protection"]["HEAD"][])
 
 for cclass in classes:
     print(cclass)
@@ -250,45 +243,15 @@ for cclass in classes:
             p = "P" + phase
             output += gen_header(p, spec + cclass)
             #print("%s %s" % (spec, cclass))
-            mainhand_flag = False
-            for s in list(bis_list[cclass][spec][phase]):
+            for s in slots:
                 #print(s)
                 items = bis_list[cclass][spec][phase][s]
-                # OneHand weapon could be MainHand or OffHand weapon
-                if s == "MainHand":
-                    items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
-                    mainhand_flag = True
-                if s == "OffHand":
-                    items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
-                if s == "OneHand":
-                    if mainhand_flag:
-                        continue
-                    s = "MainHand"
-
                 if phase == "1":
                     items = {**items, **bis_list[cclass][spec]["0"][s]}
-                    if s == "MainHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                    if s == "OffHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
                 if phase == "2":
                     items = {**items, **bis_list[cclass][spec]["0"][s]}
                     items = {**items, **bis_list[cclass][spec]["1"][s]}
-                    if s == "MainHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                    if s == "OffHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
                 if phase == "3":
-                    if s == "MainHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
-                    if s == "OffHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
                     items = {**items, **bis_list[cclass][spec]["0"][s]}
                     items = {**items, **bis_list[cclass][spec]["1"][s]}
                     items = {**items, **bis_list[cclass][spec]["2"][s]}
@@ -299,8 +262,6 @@ for cclass in classes:
                     if items[itemid]["score"] == "0":
                         continue
 
-                    # print("%s %s %s %s %s %s" % (cclass, spec, phase, s, itemid, bis_list[cclass][spec][phase][s][itemid]["type"]))
-                    #output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, bis_list[cclass][spec][phase][s][itemid]["type"])
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)
                     if cclass == "Hunter" and s == "CHEST":
                         print("%s %s %s %s %s #%s" % (spec, cclass, itemid, items[itemid]["score"], p, index))
