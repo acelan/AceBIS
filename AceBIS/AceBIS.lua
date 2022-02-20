@@ -1,13 +1,25 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("AceBIS")
-AceBIS = LibStub("AceAddon-3.0"):NewAddon("AceBIS")
+AceBIS = LibStub("AceAddon-3.0"):NewAddon("AceBIS", "AceConsole-3.0")
+AceBIS.AceGUI = LibStub("AceGUI-3.0")
 AceBIS.BIS = {}
 AceBIS.Items = {}
+
+AceBIS.ClassList = {}
+AceBIS.ClassSpecList = {}
+AceBIS.ClassSetList = {}
+
+AceBIS.SelectedSetName = ""
+AceBIS.CurrentClass = ""
 
 local addonName, addonTable = ...
 local iconpath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes"
 local iconCutoff = 6
 
 AceBISGears = {}
+
+function AceBIS:PrintError(text)
+    AceBIS:Print("|cffff0000An error has occured: |cffffffff" .. text)
+end
 
 function AceBIS:InitOptions()
 	local options = {
@@ -258,7 +270,9 @@ function AceBIS:InitOptions()
 end
 
 function AceBIS:OnInitialize()
-	AceBIS:InitOptions()
+	local _,englishClass,_ = UnitClass("player")
+    AceBIS.CurrentClass = englishClass:lower():gsub("^%l", string.upper)
+
 end
 
 function AceBIS:SetPhase(info, val)
@@ -272,7 +286,7 @@ function AceBIS:GetPhase(info)
 	return AceBISGears[info[#info]]
 end
 
-function dump(o)
+local function dump(o)
    if type(o) == 'table' then
       local s = '{ '
       for k,v in pairs(o) do
@@ -316,7 +330,23 @@ end
 
 function AceBIS:SlashCmd(cmd)
 	if not cmd then cmd="" end
-	print("AceBIS: SlashCmd", cmd)
+
+	cmd = cmd:lower()
+	if cmd == "help" or cmd == "?" then
+		print("|cFFE5CC7F[AceBIS]|r " .. "Shows the ranks of gears")
+		print("|cFFE5CC7F[AceBIS]|r " .. "|cFFFFFF00/AceBIS|r to toggle the AceBIS window")
+		print("|cFFE5CC7F[AceBIS]|r " .. "|cFFFFFF00/AceBIS options|r to toggle the AceBIS options window")
+		print("|cFFE5CC7F[AceBIS]|r " .. "|cFFFFFF00/AceBIS help|?|r to show this help")
+	elseif cmd == "options" then
+		LibStub("AceConfigDialog-3.0"):Open("AceBIS")
+	else
+		-- toggle AceBIS window
+		if (AceBIS.GearWindow:IsVisible()) then
+			AceBIS.GearWindow:Hide()
+		else
+			AceBIS.GearWindow:Show()
+		end
+	end
 end
 
 function AttachTooltip(self)
@@ -335,14 +365,20 @@ function AttachTooltip(self)
 		self:AddLine("# BIS:",r,g,b,true)
 		
 		for k, v in pairs(AceBIS.Items[itemId]) do
-			local entry = AceBIS.BIS[k]
+			local id = ({string.split(":", k)})[1]
+			local entry = AceBIS.BIS[id]
 			local class = entry.class:upper()
 			local spec = L[entry.spec]
 			local build = L[entry.spec] .. L[entry.class]
-			local slot = entry.slot
+			local slot = ({string.split(":", k)})[2]
 			local color = RAID_CLASS_COLORS[class]
 			local coords = CLASS_ICON_TCOORDS[class]
 			local classfontstring = "|T" .. iconpath .. ":14:14:::256:256:" .. iconOffset(coords[1] * 4, coords[3] * 4) .. "|t"
+			if class == "WARRIOR" or class == "ROGUE" or class == "SHAMAN" then
+				if slot == "MainHand" or slot == "OffHand" then
+					spec = spec .. "(" .. L[slot] .. ")"
+				end
+			end
 			if AceBISGears[build] == nil then
 				AceBISGears[build] = true
 			end
@@ -362,8 +398,6 @@ function AttachTooltip(self)
 end
 
 function AceBIS:OnEnable()
-	print("AceBIS:OnEnable")
-
 	SLASH_ACEBIS1 = "/acebis";
 	SLASH_ACEBIS2 = "/ab";
 	SlashCmdList["ACEBIS"] = function(msg)
@@ -374,30 +408,53 @@ function AceBIS:OnEnable()
 	ItemRefTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
 	ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", AttachTooltip)
 	ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", AttachTooltip)
+
+	AceBIS:InitOptions()
+	AceBIS.InitUI()
 end
 
-function AceBIS:RegisterBIS(class, build, phase, slot)
+function AceBIS:RegisterBIS(class, build, phase)
 	if not spec then spec = "" end
 	if not comment then comment = "" end
 	
 	local bis = {
 		class = class,
 		spec = build,
-		phase = phase,
-		slot, slot
+		phase = phase
 	}
 	
 	bis.ID = class .. build .. phase
 
 	AceBIS.BIS[bis.ID] = bis
+
+	AceBIS.ClassList[class] = class
+	if not AceBIS.ClassSpecList[class] then
+		AceBIS.ClassSpecList[class] = {}
+	end
+	AceBIS.ClassSpecList[class][build] = build
+
 	return bis
 end
 
-function AceBIS:BISitem(bisEntry, index, id, phase)
+function AceBIS:BISitem(bisEntry, index, id, phase, slot)
 	if not AceBIS.Items[id] then
 		AceBIS.Items[id] = {}
 	end
+	AceBIS.Items[id][bisEntry.ID .. ":" .. slot] = phase .. " #" .. index
 
-	AceBIS.Items[id][bisEntry.ID] = phase .. " #" .. index
+	local class = bisEntry.class
+	local spec = bisEntry.spec
+	if not AceBIS.ClassSetList[class] then
+		AceBIS.ClassSetList[class] = {}
+	end
+	if not AceBIS.ClassSetList[class][spec] then
+		AceBIS.ClassSetList[class][spec] = {}
+	end
+	if not AceBIS.ClassSetList[class][spec][phase] then
+		AceBIS.ClassSetList[class][spec][phase] = {}
+	end
+	if not AceBIS.ClassSetList[class][spec][phase][index] then
+		AceBIS.ClassSetList[class][spec][phase][index] = {}
+	end
+	AceBIS.ClassSetList[class][spec][phase][index][slot] = id
 end
-

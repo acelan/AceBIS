@@ -35,3 +35,7 @@ L["RestorationShaman"] = "恢復"
 L["RetributionPaladin"] = "懲戒"
 L["ShadowPriest"] = "暗影"
 L["SurvivalHunter"] = "生存"
+
+-- MainHand / OffHand
+L["MainHand"] = "主手"
+L["OffHand"] = "副手"
