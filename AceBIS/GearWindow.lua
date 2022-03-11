@@ -483,6 +483,7 @@ end
 
 function AceBIS.GearWindow:UpdateSetDropdown(set)
     AceBIS.GearWindow.ActionsGroup.SetDropdown:SetList(AceBIS.ClassSpecList[AceBIS.SelectedClass])
+    local _
     if (set == nil) then
         set, _ = next(AceBIS.ClassSpecList[AceBIS.SelectedClass])
     end
@@ -500,7 +501,7 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
         end
         local Rank = GetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot)
         if (IsShiftKeyDown()) then
-            local itemLink
+            local itemLink, _
             _, itemLink = GetItemInfo(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot])
             ChatEdit_InsertLink(itemLink)
         else
@@ -818,7 +819,14 @@ function AceBIS:InitUI()
         CancelButton = CreateButton("Cancel", false, 100),
         SaveButton = CreateButton("Save", false, 100)
     }
-
+    local obtainMethods = {
+        [1] = "Kill",
+        [2] = "Purchase",
+        [3] = "Container",
+        [4] = "Quest",
+        [5] = "Recipe",
+        [6] = "Unknown"
+    }
     AceBIS.GearWindow.EditSlot.Values.ID:SetCallback("OnTextChanged", function(self, callback, val)
         val = tonumber(val)
         local item = AceBIS.ItemDB:GetItemWithID(val)
@@ -846,14 +854,6 @@ function AceBIS:InitUI()
         local values = AceBIS.GearWindow.EditSlot.Values
         local newItem
         local itemID, obtainID, npcName, zone, dropChance
-        local obtainMethods = {
-            [1] = "Kill",
-            [2] = "Purchase",
-            [3] = "Container",
-            [4] = "Quest",
-            [5] = "Recipe",
-            [6] = "Unknown"
-        }
         itemID = tonumber(values.ID:GetText())
         obtainID = tonumber(values.ObtainID:GetText()) or 0
         zone = values.Zone:GetText() or ""
