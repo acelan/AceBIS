@@ -346,7 +346,7 @@ function AceBIS.GearWindow:UpdateSetDisplay()
                         GameTooltip:SetHyperlink(itemLink)
                         GameTooltip:Show()
                     end)
-                    if AceBIS.IsHoveringItemSlot == key then
+                    if AceBIS.IsHoveringItemSlot and AceBIS.IsHoveringItemSlot == key then
                         GameTooltip:SetHyperlink(itemLink)
                     end
                 end
