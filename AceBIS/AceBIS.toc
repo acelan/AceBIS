@@ -1,6 +1,6 @@
 ## Interface: 20503
 ## Title: AceBIS
-## Version: 3.0.2
+## Version: 3.0.3
 ## SavedVariablesPerCharacter: AceBISGears
 ##
 ## Thank Fazers, he provides all the data.

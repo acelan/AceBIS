@@ -55,6 +55,13 @@ function AceBIS:InitOptions()
 				set = "SetPhase",
 				get = "GetPhase"
 			},
+			P4 = {
+				name = "Phase 4",
+				type = "toggle",
+				desc = "show phase 4 gears",
+				set = "SetPhase",
+				get = "GetPhase"
+			},
 			Warrior = {
 				name = L["Warrior"],
 				type = "group",

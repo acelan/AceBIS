@@ -499,23 +499,29 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
             sslot = slot:sub(2)
         end
         local Rank = GetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot)
-        repeat
-            if (IsControlKeyDown()) then
-                Rank = Rank - 1
-            else
-                Rank = Rank + 1
-            end
-            if Rank == 16 then
-                Rank = 1
-            elseif Rank == 0 then
-                Rank = 15
-            end
-        until(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot] ~= nil)
+        if (IsShiftKeyDown()) then
+            local itemLink
+            _, itemLink = GetItemInfo(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot])
+            ChatEdit_InsertLink(itemLink)
+        else
+            repeat
+                if (IsControlKeyDown()) then
+                    Rank = Rank - 1
+                else
+                    Rank = Rank + 1
+                end
+                if Rank == 16 then
+                    Rank = 1
+                elseif Rank == 0 then
+                    Rank = 15
+                end
+            until(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot] ~= nil)
 
-        --AceBIS:Print(AceBIS.SelectedClass .. " - "  .. AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName .. " - " .. slot .. " #" .. Rank)
-        SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, Rank)
+            --AceBIS:Print(AceBIS.SelectedClass .. " - "  .. AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName .. " - " .. slot .. " #" .. Rank)
+            SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, Rank)
 
-        AceBIS.GearWindow:UpdateSetDisplay()
+            AceBIS.GearWindow:UpdateSetDisplay()
+        end
     end)
 
     o:SetCallback("OnLeave", function()

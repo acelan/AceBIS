@@ -246,7 +246,7 @@ for cclass in classes:
     for spec in bis_list[cclass].keys():
         print(spec)
         output = ""
-        for phase in {"0", "1", "2", "3"}:   # select items from P0 to P2
+        for phase in {"0", "1", "2", "3", "4"}:   # select items from P0 to P4
             p = "P" + phase
             output += gen_header(p, spec + cclass)
             #print("%s %s" % (spec, cclass))
@@ -265,33 +265,30 @@ for cclass in classes:
                         continue
                     s = "MainHand"
 
-                if phase == "1":
+                if phase == "1" or phase == "2" or phase == "3" or phase == "4":
                     items = {**items, **bis_list[cclass][spec]["0"][s]}
                     if s == "MainHand":
                         items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
                     if s == "OffHand":
                         items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                if phase == "2":
-                    items = {**items, **bis_list[cclass][spec]["0"][s]}
+                if phase == "2" or phase == "3" or phase == "4":
                     items = {**items, **bis_list[cclass][spec]["1"][s]}
                     if s == "MainHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
                         items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
                     if s == "OffHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
                         items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                if phase == "3":
-                    if s == "MainHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
-                    if s == "OffHand":
-                        items = {**items, **bis_list[cclass][spec]["0"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["1"]["OneHand"]}
-                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
-                    items = {**items, **bis_list[cclass][spec]["0"][s]}
-                    items = {**items, **bis_list[cclass][spec]["1"][s]}
+                if phase == "3" or phase == "4":
                     items = {**items, **bis_list[cclass][spec]["2"][s]}
+                    if s == "MainHand":
+                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
+                    if s == "OffHand":
+                        items = {**items, **bis_list[cclass][spec]["2"]["OneHand"]}
+                if phase == "4":
+                    items = {**items, **bis_list[cclass][spec]["3"][s]}
+                    if s == "MainHand":
+                        items = {**items, **bis_list[cclass][spec]["3"]["OneHand"]}
+                    if s == "OffHand":
+                        items = {**items, **bis_list[cclass][spec]["3"]["OneHand"]}
 
                 sorted_keys = sorted(items.keys(), key=lambda x: (float(items[x]['score'])), reverse=True)
                 index = 1
