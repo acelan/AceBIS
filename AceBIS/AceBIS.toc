@@ -3,10 +3,9 @@
 ## Version: 3.0.3
 ## SavedVariablesPerCharacter: AceBISGears
 ##
-## Thank Fazers, he provides all the data.
-## Credit: https://docs.google.com/spreadsheets/d/e/2PACX-1vRZe43kmwCozOehCabXaXG1mdefA9QvYwb7sHH0y-Ugn3EW3F8J20mKluivPv465A9u0P9VAWxf1yZC/pubhtml#
-## Thank Zentarg, the paper doll window are copied from his great work, BiSTracker
-## Credit: https://www.curseforge.com/wow/addons/bis-tracker-tbcc-classic
+## X-Credis: Fazers for all the data. Zentarg for paper doll window from BisTracker
+# https://docs.google.com/spreadsheets/d/e/2PACX-1vRZe43kmwCozOehCabXaXG1mdefA9QvYwb7sHH0y-Ugn3EW3F8J20mKluivPv465A9u0P9VAWxf1yZC/pubhtml
+# https://www.curseforge.com/wow/addons/bis-tracker-tbcc-classic
 
 libs\libs.xml
 locale\locale.xml
