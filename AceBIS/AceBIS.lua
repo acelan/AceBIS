@@ -14,6 +14,7 @@ AceBIS.CurrentClass = ""
 local addonName, addonTable = ...
 local iconpath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes"
 local iconCutoff = 6
+local class, tag, spec, build, comment
 
 AceBISGears = {}
 
@@ -356,7 +357,7 @@ function AceBIS:SlashCmd(cmd)
 	end
 end
 
-function AttachTooltip(self)
+local function AttachTooltip(self)
 	local itemLink = select(2, self:GetItem())
 	if not itemLink then
 		return false

@@ -322,48 +322,38 @@ function AceBIS.GearWindow:UpdateSetDisplay()
 			end
 		end
 	else
-        --AceBIS:Print("SelectedPhase = " .. AceBIS.SelectedPhase .. ", SelectedPhaseName = " .. AceBIS.SelectedPhaseName)
-        --AceBIS:Print("AceBIS.ClassList[AceBIS.SelectedClass] = " .. AceBIS.ClassList[AceBIS.SelectedClass])
 		local SelectedSetSlots = UpdateSelectedSetList()
-		local errorOccured = false
 		for key, value in pairs(SelectedSetSlots) do -- key = Wrists, value = 30684
 			--AceBIS:Print("key = " .. key .. ", value = " .. value)
-			local _,itemLink,_,_,_,_,_,_,_,itemTexture,_,_,_,_,_,_,_ = GetItemInfo(value)
-            local retry = 10
-            while itemLink == nil and retry > 0 do
-                retry = retry - 1
-                _,itemLink,_,_,_,_,_,_,_,itemTexture,_,_,_,_,_,_,_ = GetItemInfo(value)
+            local item = Item:CreateFromItemID(tonumber(value))
+            local _,_,_,_,itemTexture = GetItemInfoInstant(tonumber(value))
+            if itemTexture then
+                AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
             end
-
-			if (itemLink == nil) then
-				errorOccured = true
-				AceBIS.GearWindow.Model:UndressSlot(GetInventorySlotInfo(inventorySlotName[key]))
-				AceBIS.GearWindow.Slots[key]:SetImage(AceBIS.GearWindow.DefaultSlotIcons[key])
-				AceBIS.GearWindow.Slots[key]:SetCallback("OnEnter", function()
-					GameTooltip:SetOwner(AceBIS.GearWindow.Slots[key].frame, "ANCHOR_RIGHT")
-					GameTooltip:SetText("|cffff0000An error occured while loading this item.\nPlease try reloading the set.")
-				end)
-			else
-				if (key ~= "Ranged" or AceBIS.SelectedClass == "Hunter") then
-					AceBIS.GearWindow.Model:TryOn(itemLink)
-				end
-				AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
-				AceBIS.GearWindow.Slots[key]:SetCallback("OnEnter", function()
-					if (IsControlKeyDown()) then
-						ShowInspectCursor()
-					end
-					AceBIS.IsHoveringItemSlot = true
-
-					GameTooltip:SetOwner(AceBIS.GearWindow.Slots[key].frame, "ANCHOR_RIGHT")
-					GameTooltip:SetHyperlink(itemLink)
-
-					--AddSourceToTooltip(value)
-					GameTooltip:Show()
-				end)
-			end
-		end
-		if (errorOccured == true) then
-			AceBIS:PrintError("An item in the |cffffff00".. AceBIS.SelectedClass .."|r set |cffffff00" .. AceBIS.SelectedSetName .. "|r didn't load correctly. Please try reloading the set.")
+            item:ContinueOnItemLoad(function(id)
+                local itemLink = item:GetItemLink()
+                itemTexture = item:GetItemIcon()
+                if itemLink then
+                    if (key ~= "Ranged" or AceBIS.SelectedClass == "Hunter") then
+                        AceBIS.GearWindow.Model:TryOn(itemLink)
+                    end
+                    AceBIS.GearWindow.Slots[key]:SetCallback("OnEnter", function()
+                        if (IsControlKeyDown()) then
+                            ShowInspectCursor()
+                        end
+                        AceBIS.IsHoveringItemSlot = key
+                        GameTooltip:SetOwner(AceBIS.GearWindow.Slots[key].frame, "ANCHOR_RIGHT")
+                        GameTooltip:SetHyperlink(itemLink)
+                        GameTooltip:Show()
+                    end)
+                    if AceBIS.IsHoveringItemSlot and AceBIS.IsHoveringItemSlot == key then
+                        GameTooltip:SetHyperlink(itemLink)
+                    end
+                end
+                if itemTexture then
+                    AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
+                end
+            end)
 		end
 	end
 end
@@ -483,6 +473,7 @@ end
 
 function AceBIS.GearWindow:UpdateSetDropdown(set)
     AceBIS.GearWindow.ActionsGroup.SetDropdown:SetList(AceBIS.ClassSpecList[AceBIS.SelectedClass])
+    local _
     if (set == nil) then
         set, _ = next(AceBIS.ClassSpecList[AceBIS.SelectedClass])
     end
@@ -493,38 +484,41 @@ end
 local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
     local o = CreateIcon(imagex, imagey, width, height, image)
 
-    o:SetCallback("OnClick", function()
+    o:SetCallback("OnClick", function(self)
         local sslot = slot
         if slot == "RFinger" or slot == "RTrinket" then
             sslot = slot:sub(2)
         end
         local Rank = GetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot)
         if (IsShiftKeyDown()) then
-            local itemLink
+            local itemLink, _
             _, itemLink = GetItemInfo(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot])
             ChatEdit_InsertLink(itemLink)
         else
-            repeat
-                if (IsControlKeyDown()) then
-                    Rank = Rank - 1
-                else
-                    Rank = Rank + 1
+            local val, startval, endval, stepval = Rank
+            if IsControlKeyDown() then
+                startval = 16
+                endval = 1
+                stepval = -1
+            else
+                startval = 0
+                endval = 15
+                stepval = 1
+            end
+            if val == endval then
+                val = startval
+            end
+            for rank=val+stepval, endval, stepval do
+                if AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(rank)][sslot] ~= nil then
+                    SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, rank)
+                    AceBIS.GearWindow:UpdateSetDisplay()
+                    return
                 end
-                if Rank == 16 then
-                    Rank = 1
-                elseif Rank == 0 then
-                    Rank = 15
-                end
-            until(AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(Rank)][sslot] ~= nil)
-
-            --AceBIS:Print(AceBIS.SelectedClass .. " - "  .. AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName .. " - " .. slot .. " #" .. Rank)
-            SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, Rank)
-
-            AceBIS.GearWindow:UpdateSetDisplay()
+            end
         end
     end)
 
-    o:SetCallback("OnLeave", function()
+    o:SetCallback("OnLeave", function(self)
         SetCursor(nil)
         AceBIS.IsHoveringItemSlot = false
         GameTooltip:SetText("")
@@ -818,7 +812,14 @@ function AceBIS:InitUI()
         CancelButton = CreateButton("Cancel", false, 100),
         SaveButton = CreateButton("Save", false, 100)
     }
-
+    local obtainMethods = {
+        [1] = "Kill",
+        [2] = "Purchase",
+        [3] = "Container",
+        [4] = "Quest",
+        [5] = "Recipe",
+        [6] = "Unknown"
+    }
     AceBIS.GearWindow.EditSlot.Values.ID:SetCallback("OnTextChanged", function(self, callback, val)
         val = tonumber(val)
         local item = AceBIS.ItemDB:GetItemWithID(val)
@@ -846,14 +847,6 @@ function AceBIS:InitUI()
         local values = AceBIS.GearWindow.EditSlot.Values
         local newItem
         local itemID, obtainID, npcName, zone, dropChance
-        local obtainMethods = {
-            [1] = "Kill",
-            [2] = "Purchase",
-            [3] = "Container",
-            [4] = "Quest",
-            [5] = "Recipe",
-            [6] = "Unknown"
-        }
         itemID = tonumber(values.ID:GetText())
         obtainID = tonumber(values.ObtainID:GetText()) or 0
         zone = values.Zone:GetText() or ""
