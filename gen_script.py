@@ -12,19 +12,19 @@ bis_list = {}
 slots = {"BACK", "CHEST", "FEET", "FINGER", "HANDS", "HEAD", "LEGS", "NECK", "OFFHAND", "ONEHAND", "RANGED", "RELIC", "SHOULDER", "TRINKET", "TWOHAND", "WAIST", "WRIST"}
 classes = {"Warrior", "Rogue", "Priest", "Hunter", "Druid", "Paladin", "Mage", "Warlock", "Shaman"}
 
-col_entry = 0
-col_InventoryType = 1
-col_itemclass = 2
-col_subclass = 3
+col_entry = 0           # item id
+col_InventoryType = 1   # Back/Chest/Feet/Finger/...
+col_itemclass = 2       # Armor/Weapon
+col_subclass = 3        # Cloth/Totem
 col_name = 4
-col_class = 9
-col_prot = 10
-col_arms = 11
-col_fury = 12
-col_rogue = 13
-col_holy = 14
-col_shad = 15
-col_bm = 16
+col_class = 9           # specific for a certain class or classes
+col_prot = 10           # score for Pretection Warrior spec.
+col_arms = 11           # score for Arms Warrior spec.
+col_fury = 12           # score for Fury Warrior spec.
+col_rogue = 13          # score for Rogue(combat)
+col_holy = 14           # score for Holy Priest
+col_shad = 15           # score for Shadow Priest
+col_bm = 16             # score for BeastMastery Hunter
 col_sv = 17
 col_tree = 18
 col_owl = 19
@@ -40,7 +40,11 @@ col_heal = 28
 col_ele = 29
 col_enh = 30
 col_res = 31
-col_def = 52
+col_dod = 50            # dodge rating
+col_par = 51            # parry rating
+col_def = 52            # defense rating
+col_sblock = 53         # block value
+col_brating = 54        # block rating
 col_location = 63
 col_phase = 65
 
@@ -230,14 +234,14 @@ def build_list():
                             if itemsubclass in ["Leather", "Mail"]:
                                 continue
 
-                    if spec == "Protection" and row[col_def] == "NULL":
+                    if spec == "Protection" and row[col_dod] == "NULL" and row[col_par] == "NULL" and row[col_def] == "NULL" and row[col_sblock] == "NULL" and row[col_brating] == "NULL":
                         if itemclass == "Armor" and itemsubclass not in ["Amulet", "Trinket"]:
                             continue
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
 
                     item = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score, "location": row[col_location]}
-                    if itemid == "28599" or itemid == "31286":
+                    if itemid == "28523" or itemid == "31286":
                         print(item)
                     bis_list[cclass][spec][phase][itemtype.replace(" ", "").replace("-", "")][itemid] = item
 
