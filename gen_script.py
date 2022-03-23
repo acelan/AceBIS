@@ -226,8 +226,12 @@ def build_list():
                             if itemsubclass in ["Wand"]:
                                 continue
 
+                    if spec == "Protection" and itemclass == "Armor":
+                            if itemsubclass in ["Leather", "Mail"]:
+                                continue
+
                     if spec == "Protection" and row[col_def] == "NULL":
-                        if itemclass == "Armor" and itemsubclass != "Trinket":
+                        if itemclass == "Armor" and itemsubclass not in ["Amulet", "Trinket"]:
                             continue
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
