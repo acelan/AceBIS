@@ -1,6 +1,6 @@
 ## Interface: 20504
 ## Title: AceBIS
-## Version: 3.0.6
+## Version: 3.0.7
 ## SavedVariablesPerCharacter: AceBISGears
 
 ## X-Credits: Fazers for all the data. Zentarg for paper doll window from BisTracker
