@@ -423,6 +423,8 @@ function AceBIS:OnEnable()
 	ItemRefTooltip:HookScript("OnTooltipSetItem", AttachTooltip)
 	ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", AttachTooltip)
 	ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", AttachTooltip)
+	ShoppingTooltip1:HookScript("OnTooltipSetItem", AttachTooltip)
+	ShoppingTooltip2:HookScript("OnTooltipSetItem", AttachTooltip)
 
 	AceBIS:InitOptions()
 	AceBIS.InitUI()
