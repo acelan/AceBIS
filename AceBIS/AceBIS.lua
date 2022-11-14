@@ -28,45 +28,10 @@ function AceBIS:InitOptions()
 		handler = AceBIS,
 		type = "group",
 		args = {
-			P0 = {
-				name = "Phase 0",
-				type = "toggle",
-				desc = "show phase 0 gears",
-				set = "SetPhase",
-				get = "GetPhase"
-			},
 			P1 = {
 				name = "Phase 1",
 				type = "toggle",
 				desc = "show phase 1 gears",
-				set = "SetPhase",
-				get = "GetPhase"
-			},
-			P2 = {
-				name = "Phase 2",
-				type = "toggle",
-				desc = "show phase 2 gears",
-				set = "SetPhase",
-				get = "GetPhase"
-			},
-			P3 = {
-				name = "Phase 3",
-				type = "toggle",
-				desc = "show phase 3 gears",
-				set = "SetPhase",
-				get = "GetPhase"
-			},
-			P4 = {
-				name = "Phase 4",
-				type = "toggle",
-				desc = "show phase 4 gears",
-				set = "SetPhase",
-				get = "GetPhase"
-			},
-			P5 = {
-				name = "Phase 5",
-				type = "toggle",
-				desc = "show phase 5 gears",
 				set = "SetPhase",
 				get = "GetPhase"
 			},
@@ -81,8 +46,8 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
-					Arms = {
-						name = L["ArmsWarrior"],
+					Arm = {
+						name = L["ArmWarrior"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -141,15 +106,8 @@ function AceBIS:InitOptions()
 				name = L["Warlock"],
 				type = "group",
 				args = {
-					Affliction = {
-						name = L["AfflictionWarlock"],
-						type = "toggle",
-						desc = "Show gears for this class/spec on tooltips",
-						set = "Set",
-						get = "Get"
-					},
-					Destruction = {
-						name = L["DestructionWarlock"],
+					Afflication = {
+						name = L["AfflicationWarlock"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -168,15 +126,8 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
-					FeralDPS = {
-						name = L["Feral(DPS)Druid"],
-						type = "toggle",
-						desc = "Show gears for this class/spec on tooltips",
-						set = "Set",
-						get = "Get"
-					},
-					FeralTank = {
-						name = L["Feral(Tank)Druid"],
+					Feral = {
+						name = L["FeralDruid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -196,7 +147,7 @@ function AceBIS:InitOptions()
 				type = "group",
 				args = {
 					Combat = {
-						name = L["CombatRogue"],
+						name = L["AssassinationRogue"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -208,13 +159,6 @@ function AceBIS:InitOptions()
 				name = L["Hunter"],
 				type = "group",
 				args = {
-					BeastMastery = {
-						name = L["BeastMasteryHunter"],
-						type = "toggle",
-						desc = "Show gears for this class/spec on tooltips",
-						set = "Set",
-						get = "Get"
-					},
 					Survival = {
 						name = L["SurvivalHunter"],
 						type = "toggle",
@@ -276,6 +220,19 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
+				}
+			},
+			DK = {
+				name = L["DK"],
+				type = "group",
+				args = {
+					Unholy = {
+						name = L["UnholyDK"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					}
 				}
 			},
 		}
@@ -383,6 +340,9 @@ local function AttachTooltip(self)
 			local id = ({string.split(":", k)})[1]
 			local entry = AceBIS.BIS[id]
 			local class = entry.class:upper()
+			if class == "DK" then
+				class = "DEATHKNIGHT"
+			end
 			local spec = L[entry.spec]
 			local build = L[entry.spec] .. L[entry.class]
 			local slot = ({string.split(":", k)})[2]

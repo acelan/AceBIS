@@ -9,7 +9,7 @@ AceBIS.GearWindow:Hide()
 AceBIS.GearWindow.EditSlot:Hide()
 AceBIS.GearWindow.ConfirmDelete:Hide()
 
-local PhaseList = {"P0", "P1", "P2", "P3", "P4", "P5"}
+local PhaseList = {"P1"}
 
 AceBIS.SelectedPhase = 0
 AceBIS.SelectedPhaseName = ""
@@ -328,7 +328,11 @@ function AceBIS.GearWindow:UpdateSetDisplay()
             local item = Item:CreateFromItemID(tonumber(value))
             local _,_,_,_,itemTexture = GetItemInfoInstant(tonumber(value))
             if itemTexture then
-                AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
+                if pcall(function(...)
+                    AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
+                end) == false then
+                    AceBIS:Print(value .. ",")
+                end
             end
             item:ContinueOnItemLoad(function(id)
                 local itemLink = item:GetItemLink()
