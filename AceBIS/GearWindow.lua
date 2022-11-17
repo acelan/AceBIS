@@ -9,7 +9,7 @@ AceBIS.GearWindow:Hide()
 AceBIS.GearWindow.EditSlot:Hide()
 AceBIS.GearWindow.ConfirmDelete:Hide()
 
-local PhaseList = {"P1"}
+local PhaseList = {"P0", "P1"}
 
 AceBIS.SelectedPhase = 0
 AceBIS.SelectedPhaseName = ""

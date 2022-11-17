@@ -28,6 +28,13 @@ function AceBIS:InitOptions()
 		handler = AceBIS,
 		type = "group",
 		args = {
+			P0 = {
+				name = "Phase 0",
+				type = "toggle",
+				desc = "show phase 0 gears",
+				set = "SetPhase",
+				get = "GetPhase"
+			},
 			P1 = {
 				name = "Phase 1",
 				type = "toggle",
