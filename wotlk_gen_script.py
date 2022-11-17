@@ -1464,18 +1464,21 @@ def build_list():
                             if itemsubclass in ["Mace"]:
                                 continue
 
-                    if itemtype in ["MainHand", "OneHand"]:
-                        if cclass == "Rogue" and itemsubclass == "Dagger":
-                            continue
                     if itemtype in ["MainHand", "OneHand", "OffHand"]:
                         if cclass in ["Rogue", "Druid"]:
                             if itemsubclass in ["Axe"]:
                                 continue
+                            if spec in ["Assassination"] and itemsubclass not in ["Dagger"]:
+                                continue
                         if cclass in ["Mage", "Warlock"]:
                             if itemsubclass in ["Axe", "Mace", "Fist"]:
                                 continue
+                            if "mleatkpwr" in item:
+                                continue
                         if cclass in ["Priest"]:
                             if itemsubclass in ["Axe", "Sword", "Fist"]:
+                                continue
+                            if "mleatkpwr" in item:
                                 continue
                         if cclass in ["Shaman"]:
                             if itemsubclass in ["Sword"]:
@@ -1487,6 +1490,8 @@ def build_list():
                     if itemtype in ["OffHand"]:
                         if cclass in ["Priest", "Mage", "Warlock"]:
                             if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
+                                continue
+                            if "mleatkpwr" in item:
                                 continue
 
                     if itemtype in ["Ranged"]:
@@ -1509,6 +1514,7 @@ def build_list():
                             continue
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
+
 
                     item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score}
                     if itemtype == "Head":
