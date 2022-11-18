@@ -12,6 +12,30 @@ classes = {"Warrior", "Rogue", "Priest", "Hunter", "Druid", "Paladin", "Mage", "
 
 # items are not available to players
 blacklist = {
+    29824,
+    29827,
+    29828,
+    29829,
+    29830,
+    29831,
+    29832,
+    29833,
+    29834,
+    29835,
+    29836,
+    29865,
+    29879,
+    29881,
+    29883,
+    29888,
+    29890,
+    29891,
+    29892,
+    29893,
+    29895,
+    29897,
+    29899,
+    30176,
     34139,
     40479,
     40480,
@@ -121,6 +145,16 @@ blacklist = {
     47544,
     50132,
     50133,
+    50251,
+    50256,
+    50329,
+    50330,
+    50331,
+    50332,
+    52567,
+    52686,
+    53055,
+    53056,
     53096,
     53491,
     53492,
@@ -141,6 +175,9 @@ blacklist = {
     53507,
     53508,
     53509,
+    53889,
+    53890,
+    53924,
     54592,
     54848,
 }
@@ -280,7 +317,7 @@ def build_list():
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_shadow', 'rogue', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_afflication', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_afflication', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     if score == "0":
                         continue
