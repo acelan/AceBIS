@@ -60,6 +60,10 @@ blacklist = {
     40665,
     43648,
     43649,
+    45172,
+    45173,
+    45174,
+    45175,
     45499,
     46230,
     46231,
@@ -143,6 +147,7 @@ blacklist = {
     47542,
     47543,
     47544,
+    49686,
     50132,
     50133,
     50251,
@@ -182,6 +187,18 @@ blacklist = {
     54848,
 }
 
+rephase = {
+    45344: '2',
+    45391: '2',
+    45394: '2',
+    45400: '2',
+    45421: '2',
+    45424: '2',
+    45428: '2',
+    49089: '4',
+    49801: '4',
+    49807: '4',
+}
 classs = {
     1: "Warrior",
     2: "Paladin",
@@ -301,12 +318,8 @@ def build_list():
                 itemid = item["id"]
                 phase = item["phase"]
                 
-                if itemid == 49809:
-                    phase = '4'
-                if itemid == 45391:
-                    phase = '2'
-                if itemid == 45394:
-                    phase = '2'
+                if itemid in rephase:
+                    phase = rephase[itemid]
 
                 if itemid in blacklist:
                     continue
