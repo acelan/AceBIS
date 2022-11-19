@@ -37,6 +37,7 @@ blacklist = {
     29899,
     30176,
     34139,
+    39263,
     40479,
     40480,
     40481,
@@ -60,6 +61,7 @@ blacklist = {
     40665,
     43648,
     43649,
+    44869,
     45172,
     45173,
     45174,
@@ -188,16 +190,64 @@ blacklist = {
 }
 
 rephase = {
+    45340: '2',
+    45341: '2',
+    45342: '2',
+    45343: '2',
     45344: '2',
+    45345: '2',
+    45346: '2',
+    45347: '2',
+    45348: '2',
+    45349: '2',
+    45351: '2',
+    45352: '2',
+    45353: '2',
+    45354: '2',
+    45365: '2',
+    45367: '2',
+    45368: '2',
+    45369: '2',
     45391: '2',
+    45392: '2',
+    45393: '2',
     45394: '2',
+    45395: '2',
+    45396: '2',
+    45397: '2',
+    45398: '2',
+    45399: '2',
     45400: '2',
+    45401: '2',
+    45402: '2',
+    45403: '2',
+    45404: '3',
+    45405: '3',
+    45406: '2',
+    45408: '2',
+    45409: '2',
+    45410: '2',
+    45411: '2',
+    45417: '2',
+    45419: '2',
+    45420: '2',
     45421: '2',
+    45422: '2',
     45424: '2',
+    45425: '2',
+    45426: '2',
+    45427: '2',
     45428: '2',
+    46131: '2',
+    46313: '2',
     49089: '4',
     49801: '4',
     49807: '4',
+    49808: '4',
+    49809: '4',
+    49810: '4',
+    49811: '4',
+    49812: '4',
 }
 classs = {
     1: "Warrior",
@@ -379,10 +429,26 @@ def build_list():
                         print("inventorySlot = %s" % item["inventorySlot"])
                         exit(0)
 
-                    if itemtype == "Relic" or itemtype == "Ammo":
+                    if itemtype == "Ammo":
                         continue
                     if itemtype == "Thrown":
                         itemtype = "Ranged"
+                    if itemtype == "Ranged" and cclass in ["Paladin", "DK", "Shaman", "Druid"]:
+                        continue
+
+                    if itemsubclass in ["Libram", "Sigil", "Totem", "Idol"]:
+                        if cclass not in ["Paladin", "DK", "Shaman", "Druid"]:
+                            continue
+                        if cclass == "Paladin" and itemsubclass == "Libram":
+                            itemtype = "Ranged"
+                        elif cclass == "DK" and itemsubclass == "Sigil":
+                            itemtype = "Ranged"
+                        elif cclass == "Shaman" and itemsubclass == "Totem":
+                            itemtype = "Ranged"
+                        elif cclass == "Druid" and itemsubclass == "Idol":
+                            itemtype = "Ranged"
+                        else:
+                            continue
 
                     if itemclass == "Armor":
                         if cclass in ["Mage", "Priest", "Warlock"]:
@@ -484,7 +550,7 @@ def build_list():
                     if cclass == "Warrior" and spec == "Fury" and itemtype == "TwoHand":
                         bis_list[cclass][spec][phase]["OneHand"][itemid] = item_tmp
 
-                    #if itemid == 33475:
+                    #if itemid == 43284:
                     #    print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
 
     #print(list(bis_list["Warrior"]["Fury"]["1"]))

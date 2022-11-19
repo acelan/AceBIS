@@ -500,23 +500,31 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
             ChatEdit_InsertLink(itemLink)
         else
             local val, startval, endval, stepval = Rank
-            if IsControlKeyDown() then
-                startval = 16
-                endval = 1
-                stepval = -1
-            else
-                startval = 0
-                endval = 15
-                stepval = 1
-            end
-            if val == endval then
-                val = startval
-            end
-            for rank=val+stepval, endval, stepval do
-                if AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(rank)][sslot] ~= nil then
-                    SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, rank)
-                    AceBIS.GearWindow:UpdateSetDisplay()
-                    return
+
+	    -- keep search  it only happens when there are less than 15 listed items
+            while true do
+                if IsControlKeyDown() then
+                    startval = 16
+                    endval = 1
+                    stepval = -1
+                else
+                    startval = 0
+                    endval = 15
+                    stepval = 1
+                end
+                if val == endval then
+                    val = startval
+                end
+
+                for rank=val+stepval, endval, stepval do
+                    --AceBIS:Print("rank = " .. rank .. ", val = " .. val .. ", endval = " .. endval)
+                    if AceBIS.ClassSetList[AceBIS.SelectedClass][AceBIS.SelectedSetName][AceBIS.SelectedPhaseName][tostring(rank)][sslot] ~= nil then
+                        SetConfig(AceBIS.SelectedClass, AceBIS.SelectedSetName, AceBIS.SelectedPhaseName, slot, rank)
+                        AceBIS.GearWindow:UpdateSetDisplay()
+                        return
+                    else
+                        val = endval
+                    end
                 end
             end
         end
