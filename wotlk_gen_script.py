@@ -320,6 +320,9 @@ def build_list():
                 
                 if itemid in rephase:
                     phase = rephase[itemid]
+                # treat TBC items as P0 items, the highest ilv is 164
+                if item["level"] < 170:
+                    phase = '0'
 
                 if itemid in blacklist:
                     continue
