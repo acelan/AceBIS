@@ -367,7 +367,7 @@ def build_list():
             for item in items.values():
                 itemid = item["id"]
                 phase = item["phase"]
-                
+
                 if itemid in rephase:
                     phase = rephase[itemid]
                 # treat TBC items as P0 items, the highest ilv is 164
@@ -499,9 +499,15 @@ def build_list():
                             if itemsubclass in ["Mace"]:
                                 continue
 
+                    #if itemid == 36871:
+                    #    print("%s" % (item.keys()))
                     if "mleatkpwr" in item:
                         if cclass in ["Priest", "Mage", "Warlock"]:
                             continue
+                    if "spldmg" not in item:
+                        if cclass in ["Priest", "Mage", "Warlock"]:
+                            if itemclass == "Armor" and itemsubclass not in ["Amulet", "Trinket"]:
+                                continue
                     if "spldmg" in item:
                         if cclass in ["Warrior", "DK", "Rogue"]:
                             continue
@@ -534,6 +540,16 @@ def build_list():
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
 
+                    # special setting for current assassination rogue weapon
+                    if cclass == "Rogue" and spec == "Assassination":
+                        if itemsubclass  == "Dagger":
+                            score = score / float(item["speed"])    # weapon speed matter
+                            if float(item["speed"]) > 1.4:          # slow weapon should equip in off hand
+                                if itemtype == "OneHand":
+                                    itemtype = "OffHand"
+                            elif float(item["speed"]) == 1.3:       # for fastest weapon
+                                score = score * 1.5
+                            score = score + int(item["mledps"])
 
                     item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score}
                     if itemtype == "Head":
@@ -550,8 +566,9 @@ def build_list():
                     if cclass == "Warrior" and spec == "Fury" and itemtype == "TwoHand":
                         bis_list[cclass][spec][phase]["OneHand"][itemid] = item_tmp
 
-                    #if itemid == 43284:
-                    #    print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
+                    #if itemid in [39714, 37856, 40386] and cclass == "Rogue" and spec == "Assassination":
+                    #    print("after %s %s" % (itemid, score))
+                    #    print("%s %s %s %s %s %s" % (spec, cclass, itemid, score, phase, item["speed"]))
 
     #print(list(bis_list["Warrior"]["Fury"]["1"]))
     return bis_list
