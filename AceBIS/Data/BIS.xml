@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Script file="AfflicationWarlock.lua" />
+  <Script file="AfflictionWarlock.lua" />
   <Script file="ArcaneMage.lua" />
   <Script file="ArmWarrior.lua" />
   <Script file="AssassinationRogue.lua" />

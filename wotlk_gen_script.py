@@ -249,6 +249,39 @@ rephase = {
     49811: '4',
     49812: '4',
 }
+
+# to better score trinket
+rescore = {
+    # Mirror of Truth
+    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 999, "EnhancementShaman": 1000},
+    # Fury of the Five Flights
+    40431: {"AssassinationRogue": 998, "RetributionPaladin": 999},
+    # Dying Curse
+    40255: {"BalanceDruid": 1000, "ArcaneMage": 999, "ShadowPriest": 1000, "ElementalShaman": 999, "AfflictionWarlock": 999},
+    # Illustration of the Dragon Soul
+    40432: {"BalanceDruid": 999, "ShadowPriest": 999, "ElementalShaman": 1000, "AfflictionWarlock": 1000},
+    # Ring of Invincibility
+    40717: {"FeralDruid": 1000},
+    # Darkmoon Card: Greatness(+str)
+    42987: {"FeralDruid": 999, "RetributionPaladin": 1000, "FuryWarrior": 1000, "UnholyDK": 999},
+    # Surge Needle Ring
+    40474: {"SusvivalHunter": 1000},
+    # Embrace of the Spider
+    39229: {"ArcaneMage": 1000},
+    # Figurine - Monarch Crab
+    44063: {"ProtectionPaladin": 1000, "ProtectionWarrior": 999},
+    # Essence of Gossamer
+    37220: {"ProtectionPaladin": 999},
+    # Darkmoon Card: Greatness(+agi)
+    44253: {"AssassinationRogue": 999},
+    # Meteorite Whetstone
+    37390: {"EnhancementShaman": 999, "UnholyDK": 1000},
+    # Grim Toll
+    40256: {"FuryWarrior": 999},
+    # Defender's Code
+    40257: {"ProtectionWarrior": 1000},
+}
+
 classs = {
     1: "Warrior",
     2: "Paladin",
@@ -376,14 +409,12 @@ def build_list():
 
                 if itemid in blacklist:
                     continue
-                #if itemid in invalid:
-                #    continue
     
                 item_tmp = {}
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_afflication', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     if score == "0":
                         continue
@@ -408,6 +439,10 @@ def build_list():
                         spec = "Survival"
                     else:
                         spec = i.split("_")[1].capitalize()
+
+                    if itemid in rescore:
+                        if spec + cclass in rescore[itemid]:
+                            score = rescore[itemid][spec + cclass]
 
                     itemclass = ""
                     itemsubclass = ""
