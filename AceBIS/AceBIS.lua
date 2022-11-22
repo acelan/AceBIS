@@ -113,8 +113,8 @@ function AceBIS:InitOptions()
 				name = L["Warlock"],
 				type = "group",
 				args = {
-					Afflication = {
-						name = L["AfflicationWarlock"],
+					Affliction = {
+						name = L["AfflictionWarlock"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
