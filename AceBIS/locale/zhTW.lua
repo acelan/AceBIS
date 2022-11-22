@@ -14,7 +14,7 @@ L["Priest"] = "牧師"
 L["DK"] = "死亡騎士"
 
 -- 天賦
-L["AfflicationWarlock"] = "痛苦"
+L["AfflictionWarlock"] = "痛苦"
 L["ArcaneMage"] = "秘法"
 L["ArmWarrior"] = "武器"
 L["BalanceDruid"] = "平衡"
