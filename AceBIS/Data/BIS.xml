@@ -4,6 +4,7 @@
   <Script file="ArmWarrior.lua" />
   <Script file="AssassinationRogue.lua" />
   <Script file="BalanceDruid.lua" />
+  <Script file="DisciplinePriest.lua" />
   <Script file="ElementalShaman.lua" />
   <Script file="EnhancementShaman.lua" />
   <Script file="FeralDruid.lua" />

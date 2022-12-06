@@ -13,6 +13,7 @@ from classes.hunter_survival import hunter_survival
 from classes.mage_arcane import mage_arcane
 from classes.paladin_protection import paladin_protection
 from classes.paladin_retribution import paladin_retribution
+from classes.priest_discipline import priest_discipline
 from classes.priest_shadow import priest_shadow
 from classes.rogue_assassination import rogue_assassination
 from classes.shaman_elemental import shaman_elemental
@@ -37,6 +38,7 @@ specs = {
     "mage_arcane": mage_arcane,
     "paladin_protection": paladin_protection,
     "paladin_retribution": paladin_retribution,
+    "priest_discipline": priest_discipline,
     "priest_shadow": priest_shadow,
     "rogue_assassination": rogue_assassination,
     "shaman_elemental": shaman_elemental,

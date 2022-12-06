@@ -415,7 +415,7 @@ def build_list():
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     if score == "0":
                         continue

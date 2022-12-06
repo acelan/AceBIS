@@ -74,7 +74,7 @@ function AceBIS:InitOptions()
 				type = "group",
 				args = {
 					Holy = {
-						name = L["HolyPriest"],
+						name = L["DisciplinePriest"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
