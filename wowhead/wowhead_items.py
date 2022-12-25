@@ -20,7 +20,7 @@ from classes.shaman_elemental import shaman_elemental
 from classes.shaman_enhancement import shaman_enhancement
 from classes.shaman_restoration import shaman_restoration
 from classes.warlock_affliction import warlock_affliction
-from classes.warrior_arm import warrior_arm
+from classes.warrior_arms import warrior_arms
 from classes.warrior_fury import warrior_fury
 from classes.warrior_protection import warrior_protection
 
@@ -45,7 +45,7 @@ specs = {
     "shaman_enhancement": shaman_enhancement,
     "shaman_restoration": shaman_restoration,
     "warlock_affliction": warlock_affliction,
-    "warrior_arm": warrior_arm,
+    "warrior_arms": warrior_arms,
     "warrior_fury": warrior_fury,
     "warrior_protection": warrior_protection,
 }

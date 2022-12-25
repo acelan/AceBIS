@@ -1,4 +1,4 @@
-warrior_arm = {
+warrior_arms = {
    "str": 2.29,
    "int": 0,
    "sta": 0,

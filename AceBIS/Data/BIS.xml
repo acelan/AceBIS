@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file="AfflictionWarlock.lua" />
   <Script file="ArcaneMage.lua" />
-  <Script file="ArmWarrior.lua" />
+  <Script file="ArmsWarrior.lua" />
   <Script file="AssassinationRogue.lua" />
   <Script file="BalanceDruid.lua" />
   <Script file="DisciplinePriest.lua" />

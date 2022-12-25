@@ -415,7 +415,7 @@ def build_list():
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arm', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     if score == "0":
                         continue
@@ -542,12 +542,15 @@ def build_list():
                             continue
                     if "spldmg" not in item:
                         if cclass in ["Priest", "Mage", "Warlock"]:
-                            if itemclass == "Armor" and itemsubclass not in ["Amulet", "Trinket"]:
+                            if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket"]:
                                 continue
                     if "spldmg" in item:
                         if cclass in ["Warrior", "DK", "Rogue"]:
                             continue
                         if cclass == "Druid" and spec == "Feral":
+                            continue
+                    if cclass == "Shaman" and spec == "Restoration":
+                        if "spldmg" not in item and itemtype not in "Ranged":
                             continue
 
                     if itemtype in ["OffHand"]:
@@ -571,7 +574,7 @@ def build_list():
                                 continue
 
                     if spec == "Protection" and "defrtng" not in item and "dodgertng" not in item and "parryrtng" not in item and "blockrtng" not in item and "blockamount" not in item:
-                        if itemclass == "Armor" and itemsubclass not in ["Amulet", "Trinket"]:
+                        if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket"]:
                             continue
                         if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
                             continue
@@ -602,6 +605,8 @@ def build_list():
                     if cclass == "Warrior" and spec == "Fury" and itemtype == "TwoHand":
                         bis_list[cclass][spec][phase]["OneHand"][itemid] = item_tmp
 
+                    #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
+                    #    print("after %s %s" % (itemid, score))
                     #if itemid in [39714, 37856, 40386] and cclass == "Rogue" and spec == "Assassination":
                     #    print("after %s %s" % (itemid, score))
                     #    print("%s %s %s %s %s %s" % (spec, cclass, itemid, score, phase, item["speed"]))

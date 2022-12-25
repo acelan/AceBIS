@@ -16,7 +16,7 @@ L["DK"] = "Death Knight"
 -- spec
 L["AfflictionWarlock"] = "Affliction"
 L["ArcaneMage"] = "Arcane"
-L["ArmWarrior"] = "Arms"
+L["ArmsWarrior"] = "Arms"
 L["BalanceDruid"] = "Balance"
 L["BeastMasteryHunter"] = "BeastMastery"
 L["CombatRogue"] = "Combat"

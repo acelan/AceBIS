@@ -21,7 +21,7 @@ shaman_restoration = {
    "blockamount": 0,
    "resirtng": 0,
    "mledps": 0,
-   "mledmgmax": 1,
+   "mledmgmax": 0,
    "socket": 19,
 }
 

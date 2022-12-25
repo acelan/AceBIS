@@ -53,8 +53,8 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
-					Arm = {
-						name = L["ArmWarrior"],
+					Arms = {
+						name = L["ArmsWarrior"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -73,7 +73,7 @@ function AceBIS:InitOptions()
 				name = L["Priest"],
 				type = "group",
 				args = {
-					Holy = {
+					Discipline = {
 						name = L["DisciplinePriest"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
