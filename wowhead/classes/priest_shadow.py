@@ -1,18 +1,18 @@
 priest_shadow = {
    "str": 0,
-   "int": 0.05,
+   "int": 0.11,
    "sta": 0,
    "agi": 0,
-   "spi": 0.11,
+   "spi": 0.47,
    "spldmg": 1,
-   "hastertng": 0.77,
-   "critstrkrtng": 0.35,
-   "hitrtng": 0.1,
+   "hastertng": 1.5,
+   "critstrkrtng": 1,
+   "hitrtng": 0.87,
    "mleatkpwr": 0,
    "armorpenrtng": 0,
    "armor": 0,
    "exprtng": 0,
-   "manargn": 0.13,
+   "manargn": 0,
    "defrtng": 0,
    "dodgertng": 0,
    "parryrtng": 0,
@@ -24,5 +24,5 @@ priest_shadow = {
    "socket": 19,
 }
 
-# 6924
+# 6936
 

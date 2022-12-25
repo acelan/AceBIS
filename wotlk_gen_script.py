@@ -624,19 +624,19 @@ for cclass in classs.values():
             p = "P" + phase
             output += gen_header(p, cclass, spec)
             #print("%s %s" % (spec, cclass))
-            mainhand_flag = False
             for s in list(bis_list[cclass][spec][phase]):
                 items = bis_list[cclass][spec][phase][s]
                 # OneHand weapon could be MainHand or OffHand weapon
                 if s == "MainHand":
                     items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
-                    mainhand_flag = True
                 if s == "OffHand":
                     items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
                 if s == "OneHand":
-                    if mainhand_flag:
+                    # No MainHand weapon for this class + spec, then OneHand would be MainHand
+                    if "MainHand" not in bis_list[cclass][spec][phase]:
+                        s = "MainHand"
+                    else:
                         continue
-                    s = "MainHand"
 
                 if phase == "1" or phase == "2" or phase == "3" or phase == "4" or phase == "5":
                     items = {**items, **bis_list[cclass][spec]["0"][s]}
@@ -672,7 +672,7 @@ for cclass in classs.values():
                 sorted_keys = sorted(items.keys(), key=lambda x: (float(items[x]['score'])), reverse=True)
                 index = 1
                 for itemid in sorted_keys:
-                    if items[itemid]["score"] == "0":
+                    if items[itemid]["score"] == 0:
                         continue
 
                     # print("%s %s %s %s %s %s" % (cclass, spec, phase, s, itemid, bis_list[cclass][spec][phase][s][itemid]["type"]))
