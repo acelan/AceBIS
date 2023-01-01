@@ -356,7 +356,7 @@ local function AttachTooltip(self)
 			local color = RAID_CLASS_COLORS[class]
 			local coords = CLASS_ICON_TCOORDS[class]
 			local classfontstring = "|T" .. iconpath .. ":14:14:::256:256:" .. iconOffset(coords[1] * 4, coords[3] * 4) .. "|t"
-			if class == "WARRIOR" or class == "ROGUE" or class == "SHAMAN" then
+			if class == "WARRIOR" or class == "ROGUE" or class == "SHAMAN" or class == "DEATHKNIGHT" then
 				if slot == "MainHand" or slot == "OffHand" then
 					spec = spec .. "(" .. L[slot] .. ")"
 				end

@@ -417,9 +417,6 @@ def build_list():
                 #print("inventorySlot = %s" % item["inventorySlot"])
                 for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
-                    if score == "0":
-                        continue
-
                     #print("item = %s" % i)
 
                     cclass = i.split("_")[0].capitalize()
@@ -475,6 +472,7 @@ def build_list():
                     if itemsubclass in ["Libram", "Sigil", "Totem", "Idol"]:
                         if cclass not in ["Paladin", "DK", "Shaman", "Druid"]:
                             continue
+                        score = itemid
                         if cclass == "Paladin" and itemsubclass == "Libram":
                             itemtype = "Ranged"
                         elif cclass == "DK" and itemsubclass == "Sigil":
@@ -485,6 +483,9 @@ def build_list():
                             itemtype = "Ranged"
                         else:
                             continue
+
+                    if score == 0:
+                        continue
 
                     if itemclass == "Armor":
                         if cclass in ["Mage", "Priest", "Warlock"]:
@@ -672,9 +673,6 @@ for cclass in classs.values():
                 sorted_keys = sorted(items.keys(), key=lambda x: (float(items[x]['score'])), reverse=True)
                 index = 1
                 for itemid in sorted_keys:
-                    if items[itemid]["score"] == 0:
-                        continue
-
                     # print("%s %s %s %s %s %s" % (cclass, spec, phase, s, itemid, bis_list[cclass][spec][phase][s][itemid]["type"]))
                     #output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, bis_list[cclass][spec][phase][s][itemid]["type"])
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)
