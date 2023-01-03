@@ -249,9 +249,11 @@ function AceBIS:InitOptions()
 end
 
 function AceBIS:OnInitialize()
-	local _,englishClass,_ = UnitClass("player")
+    local _,englishClass,_ = UnitClass("player")
     AceBIS.CurrentClass = englishClass:lower():gsub("^%l", string.upper)
-
+    if AceBIS.CurrentClass == "Deathknight" then
+        AceBIS.CurrentClass = "DK"
+    end
 end
 
 function AceBIS:SetPhase(info, val)
