@@ -42,10 +42,10 @@ local function tablecopy(tbl)
     if type(tbl) ~= "table" then return tbl end
     local t = {}
     for i,v in pairs(tbl) do
-      t[i] = tablecopy(v)
+        t[i] = tablecopy(v)
     end
     return t
-  end
+end
 
 local function UpdateSelectedSetList()
     local class = AceBIS.SelectedClass
@@ -67,15 +67,15 @@ local function UpdateSelectedSetList()
         local phase = ({ string.split(":", gear) })[3]
         local slot = ({ string.split(":", gear) })[4]
         if class ~= AceBIS.SelectedClass then
-            --AceBIS:Print(class .. " != " .. AceBIS.SelectedClass)
+            AceBIS:Print(class .. " != " .. AceBIS.SelectedClass)
             matched = false
         end
         if spec ~= AceBIS.SelectedSetName then
-            --AceBIS:Print(spec .. " != " .. AceBIS.SelectedSetName)
+            AceBIS:Print(spec .. " != " .. AceBIS.SelectedSetName)
             matched = false
         end
         if phase ~= AceBIS.SelectedPhaseName then
-            --AceBIS:Print(phase .. " != " .. AceBIS.SelectedPhaseName)
+            AceBIS:Print(phase .. " != " .. AceBIS.SelectedPhaseName)
             matched = false
         end
 
@@ -159,146 +159,147 @@ local function GetConfig(class, set, phase, slot)
 end
 
 AceBIS.AceGUI:RegisterLayout("AceBISSheet",
-	function(content, children)
-		local height = 0
-		local width = content.width or content:GetWidth() or 0
-		for i = 1, #children do
-			local child = children[i]
+    function(content, children)
 
-			local frame = child.frame
-			frame:ClearAllPoints()
-            frame:Show()
-            
-            if i == 1 then
-                frame:SetPoint("TOPLEFT", content, 0, 10) 	-- TopLeftButtonGroup
-            elseif i == 2 then
-                frame:SetPoint("TOPRIGHT", content, 0, 10) 	-- TopRightButtonGroup
-            elseif i == 3 then
-                frame:SetPoint("TOP", content, 0, 5) 		-- SetName
-            elseif i == 4 then
-                frame:SetPoint("TOPLEFT", content, 0, -30) 	-- LeftSlots
-            elseif i == 5 then
-                frame:SetPoint("BOTTOM", content, 0, 40)	-- BottomSlots
-            elseif i == 6 then
-                frame:SetPoint("TOPRIGHT", content, 0, -30) -- RightSlots
-            elseif i == 7 then
-                frame:SetPoint("BOTTOM", content, 0, -5) 	-- ActionsGroup
+    local height = 0
+    local width = content.width or content:GetWidth() or 0
+    for i = 1, #children do
+        local child = children[i]
+
+        local frame = child.frame
+        frame:ClearAllPoints()
+        frame:Show()
+
+        if i == 1 then
+            frame:SetPoint("TOPLEFT", content, 0, 10)     -- TopLeftButtonGroup
+        elseif i == 2 then
+            frame:SetPoint("TOPRIGHT", content, 0, 10)     -- TopRightButtonGroup
+        elseif i == 3 then
+            frame:SetPoint("TOP", content, 0, 5)         -- SetName
+        elseif i == 4 then
+            frame:SetPoint("TOPLEFT", content, 0, -30)     -- LeftSlots
+        elseif i == 5 then
+            frame:SetPoint("BOTTOM", content, 0, 40)    -- BottomSlots
+        elseif i == 6 then
+            frame:SetPoint("TOPRIGHT", content, 0, -30) -- RightSlots
+        elseif i == 7 then
+            frame:SetPoint("BOTTOM", content, 0, -5)     -- ActionsGroup
+        end
+
+        if child.width == "fill" then
+            child:SetWidth(width)
+            frame:SetPoint("RIGHT", content)
+
+            if child.DoLayout then
+                child:DoLayout()
             end
+        elseif child.width == "relative" then
+            child:SetWidth(width * child.relWidth)
 
-			if child.width == "fill" then
-				child:SetWidth(width)
-				frame:SetPoint("RIGHT", content)
+            if child.DoLayout then
+                child:DoLayout()
+            end
+        end
 
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			elseif child.width == "relative" then
-				child:SetWidth(width * child.relWidth)
-
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			end
-
-			height = height + (frame.height or frame:GetHeight() or 0)
-		end
-    end)
+        height = height + (frame.height or frame:GetHeight() or 0)
+    end
+end)
 
 AceBIS.AceGUI:RegisterLayout("AceBISEditSlot",
     function(content, children)
 
-		local height = 0
-		local width = content.width or content:GetWidth() or 0
-		for i = 1, #children do
-			local child = children[i]
+    local height = 0
+    local width = content.width or content:GetWidth() or 0
+    for i = 1, #children do
+        local child = children[i]
 
-			local frame = child.frame
-			frame:ClearAllPoints()
-            frame:Show()
-            
-            if i == 1 then
-                frame:SetPoint("TOP", content, 0, 10) -- ID
-            elseif i == 2 then
-                frame:SetPoint("TOP", content, 0, -35) -- Obtain Method
-            elseif i == 3 then
-                frame:SetPoint("TOP", content, 0, -80) -- Obtain ID
-            elseif i == 4 then
-                frame:SetPoint("TOP", content, 0, -125) -- Zone
-            elseif i == 5 then
-                frame:SetPoint("TOP", content, 0, -170) -- Npc Name
-            elseif i == 6 then
-                frame:SetPoint("TOP", content, 0, -215) -- Drop Chance
-            elseif i == 7 then
-                frame:SetPoint("BOTTOMLEFT", content, 0, 0) -- Cancel Button
-            elseif i == 8 then
-                frame:SetPoint("BOTTOMRIGHT", content, 0, 0) -- Save Button
+        local frame = child.frame
+        frame:ClearAllPoints()
+        frame:Show()
+
+        if i == 1 then
+            frame:SetPoint("TOP", content, 0, 10) -- ID
+        elseif i == 2 then
+            frame:SetPoint("TOP", content, 0, -35) -- Obtain Method
+        elseif i == 3 then
+            frame:SetPoint("TOP", content, 0, -80) -- Obtain ID
+        elseif i == 4 then
+            frame:SetPoint("TOP", content, 0, -125) -- Zone
+        elseif i == 5 then
+            frame:SetPoint("TOP", content, 0, -170) -- Npc Name
+        elseif i == 6 then
+            frame:SetPoint("TOP", content, 0, -215) -- Drop Chance
+        elseif i == 7 then
+            frame:SetPoint("BOTTOMLEFT", content, 0, 0) -- Cancel Button
+        elseif i == 8 then
+            frame:SetPoint("BOTTOMRIGHT", content, 0, 0) -- Save Button
+        end
+
+        if child.width == "fill" then
+            child:SetWidth(width)
+            frame:SetPoint("RIGHT", content)
+
+            if child.DoLayout then
+                child:DoLayout()
             end
+        elseif child.width == "relative" then
+            child:SetWidth(width * child.relWidth)
 
-			if child.width == "fill" then
-				child:SetWidth(width)
-				frame:SetPoint("RIGHT", content)
+            if child.DoLayout then
+                child:DoLayout()
+            end
+        end
 
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			elseif child.width == "relative" then
-				child:SetWidth(width * child.relWidth)
-
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			end
-
-			height = height + (frame.height or frame:GetHeight() or 0)
-		end
-    end)
+        height = height + (frame.height or frame:GetHeight() or 0)
+    end
+end)
 
 AceBIS.AceGUI:RegisterLayout("AceBISConfirmDelete",
     function(content, children)
 
-		local height = 0
-		local width = content.width or content:GetWidth() or 0
-		for i = 1, #children do
-			local child = children[i]
+    local height = 0
+    local width = content.width or content:GetWidth() or 0
+    for i = 1, #children do
+        local child = children[i]
 
-			local frame = child.frame
-			frame:ClearAllPoints()
-            frame:Show()
-            
-            if i == 1 then
-                frame:SetPoint("TOP", content, 0, 0) -- Text
-            elseif i == 2 then
-                frame:SetPoint("BOTTOMLEFT", content, 0, 0) -- Cancel Button
-            elseif i == 3 then
-                frame:SetPoint("BOTTOMRIGHT", content, 0, 0) -- Confirm Button
+        local frame = child.frame
+        frame:ClearAllPoints()
+        frame:Show()
+
+        if i == 1 then
+            frame:SetPoint("TOP", content, 0, 0) -- Text
+        elseif i == 2 then
+            frame:SetPoint("BOTTOMLEFT", content, 0, 0) -- Cancel Button
+        elseif i == 3 then
+            frame:SetPoint("BOTTOMRIGHT", content, 0, 0) -- Confirm Button
+        end
+
+        if child.width == "fill" then
+            child:SetWidth(width)
+            frame:SetPoint("RIGHT", content)
+
+            if child.DoLayout then
+                child:DoLayout()
             end
+        elseif child.width == "relative" then
+            child:SetWidth(width * child.relWidth)
 
-			if child.width == "fill" then
-				child:SetWidth(width)
-				frame:SetPoint("RIGHT", content)
+            if child.DoLayout then
+                child:DoLayout()
+            end
+        end
 
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			elseif child.width == "relative" then
-				child:SetWidth(width * child.relWidth)
-
-				if child.DoLayout then
-					child:DoLayout()
-				end
-			end
-
-			height = height + (frame.height or frame:GetHeight() or 0)
-		end
-	end)
+        height = height + (frame.height or frame:GetHeight() or 0)
+    end
+end)
 
 local function UpdateModelFrame()
-	AceBIS.GearWindow.Model:SetAllPoints(AceBIS.GearWindow.frame)
-	AceBIS.GearWindow.Model:SetModelScale(0.75)
-	AceBIS.GearWindow.Model:SetUnit("PLAYER")
-	AceBIS.GearWindow.Model:SetCustomCamera(1)
-	AceBIS.GearWindow.Model:SetPosition(0,0,0)
-	AceBIS.GearWindow.Model:SetLight(true, false, 0, 0.8, -1, 1, 1, 1, 1, 0.3, 1, 1, 1)
+    AceBIS.GearWindow.Model:SetAllPoints(AceBIS.GearWindow.frame)
+    AceBIS.GearWindow.Model:SetModelScale(0.75)
+    AceBIS.GearWindow.Model:SetUnit("PLAYER")
+    AceBIS.GearWindow.Model:SetCustomCamera(1)
+    AceBIS.GearWindow.Model:SetPosition(0,0,0)
+    AceBIS.GearWindow.Model:SetLight(true, false, 0, 0.8, -1, 1, 1, 1, 1, 0.3, 1, 1, 1)
 end
 
 function AceBIS.GearWindow.ConfirmDelete:RemoveSet(setName)
@@ -309,28 +310,28 @@ function AceBIS.GearWindow.ConfirmDelete:RemoveSet(setName)
 end
 
 function AceBIS.GearWindow:UpdateSetDisplay()
-	UpdateModelFrame()
-	AceBIS.GearWindow.SetName:SetText(AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName)
-	AceBIS.GearWindow.Model:Undress()
-	if (AceBIS.SelectedSetName == nil) then
-		for k, v in pairs(AceBIS.GearWindow.Slots) do
-			if (type(k) == "number") then
-				AceBIS.GearWindow.Slots[v]:SetImage(AceBIS.GearWindow.DefaultSlotIcons[v])
-				AceBIS.GearWindow.Slots[v]:SetCallback("OnEnter", function()
-					GameTooltip:SetText("")
-				end)
-			end
-		end
-	else
-		local SelectedSetSlots = UpdateSelectedSetList()
-		for key, value in pairs(SelectedSetSlots) do -- key = Wrists, value = 30684
-			--AceBIS:Print("key = " .. key .. ", value = " .. value)
+    UpdateModelFrame()
+    AceBIS.GearWindow.SetName:SetText(AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName)
+    AceBIS.GearWindow.Model:Undress()
+    if (AceBIS.SelectedSetName == nil) then
+        for k, v in pairs(AceBIS.GearWindow.Slots) do
+            if (type(k) == "number") then
+                AceBIS.GearWindow.Slots[v]:SetImage(AceBIS.GearWindow.DefaultSlotIcons[v])
+                AceBIS.GearWindow.Slots[v]:SetCallback("OnEnter", function()
+                    GameTooltip:SetText("")
+                end)
+            end
+        end
+    else
+        local SelectedSetSlots = UpdateSelectedSetList()
+        for key, value in pairs(SelectedSetSlots) do -- key = Wrists, value = 30684
+            --AceBIS:Print("key = " .. key .. ", value = " .. value)
             local item = Item:CreateFromItemID(tonumber(value))
             local _,_,_,_,itemTexture = GetItemInfoInstant(tonumber(value))
             if itemTexture then
                 if pcall(function(...)
                     AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
-                end) == false then
+                    end) == false then
                     AceBIS:Print(value .. ",")
                 end
             end
@@ -358,8 +359,8 @@ function AceBIS.GearWindow:UpdateSetDisplay()
                     AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
                 end
             end)
-		end
-	end
+        end
+    end
 end
 
 local function CreateIcon(imageHeight, imageWidth, height, width, image)
@@ -501,7 +502,7 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
         else
             local val, startval, endval, stepval = Rank
 
-	    -- keep search  it only happens when there are less than 15 listed items
+            -- keep search  it only happens when there are less than 15 listed items
             while true do
                 if IsControlKeyDown() then
                     startval = 16
@@ -687,7 +688,7 @@ local function InitFullUI()
                         newX = -maxX * self:GetCameraDistance()
                     end
                 end
-                
+
                 if (newY < -maxY * self:GetCameraDistance() or newY > maxY * self:GetCameraDistance()) then
                     if (newY > 0) then
                         newY = maxY * self:GetCameraDistance()
@@ -701,7 +702,6 @@ local function InitFullUI()
             end
         end
     end)
-
 end
 
 function AceBIS:InitUI()
@@ -756,7 +756,7 @@ function AceBIS:InitUI()
         AceBIS.GearWindow.EditSlot:Hide()
     end)
 
-	AceBIS.GearWindow:SetCallback("OnShow", function()
+    AceBIS.GearWindow:SetCallback("OnShow", function()
         AceBIS.GearWindow:UpdateSetDisplay()
     end)
 
