@@ -67,15 +67,15 @@ local function UpdateSelectedSetList()
         local phase = ({ string.split(":", gear) })[3]
         local slot = ({ string.split(":", gear) })[4]
         if class ~= AceBIS.SelectedClass then
-            AceBIS:Print(class .. " != " .. AceBIS.SelectedClass)
+            --AceBIS:Print(class .. " != " .. AceBIS.SelectedClass)
             matched = false
         end
         if spec ~= AceBIS.SelectedSetName then
-            AceBIS:Print(spec .. " != " .. AceBIS.SelectedSetName)
+            --AceBIS:Print(spec .. " != " .. AceBIS.SelectedSetName)
             matched = false
         end
         if phase ~= AceBIS.SelectedPhaseName then
-            AceBIS:Print(phase .. " != " .. AceBIS.SelectedPhaseName)
+            --AceBIS:Print(phase .. " != " .. AceBIS.SelectedPhaseName)
             matched = false
         end
 
