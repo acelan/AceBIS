@@ -12,7 +12,7 @@ paladin_protection = {
    "mleatkpwr": 0.26,
    "rgdatkpwr": 0,
    "armorpenrtng": 0.04,
-   "armor": 0.7,
+   "armor": 0.07,
    "exprtng": 0.69,
    "manargn": 0,
    "defrtng": 0.54,
@@ -21,8 +21,8 @@ paladin_protection = {
    "blockrtng": 0.52,
    "blockamount": 0.28,
    "resirtng": 0,
-   "mledps": 0,
-   "mledmgmax": 1,
+   "mledps": 3.33,
+   "mledmgmax": 0,
    "socket": 18,
 }
 

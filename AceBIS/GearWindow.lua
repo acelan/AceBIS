@@ -313,53 +313,51 @@ function AceBIS.GearWindow:UpdateSetDisplay()
     UpdateModelFrame()
     AceBIS.GearWindow.SetName:SetText(AceBIS.SelectedSetName .. " - " .. AceBIS.SelectedPhaseName)
     AceBIS.GearWindow.Model:Undress()
-    if (AceBIS.SelectedSetName == nil) then
-        for k, v in pairs(AceBIS.GearWindow.Slots) do
-            if (type(k) == "number") then
-                AceBIS.GearWindow.Slots[v]:SetImage(AceBIS.GearWindow.DefaultSlotIcons[v])
-                AceBIS.GearWindow.Slots[v]:SetCallback("OnEnter", function()
-                    GameTooltip:SetText("")
-                end)
-            end
-        end
-    else
-        local SelectedSetSlots = UpdateSelectedSetList()
-        for key, value in pairs(SelectedSetSlots) do -- key = Wrists, value = 30684
-            --AceBIS:Print("key = " .. key .. ", value = " .. value)
-            local item = Item:CreateFromItemID(tonumber(value))
-            local _,_,_,_,itemTexture = GetItemInfoInstant(tonumber(value))
-            if itemTexture then
-                if pcall(function(...)
-                    AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
-                    end) == false then
-                    AceBIS:Print(value .. ",")
-                end
-            end
-            item:ContinueOnItemLoad(function(id)
-                local itemLink = item:GetItemLink()
-                itemTexture = item:GetItemIcon()
-                if itemLink then
-                    if (key ~= "Ranged" or AceBIS.SelectedClass == "Hunter") then
-                        AceBIS.GearWindow.Model:TryOn(itemLink)
-                    end
-                    AceBIS.GearWindow.Slots[key]:SetCallback("OnEnter", function()
-                        if (IsControlKeyDown()) then
-                            ShowInspectCursor()
-                        end
-                        AceBIS.IsHoveringItemSlot = key
-                        GameTooltip:SetOwner(AceBIS.GearWindow.Slots[key].frame, "ANCHOR_RIGHT")
-                        GameTooltip:SetHyperlink(itemLink)
-                        GameTooltip:Show()
-                    end)
-                    if AceBIS.IsHoveringItemSlot and AceBIS.IsHoveringItemSlot == key then
-                        GameTooltip:SetHyperlink(itemLink)
-                    end
-                end
-                if itemTexture then
-                    AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
-                end
+    for k, v in pairs(AceBIS.GearWindow.Slots) do
+        if (type(k) == "number") then
+            AceBIS.GearWindow.Slots[v]:SetImage(AceBIS.GearWindow.DefaultSlotIcons[v])
+            AceBIS.GearWindow.Slots[v]:SetCallback("OnEnter", function()
+                GameTooltip:SetText("")
             end)
         end
+    end
+
+    local SelectedSetSlots = UpdateSelectedSetList()
+    for key, value in pairs(SelectedSetSlots) do -- key = Wrists, value = 30684
+        --AceBIS:Print("key = " .. key .. ", value = " .. value)
+        local item = Item:CreateFromItemID(tonumber(value))
+        local _,_,_,_,itemTexture = GetItemInfoInstant(tonumber(value))
+        if itemTexture then
+            if pcall(function(...)
+                AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
+                end) == false then
+                AceBIS:Print(value .. ",")
+            end
+        end
+        item:ContinueOnItemLoad(function(id)
+            local itemLink = item:GetItemLink()
+            itemTexture = item:GetItemIcon()
+            if itemLink then
+                if (key ~= "Ranged" or AceBIS.SelectedClass == "Hunter") then
+                    AceBIS.GearWindow.Model:TryOn(itemLink)
+                end
+                AceBIS.GearWindow.Slots[key]:SetCallback("OnEnter", function()
+                    if (IsControlKeyDown()) then
+                        ShowInspectCursor()
+                    end
+                    AceBIS.IsHoveringItemSlot = key
+                    GameTooltip:SetOwner(AceBIS.GearWindow.Slots[key].frame, "ANCHOR_RIGHT")
+                    GameTooltip:SetHyperlink(itemLink)
+                    GameTooltip:Show()
+                end)
+                if AceBIS.IsHoveringItemSlot and AceBIS.IsHoveringItemSlot == key then
+                    GameTooltip:SetHyperlink(itemLink)
+                end
+            end
+            if itemTexture then
+                AceBIS.GearWindow.Slots[key]:SetImage(itemTexture)
+            end
+        end)
     end
 end
 
@@ -524,6 +522,10 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
                         AceBIS.GearWindow:UpdateSetDisplay()
                         return
                     else
+                        -- No item on this slot, eg. TwoHand weapon for Fury Warrior
+                        if (rank == 1 and stepval == 1) or (rank == 15 and stepval == -1) then
+                            return
+                        end
                         val = endval
                     end
                 end
@@ -579,9 +581,9 @@ local function InitFullUI()
     AceBIS.GearWindow.ActionsGroup:SetFullWidth(true)
 
     AceBIS.SelectedClass = AceBIS.CurrentClass
-    AceBIS.GearWindow.ActionsGroup.ClassDropdown = CreateDropdownMenu(" Class", AceBIS.ClassList[AceBIS.SelectedClass], AceBIS.ClassList, 95)
+    AceBIS.GearWindow.ActionsGroup.ClassDropdown = CreateDropdownMenu(" Class", AceBIS.SelectedClass, AceBIS.ClassList, 95)
     AceBIS.GearWindow.ActionsGroup.ClassDropdown:SetCallback("OnValueChanged", function(self)
-        AceBIS.SelectedClass = self.list[self.value]
+        AceBIS.SelectedClass = self.value
         AceBIS.GearWindow:UpdateSetDropdown()
         AceBIS.GearWindow:UpdateSetDisplay()
         AceBIS.GearWindow.SetName:SetDisabled(true)
@@ -597,7 +599,7 @@ local function InitFullUI()
     AceBIS.SelectedSetName = firstSetInClass
     AceBIS.GearWindow.ActionsGroup.SetDropdown = CreateDropdownMenu(" Build", firstSetInClass, AceBIS.ClassSpecList[AceBIS.CurrentClass], 160)
     AceBIS.GearWindow.ActionsGroup.SetDropdown:SetCallback("OnValueChanged", function(self)
-        AceBIS.SelectedSetName = self.list[self.value]
+        AceBIS.SelectedSetName = self.value
         AceBIS.GearWindow:UpdateSetDisplay()
         AceBIS.GearWindow.SetName:SetDisabled(true)
         SetSelectedSet(AceBIS.SelectedSetName)

@@ -9,6 +9,7 @@
   <Script file="EnhancementShaman.lua" />
   <Script file="FeralDruid.lua" />
   <Script file="FuryWarrior.lua" />
+  <Script file="HolyPaladin.lua" />
   <Script file="ProtectionPaladin.lua" />
   <Script file="ProtectionWarrior.lua" />
   <Script file="RestorationShaman.lua" />
@@ -16,4 +17,6 @@
   <Script file="ShadowPriest.lua" />
   <Script file="SurvivalHunter.lua" />
   <Script file="UnholyDK.lua" />
+  <Script file="ProtectionDK.lua" />
+  <Script file="TankDruid.lua" />
 </Ui>

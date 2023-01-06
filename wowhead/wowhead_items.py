@@ -7,10 +7,14 @@ import json
 import re
 import os
 from classes.dk_unholy import dk_unholy
+from classes.dk_protection import dk_protection
 from classes.druid_balance import druid_balance
 from classes.druid_feral import druid_feral
+from classes.druid_tank import druid_tank
+from classes.druid_restoration import druid_restoration
 from classes.hunter_survival import hunter_survival
 from classes.mage_arcane import mage_arcane
+from classes.paladin_holy import paladin_holy
 from classes.paladin_protection import paladin_protection
 from classes.paladin_retribution import paladin_retribution
 from classes.priest_discipline import priest_discipline
@@ -32,10 +36,14 @@ wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
 
 specs = {
     "dk_unholy": dk_unholy,
+    "dk_protection": dk_protection,
     "druid_balance": druid_balance,
     "druid_feral": druid_feral,
+    "druid_tank": druid_tank,
+    "druid_restoration": druid_restoration,
     "hunter_survival": hunter_survival,
     "mage_arcane": mage_arcane,
+    "paladin_holy": paladin_holy,
     "paladin_protection": paladin_protection,
     "paladin_retribution": paladin_retribution,
     "priest_discipline": priest_discipline,
@@ -62,7 +70,7 @@ def calculate_epv(spec, item):
             epv = epv + spec[key] * item[key]
         # item needs to be activated, usually persists for 20s with 2min colddown
         if "use_" + key in item:
-            print("use_%s = %s, ep = %s" % (key, item["use_" + key], item["use_" + key] * 20 / 120))
+            #print("use_%s = %s, ep = %s" % (key, item["use_" + key], item["use_" + key] * 20 / 120))
             epv = epv + spec[key] * item["use_" + key] * 20 / 120
 
     for idx in [ "1", "2", "3", "4"]:
@@ -176,7 +184,7 @@ def get_one_item(items, item_id, cached, update):
 
     item = items[item_id]
 
-    print(item)
+    #print(item)
 
 def get_all_items(items, cached, update):
     item_id = first_id

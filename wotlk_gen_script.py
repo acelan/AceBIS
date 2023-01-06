@@ -36,9 +36,15 @@ blacklist = {
     29897,
     29899,
     30176,
+    33350,
     34139,
     39263,
+    40309,
+    40310,
     40311,
+    40312,
+    40313,
+    40314,
     40479,
     40480,
     40481,
@@ -245,6 +251,8 @@ blacklist = {
     47543,
     47544,
     49024,
+    49292,
+    49293,
     49357,
     49686,
     50132,
@@ -355,33 +363,122 @@ rephase = {
 # to better score trinket
 rescore = {
     # Mirror of Truth
-    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 999, "EnhancementShaman": 1000},
+    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 996, "EnhancementShaman": 1000, "UnholyDK": 996, "FeralDruid": 998, "FuryWarrior": 996, "ArmsWarrior": 996},
     # Fury of the Five Flights
-    40431: {"AssassinationRogue": 998, "RetributionPaladin": 999},
+    40431: {"AssassinationRogue": 998, "RetributionPaladin": 999, "UnholyDK": 997, "FeralDruid": 995, "SurvivalHunter": 998, "EnhancementShaman": 996, "FuryWarrior": 998, "ArmsWarrior": 998},
     # Dying Curse
-    40255: {"BalanceDruid": 1000, "ArcaneMage": 999, "ShadowPriest": 1000, "ElementalShaman": 999, "AfflictionWarlock": 999},
+    40255: {"BalanceDruid": 1000, "ArcaneMage": 999, "ShadowPriest": 1000, "ElementalShaman": 999, "AfflictionWarlock": 999, "RestorationDruid": 992, "EnhancementShaman": 999},
     # Illustration of the Dragon Soul
-    40432: {"BalanceDruid": 999, "ShadowPriest": 999, "ElementalShaman": 1000, "AfflictionWarlock": 1000},
-    # Ring of Invincibility
-    40717: {"FeralDruid": 1000},
+    40432: {"BalanceDruid": 999, "ShadowPriest": 999, "ElementalShaman": 1000, "AfflictionWarlock": 1000, "RestorationDruid": 1000, "ArcaneMage": 998, "DisciplinePriest": 1000, "RestorationShaman": 1000},
+    40682: {"BalanceDruid": 998, "ArcaneMage": 997, "ShadowPriest": 997, "ElementalShaman": 997, "AfflictionWarlock": 997},
+    40373: {"BalanceDruid": 996, "ShadowPriest": 994},
+    37873: {"BalanceDruid": 995, "ShadowPriest": 996, "ElementalShaman": 996},
+    42395: {"BalanceDruid": 994, "ShadowPriest": 993, "ElementalShaman": 995},
+    49076: {"BalanceDruid": 993, "ArcaneMage": 996, "AfflictionWarlock": 996},
+    37835: {"BalanceDruid": 992, "RestorationDruid": 996, "DisciplinePriest": 994, "RestorationShaman": 994},
+    42988: {"BalanceDruid": 991, "RestorationDruid": 995, "DisciplinePriest": 995},
+    37660: {"BalanceDruid": 990},
+    44322: {"BalanceDruid": 989, "RestorationDruid": 997},
+    36972: {"BalanceDruid": 988},
     # Darkmoon Card: Greatness(+str)
-    42987: {"FeralDruid": 999, "RetributionPaladin": 1000, "FuryWarrior": 1000, "UnholyDK": 999},
-    # Surge Needle Ring
-    40474: {"SusvivalHunter": 1000},
+    42987: {"FeralDruid": 1000, "RetributionPaladin": 1000, "FuryWarrior": 1000, "UnholyDK": 999, "ProtectionPaladin": 996, "ArmsWarrior": 1000},
     # Embrace of the Spider
-    39229: {"ArcaneMage": 1000},
+    39229: {"ArcaneMage": 1000, "BalanceDruid": 997, "ShadowPriest": 998, "ElementalShaman": 998, "RestorationShaman": 998, "AfflictionWarlock": 998},
     # Figurine - Monarch Crab
-    44063: {"ProtectionPaladin": 1000, "ProtectionWarrior": 999},
+    44063: {"ProtectionPaladin": 1000, "ProtectionWarrior": 999, "ProtectionDK": 1000},
     # Essence of Gossamer
-    37220: {"ProtectionPaladin": 999},
+    37220: {"ProtectionPaladin": 999, "TankDruid": 999, "ProtectionWarrior": 997},
     # Darkmoon Card: Greatness(+agi)
-    44253: {"AssassinationRogue": 999},
+    44253: {"AssassinationRogue": 999, "TankDruid": 1000, "SurvivalHunter": 1000, "EnhancementShaman": 997, "ProtectionWarrior": 998},
     # Meteorite Whetstone
-    37390: {"EnhancementShaman": 999, "UnholyDK": 1000},
+    37390: {"EnhancementShaman": 998, "UnholyDK": 1000, "FeralDruid": 996, "AssassinationRogue": 992},
     # Grim Toll
-    40256: {"FuryWarrior": 999},
+    40256: {"FuryWarrior": 999, "UnholyDK": 998, "FeralDruid": 999, "SurvivalHunter": 997, "AssassinationRogue": 993, "ArmsWarrior": 999},
     # Defender's Code
-    40257: {"ProtectionWarrior": 1000},
+    40257: {"ProtectionWarrior": 1000, "ProtectionPaladin": 997},
+    # Figurine - Ruby Hare
+    42341: {"ProtectionDK": 999, "ProtectionWarrior": 996, "ProtectionPaladin": 998},
+    # Essence of Gossamer
+    37720: {"ProtectionDK": 998},
+    # Valor Medal of the First War
+    40683: {"ProtectionDK": 997, "ProtectionPaladin": 993},
+    # Seal of the Pantheon
+    36993: {"ProtectionDK": 996, "ProtectionWarrior": 994},
+    # Sonic Booster
+    40767: {"ProtectionDK": 995},
+    # Loatheb's Shadow
+    39257: {"UnholyDK": 995, "FeralDruid": 997, "SurvivalHunter": 999, "AssassinationRogue": 994, "FuryWarrior": 997, "ArmsWarrior": 997},
+    # Incisor Fragment
+    37723: {"UnholyDK": 994, "FeralDruid": 994},
+    40531: {"FeralDruid": 993, "AssassinationRogue": 997, "EnhancementShaman": 993},
+    37111: {"RestorationDruid": 999, "HolyPaladin": 999, "RestorationShaman": 999},
+    37675: {"RestorationDruid": 998, "RestorationShaman": 993},
+    44254: {"RestorationDruid": 994, "ShadowPriest": 993},
+    40258: {"RestorationDruid": 993, "DisciplinePriest": 993, "RestorationShaman": 996},
+    42990: {"ShadowPriest": 996},
+    37264: {"ShadowPriest": 995},
+    34427: {"AssassinationRogue": 996},
+    40371: {"AssassinationRogue": 995, "EnhancementShaman": 994},
+    37166: {"AssassinationRogue": 991, "EnhancementShaman": 995, "FuryWarrior": 995, "ArmsWarrior": 995},
+    43573: {"EnhancementShaman": 992},
+    37872: {"ProtectionWarrior": 995},
+    39292: {"ProtectionWarrior": 993, "ProtectionPaladin": 994},
+    44255: {"HolyPaladin": 1000, "DisciplinePriest": 999},
+    42413: {"HolyPaladin": 998, "DisciplinePriest": 998},
+    28823: {"HolyPaladin": 997},
+    29387: {"ProtectionPaladin": 995},
+    40372: {"ProtectionPaladin": 992},
+    42132: {"DisciplinePriest": 999},
+    40382: {"DisciplinePriest": 997, "RestorationShaman": 995},
+    40685: {"DisciplinePriest": 992, "RestorationShaman": 997},
+    37660: {"DisciplinePriest": 991},
+    37657: {"DisciplinePriest": 990},
+    37844: {"RestorationShaman": 992},
+
+    # Sigils for Unholy Death Knight
+    42620: {"UnholyDK": 1000},
+    40207: {"UnholyDK": 999, "ProtectionDK": 998},
+    40867: {"UnholyDK": 998},
+    # Relics for Blood Death Knight Tank
+    40714: {"ProtectionDK": 1000},
+    40822: {"ProtectionDK": 999},
+    40715: {"ProtectionDK": 997},
+    # Idols for Balance Druid DPS
+    40321: {"BalanceDruid": 1000},
+    40712: {"BalanceDruid": 999},
+    32387: {"BalanceDruid": 998},
+    27518: {"BalanceDruid": 997},
+    38360: {"BalanceDruid": 996},
+    # Idols for Feral Druid DPS
+    39757: {"FeralDruid": 1000},
+    40713: {"FeralDruid": 999},
+    38295: {"FeralDruid": 998},
+    # Idols for Feral Druid Tank
+    38365: {"TankDruid": 1000},
+    33509: {"TankDruid": 999},
+    # Idols for Restoration Druid Healer
+    40342: {"RestorationDruid": 1000},
+    33508: {"RestorationDruid": 999},
+    25643: {"RestorationDruid": 998},
+    # Librams for Holy Paladin Healer
+    40705: {"HolyPaladin": 1000},
+    # Librams for Protection Paladin Tank
+    40707: {"ProtectionPaladin": 1000},
+    # Librams for Retribution Paladin
+    42852: {"RetributionPaladin": 1000},
+    42851: {"RetributionPaladin": 999},
+    42611: {"RetributionPaladin": 998},
+    # Totems for Elemental Shaman DPS
+    40267: {"ElementalShaman": 1000},
+    40708: {"ElementalShaman": 999, "EnhancementShaman": 999},
+    32330: {"ElementalShaman": 998},
+    # Totems for Enhancement Shaman DPS
+    40322: {"EnhancementShaman": 1000},
+    33507: {"EnhancementShaman": 997},
+    37575: {"EnhancementShaman": 996},
+    # Totems for Restoration Shaman Healer
+    40709: {"RestorationShaman": 1000},
+    38368: {"RestorationShaman": 999},
 }
 
 classs = {
@@ -516,7 +613,7 @@ def build_list():
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'druid_balance', 'druid_feral', 'hunter_survival', 'mage_arcane', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'dk_protection', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_tank', 'hunter_survival', 'mage_arcane', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     #print("item = %s" % i)
 
@@ -573,7 +670,8 @@ def build_list():
                     if itemsubclass in ["Libram", "Sigil", "Totem", "Idol"]:
                         if cclass not in ["Paladin", "DK", "Shaman", "Druid"]:
                             continue
-                        score = itemid
+                        if score == 0:
+                            score = itemid/100
                         if cclass == "Paladin" and itemsubclass == "Libram":
                             itemtype = "Ranged"
                         elif cclass == "DK" and itemsubclass == "Sigil":
@@ -671,6 +769,7 @@ def build_list():
                             if itemsubclass in ["Wand"]:
                                 continue
 
+                    # For Warrior, Paladin, and DK
                     if spec == "Protection" and itemclass == "Armor":
                             if itemsubclass in ["Cloth", "Leather", "Mail"]:
                                 continue
@@ -684,12 +783,11 @@ def build_list():
                     # special setting for current assassination rogue weapon
                     if cclass == "Rogue" and spec == "Assassination":
                         if itemsubclass  == "Dagger":
-                            score = score / float(item["speed"])    # weapon speed matter
                             if float(item["speed"]) > 1.4:          # slow weapon should equip in off hand
                                 if itemtype == "OneHand":
                                     itemtype = "OffHand"
                             elif float(item["speed"]) == 1.3:       # for fastest weapon
-                                score = score * 1.5
+                                score = score * 1.3
                             score = score + int(item["mledps"])
 
                     item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score}
@@ -701,15 +799,20 @@ def build_list():
                         itemtype = "Pants"
                     elif itemtype == "Feet":
                         itemtype = "Boots"
-                    bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
 
                     # Fury Warrior can use TwoHand weapon as MainHand and OffHand weapon, so treat it as OneHand
-                    if cclass == "Warrior" and spec == "Fury" and itemtype == "TwoHand":
-                        bis_list[cclass][spec][phase]["OneHand"][itemid] = item_tmp
+                    if cclass == "Warrior" and spec == "Fury":
+                        if itemtype == "TwoHand":
+                            #bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
+                            itemtype = "OneHand"
+                        elif itemtype in ["MainHand", "OneHand"]:
+                            continue
+
+                    bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
 
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
-                    #if itemid in [39714, 37856, 40386] and cclass == "Rogue" and spec == "Assassination":
+                    #if itemid in [44253, 37220]:
                     #    print("after %s %s" % (itemid, score))
                     #    print("%s %s %s %s %s %s" % (spec, cclass, itemid, score, phase, item["speed"]))
 
@@ -737,6 +840,8 @@ for cclass in classs.values():
                     # No MainHand weapon for this class + spec, then OneHand would be MainHand
                     if "MainHand" not in bis_list[cclass][spec][phase]:
                         s = "MainHand"
+                    elif "OffHand" not in bis_list[cclass][spec][phase]:
+                        s = "OffHand"
                     else:
                         continue
 
@@ -774,6 +879,15 @@ for cclass in classs.values():
                 sorted_keys = sorted(items.keys(), key=lambda x: (float(items[x]['score'])), reverse=True)
                 index = 1
                 for itemid in sorted_keys:
+                    if cclass in ["Warrior", "Paladin"] and spec == "Protection":
+                        item = items[itemid]
+                        if s == "OffHand" and item["subclass"] != "Shield":
+                            continue
+                    if cclass == "Warrior" and spec == "Arms":
+                        item = items[itemid]
+                        if s == "OffHand" and item["subclass"] == "Shield":
+                            continue
+
                     # print("%s %s %s %s %s %s" % (cclass, spec, phase, s, itemid, bis_list[cclass][spec][phase][s][itemid]["type"]))
                     #output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, bis_list[cclass][spec][phase][s][itemid]["type"])
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)

@@ -140,6 +140,13 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
+					Tank = {
+						name = L["TankDruid"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
 					Restoration = {
 						name = L["RestorationDruid"],
 						type = "toggle",
@@ -235,6 +242,13 @@ function AceBIS:InitOptions()
 				args = {
 					Unholy = {
 						name = L["UnholyDK"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					Protection = {
+						name = L["ProtectionDK"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -413,11 +427,11 @@ function AceBIS:RegisterBIS(class, build, phase)
 
 	AceBIS.BIS[bis.ID] = bis
 
-	AceBIS.ClassList[class] = class
+	AceBIS.ClassList[class] = L[class]
 	if not AceBIS.ClassSpecList[class] then
 		AceBIS.ClassSpecList[class] = {}
 	end
-	AceBIS.ClassSpecList[class][build] = build
+	AceBIS.ClassSpecList[class][build] = L[build]
 
 	return bis
 end

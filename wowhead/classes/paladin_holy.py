@@ -1,14 +1,14 @@
 
-warlock_affliction = {
+paladin_holy = {
    "str": 0,
-   "int": 0.18,
-   "sta": 0.01,
+   "int": 0.38,
+   "sta": 0,
    "agi": 0,
-   "spi": 0.54,
+   "spi": 0.34,
    "spldmg": 1,
-   "hastertng": 0.81,
-   "critstrkrtng": 0.53,
-   "hitrtng": 0.93,
+   "hastertng": 0.77,
+   "critstrkrtng": 0.69,
+   "hitrtng": 0,
    "mleatkpwr": 0,
    "rgdatkpwr": 0,
    "armorpenrtng": 0,
@@ -25,5 +25,3 @@ warlock_affliction = {
    "mledmgmax": 0,
    "socket": 19,
 }
-
-# 8291
