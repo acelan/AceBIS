@@ -167,6 +167,7 @@ blacklist = {
     45173,
     45174,
     45175,
+    45350,
     45499,
     46230,
     46231,
@@ -246,6 +247,8 @@ blacklist = {
     46305,
     46306,
     46307,
+    46308,
+    46309,
     46844,
     47542,
     47543,
@@ -363,14 +366,14 @@ rephase = {
 # to better score trinket
 rescore = {
     # Mirror of Truth
-    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 996, "EnhancementShaman": 1000, "UnholyDK": 996, "FeralDruid": 998, "FuryWarrior": 996, "ArmsWarrior": 996},
+    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 996, "EnhancementShaman": 1000, "UnholyDK": 996, "FeralDruid": 998, "FuryWarrior": 996, "ArmsWarrior": 996, "RetributionPaladin": 997},
     # Fury of the Five Flights
     40431: {"AssassinationRogue": 998, "RetributionPaladin": 999, "UnholyDK": 997, "FeralDruid": 995, "SurvivalHunter": 998, "EnhancementShaman": 996, "FuryWarrior": 998, "ArmsWarrior": 998},
     # Dying Curse
-    40255: {"BalanceDruid": 1000, "ArcaneMage": 999, "ShadowPriest": 1000, "ElementalShaman": 999, "AfflictionWarlock": 999, "RestorationDruid": 992, "EnhancementShaman": 999},
+    40255: {"BalanceDruid": 1000, "ArcaneMage": 1997, "ShadowPriest": 1996, "ElementalShaman": 1999, "AfflictionWarlock": 1993, "RestorationDruid": 992, "EnhancementShaman": 999},
     # Illustration of the Dragon Soul
-    40432: {"BalanceDruid": 999, "ShadowPriest": 999, "ElementalShaman": 1000, "AfflictionWarlock": 1000, "RestorationDruid": 1000, "ArcaneMage": 998, "DisciplinePriest": 1000, "RestorationShaman": 1000},
-    40682: {"BalanceDruid": 998, "ArcaneMage": 997, "ShadowPriest": 997, "ElementalShaman": 997, "AfflictionWarlock": 997},
+    40432: {"BalanceDruid": 999, "ShadowPriest": 1995, "ElementalShaman": 999, "AfflictionWarlock": 1998, "RestorationDruid": 1998, "ArcaneMage": 1996, "DisciplinePriest": 2000, "RestorationShaman": 1000},
+    40682: {"BalanceDruid": 998, "ArcaneMage": 997, "ShadowPriest": 1993, "ElementalShaman": 997, "AfflictionWarlock": 997},
     40373: {"BalanceDruid": 996, "ShadowPriest": 994},
     37873: {"BalanceDruid": 995, "ShadowPriest": 996, "ElementalShaman": 996},
     42395: {"BalanceDruid": 994, "ShadowPriest": 993, "ElementalShaman": 995},
@@ -378,26 +381,26 @@ rescore = {
     37835: {"BalanceDruid": 992, "RestorationDruid": 996, "DisciplinePriest": 994, "RestorationShaman": 994},
     42988: {"BalanceDruid": 991, "RestorationDruid": 995, "DisciplinePriest": 995},
     37660: {"BalanceDruid": 990},
-    44322: {"BalanceDruid": 989, "RestorationDruid": 997},
+    44322: {"BalanceDruid": 1988, "RestorationDruid": 997},
     36972: {"BalanceDruid": 988},
     # Darkmoon Card: Greatness(+str)
-    42987: {"FeralDruid": 1000, "RetributionPaladin": 1000, "FuryWarrior": 1000, "UnholyDK": 999, "ProtectionPaladin": 996, "ArmsWarrior": 1000},
+    42987: {"FeralDruid": 1996, "RetributionPaladin": 2000, "FuryWarrior": 2000, "UnholyDK": 1999, "ProtectionPaladin": 1992, "ArmsWarrior": 2000},
     # Embrace of the Spider
-    39229: {"ArcaneMage": 1000, "BalanceDruid": 997, "ShadowPriest": 998, "ElementalShaman": 998, "RestorationShaman": 998, "AfflictionWarlock": 998},
+    39229: {"ArcaneMage": 1000, "BalanceDruid": 997, "ShadowPriest": 1994, "ElementalShaman": 998, "RestorationShaman": 998, "AfflictionWarlock": 1995},
     # Figurine - Monarch Crab
-    44063: {"ProtectionPaladin": 1000, "ProtectionWarrior": 999, "ProtectionDK": 1000},
+    44063: {"ProtectionPaladin": 1998, "ProtectionWarrior": 1998, "ProtectionDK": 1000},
     # Essence of Gossamer
-    37220: {"ProtectionPaladin": 999, "TankDruid": 999, "ProtectionWarrior": 997},
+    37220: {"ProtectionPaladin": 1997, "TankDruid": 999, "ProtectionWarrior": 997},
     # Darkmoon Card: Greatness(+agi)
-    44253: {"AssassinationRogue": 999, "TankDruid": 1000, "SurvivalHunter": 1000, "EnhancementShaman": 997, "ProtectionWarrior": 998},
+    44253: {"AssassinationRogue": 999, "TankDruid": 1000, "SurvivalHunter": 2000, "EnhancementShaman": 997, "ProtectionWarrior": 998, "FeralDruid": 1994},
     # Meteorite Whetstone
-    37390: {"EnhancementShaman": 998, "UnholyDK": 1000, "FeralDruid": 996, "AssassinationRogue": 992},
+    37390: {"EnhancementShaman": 998, "UnholyDK": 1998, "FeralDruid": 996, "AssassinationRogue": 992},
     # Grim Toll
-    40256: {"FuryWarrior": 999, "UnholyDK": 998, "FeralDruid": 999, "SurvivalHunter": 997, "AssassinationRogue": 993, "ArmsWarrior": 999},
+    40256: {"FuryWarrior": 999, "UnholyDK": 998, "FeralDruid": 1997, "SurvivalHunter": 997, "AssassinationRogue": 993, "ArmsWarrior": 999},
     # Defender's Code
-    40257: {"ProtectionWarrior": 1000, "ProtectionPaladin": 997},
+    40257: {"ProtectionWarrior": 1996, "ProtectionPaladin": 1993},
     # Figurine - Ruby Hare
-    42341: {"ProtectionDK": 999, "ProtectionWarrior": 996, "ProtectionPaladin": 998},
+    42341: {"ProtectionDK": 999, "ProtectionWarrior": 996, "ProtectionPaladin": 1996},
     # Essence of Gossamer
     37720: {"ProtectionDK": 998},
     # Valor Medal of the First War
@@ -410,21 +413,21 @@ rescore = {
     39257: {"UnholyDK": 995, "FeralDruid": 997, "SurvivalHunter": 999, "AssassinationRogue": 994, "FuryWarrior": 997, "ArmsWarrior": 997},
     # Incisor Fragment
     37723: {"UnholyDK": 994, "FeralDruid": 994},
-    40531: {"FeralDruid": 993, "AssassinationRogue": 997, "EnhancementShaman": 993},
-    37111: {"RestorationDruid": 999, "HolyPaladin": 999, "RestorationShaman": 999},
+    40531: {"FeralDruid": 993, "AssassinationRogue": 997, "EnhancementShaman": 993, "UnholyDK": 1997},
+    37111: {"RestorationDruid": 1996, "HolyPaladin": 1999, "RestorationShaman": 999, "RestorationShaman": 1998},
     37675: {"RestorationDruid": 998, "RestorationShaman": 993},
-    44254: {"RestorationDruid": 994, "ShadowPriest": 993},
+    44254: {"RestorationDruid": 1990, "ShadowPriest": 993},
     40258: {"RestorationDruid": 993, "DisciplinePriest": 993, "RestorationShaman": 996},
     42990: {"ShadowPriest": 996},
     37264: {"ShadowPriest": 995},
     34427: {"AssassinationRogue": 996},
-    40371: {"AssassinationRogue": 995, "EnhancementShaman": 994},
+    40371: {"AssassinationRogue": 995, "EnhancementShaman": 994, "RetributionPaladin": 998},
     37166: {"AssassinationRogue": 991, "EnhancementShaman": 995, "FuryWarrior": 995, "ArmsWarrior": 995},
     43573: {"EnhancementShaman": 992},
     37872: {"ProtectionWarrior": 995},
     39292: {"ProtectionWarrior": 993, "ProtectionPaladin": 994},
-    44255: {"HolyPaladin": 1000, "DisciplinePriest": 999},
-    42413: {"HolyPaladin": 998, "DisciplinePriest": 998},
+    44255: {"HolyPaladin": 1998, "DisciplinePriest": 1995},
+    42413: {"HolyPaladin": 1997, "DisciplinePriest": 998},
     28823: {"HolyPaladin": 997},
     29387: {"ProtectionPaladin": 995},
     40372: {"ProtectionPaladin": 992},
@@ -432,16 +435,65 @@ rescore = {
     40382: {"DisciplinePriest": 997, "RestorationShaman": 995},
     40685: {"DisciplinePriest": 992, "RestorationShaman": 997},
     37660: {"DisciplinePriest": 991},
-    37657: {"DisciplinePriest": 990},
+    37657: {"DisciplinePriest": 990, "RestorationDruid": 1989},
     37844: {"RestorationShaman": 992},
+
+    # P2
+    45466: {"BalanceDruid": 2000, "ShadowPriest": 2000, "ArcaneMage": 1999, "ElementalShaman": 1998, "RestorationShaman": 1999, "AfflictionWarlock": 2000},
+    45518: {"BalanceDruid": 1999, "ShadowPriest": 1999, "ElementalShaman": 2000, "ArcaneMage": 2000, "AfflictionWarlock": 1999},
+    45931: {"FeralDruid": 2000, "SurvivalHunter": 1998, "AssassinationRogue": 1996, "EnhancementShaman": 1996, "ArmsWarrior": 1999, "FuryWarrior": 1999},
+    45609: {"FeralDruid": 1999, "UnholyDK": 2000, "AssassinationRogue": 2000, "SurvivalHunter": 1997, "RetributionPaladin": 1999, "EnhancementShaman": 2000, "ArmsWarrior": 1998, "FuryWarrior": 1998},
+    45158: {"TankDruid": 2000, "ProtectionPaladin": 2000, "ProtectionWarrior": 2000, "ProtectionDK": 2000},
+    46021: {"TankDruid": 1999, "ProtectionPaladin": 1999, "ProtectionWarrior": 1999, "ProtectionDK": 1999},
+    45522: {"RetributionPaladin": 1996, "UnholyDK": 1994, "FeralDruid": 1993, "ProtectionPaladin": 1991, "AssassinationRogue": 1998, "EnhancementShaman": 1997},
+    46038: {"AssassinationRogue": 1999, "UnholyDK": 1995, "FeralDruid": 1998, "SurvivalHunter": 1999, "RetributionPaladin": 1998, "EnhancementShaman": 1999, "ArmsWarrior": 1997, "FuryWarrior": 1997},
+    45490: {"BalanceDruid": 1998, "RestorationDruid": 1991, "ArcaneMage": 1998, "ShadowPriest": 1990, "RestorationShaman": 1997, "AfflictionWarlock": 1997},
+    45308: {"BalanceDruid": 1997, "DisciplinePriest": 1998, "ElementalShaman": 1997, "RestorationShaman": 1995, "AfflictionWarlock": 1996},
+    45263: {"UnholyDK": 1996, "FeralDruid": 1995, "SurvivalHunter": 1996, "RetributionPaladin": 1997, "AssassinationRogue": 1995, "EnhancementShaman": 1998},
+    45286: {"UnholyDK": 1993, "ProtectionPaladin": 1990, "RetributionPaladin": 1995, "AssassinationRogue": 1997},
+    45703: {"RestorationDruid": 2000, "DisciplinePriest": 1994},
+    45535: {"RestorationDruid": 1999, "DisciplinePriest": 1999, "ShadowPriest": 1992, "RestorationShaman": 2000},
+    45929: {"RestorationDruid": 1997, "DisciplinePriest": 1997, "ShadowPriest": 1991, "RestorationShaman": 1996},
+    46051: {"RestorationDruid": 1995, "HolyPaladin": 2000, "DisciplinePriest": 1996},
+    40430: {"RestorationDruid": 1994},
+    19288: {"RestorationDruid": 1993},
+    45292: {"RestorationDruid": 1992},
+    45148: {"ArcaneMage": 1995, "ShadowPriest": 1998, "AfflictionWarlock": 1992},
+    45313: {"ProtectionPaladin": 1995, "ProtectionWarrior": 1997},
+    45507: {"ProtectionPaladin": 1994},
+    46132: {"ShadowPriest": 1997},
+    45866: {"AfflictionWarlock": 1994},
+
+    # P2
+    # Sigils for Unholy Death Knight
+    45254: {"UnholyDK": 2000},
+    42621: {"UnholyDK": 1999},
+    # Relics for Blood Death Knight Tank
+    45144: {"ProtectionDK": 2000},
+    # Idols for Balance Druid DPS
+    # Idols for Feral Druid DPS
+    # Idols for Feral Druid Tank
+    45509: {"TankDruid": 2000},
+    # Idols for Restoration Druid Healer
+    46138: {"RestorationDruid": 1997},
+    # Librams for Holy Paladin Healer
+    # Librams for Protection Paladin Tank
+    45145: {"ProtectionPaladin": 2000},
+    # Librams for Retribution Paladin
+    42853: {"RetributionPaladin": 2000},
+    # Totems for Elemental Shaman DPS
+    # Totems for Enhancement Shaman DPS
+    42608: {"EnhancementShaman": 2000},
+    # Totems for Restoration Shaman Healer
+    45114: {"RestorationShaman": 1000},
 
     # Sigils for Unholy Death Knight
     42620: {"UnholyDK": 1000},
-    40207: {"UnholyDK": 999, "ProtectionDK": 998},
+    40207: {"UnholyDK": 999, "ProtectionDK": 999},
     40867: {"UnholyDK": 998},
     # Relics for Blood Death Knight Tank
     40714: {"ProtectionDK": 1000},
-    40822: {"ProtectionDK": 999},
+    40822: {"ProtectionDK": 998},
     40715: {"ProtectionDK": 997},
     # Idols for Balance Druid DPS
     40321: {"BalanceDruid": 1000},
@@ -457,9 +509,9 @@ rescore = {
     38365: {"TankDruid": 1000},
     33509: {"TankDruid": 999},
     # Idols for Restoration Druid Healer
-    40342: {"RestorationDruid": 1000},
-    33508: {"RestorationDruid": 999},
-    25643: {"RestorationDruid": 998},
+    40342: {"RestorationDruid": 2000},
+    33508: {"RestorationDruid": 1999},
+    25643: {"RestorationDruid": 1998},
     # Librams for Holy Paladin Healer
     40705: {"HolyPaladin": 1000},
     # Librams for Protection Paladin Tank
@@ -528,6 +580,7 @@ item_class = {
 }
 
 item4_subclass = {
+    0: 'Miscellaneous',             # id = 48945, no material
     1: "Cloth",                     # 'subclass': 1
     2: "Leather",
     3: "Mail",
@@ -613,7 +666,7 @@ def build_list():
                 #print("id = %s" % item["id"])
                 #print("subclass = %s" % item["subclass"])
                 #print("inventorySlot = %s" % item["inventorySlot"])
-                for i in {'dk_unholy', 'dk_protection', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_tank', 'hunter_survival', 'mage_arcane', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
+                for i in {'dk_unholy', 'dk_protection', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_tank', 'hunter_survival', 'mage_arcane', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'rogue_combat', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                     score = item[i]
                     #print("item = %s" % i)
 
@@ -628,13 +681,7 @@ def build_list():
                             #print("item class = %s, class = %s" % (int(item["reqclass"]),int(keys[0])))
                             continue
 
-                    # remove this after data retrived from wowhead again
-                    if cclass == "Rogue":
-                        spec = "Assassination"
-                    elif cclass == "Hunter":
-                        spec = "Survival"
-                    else:
-                        spec = i.split("_")[1].capitalize()
+                    spec = i.split("_")[1].capitalize()
 
                     if itemid in rescore:
                         if spec + cclass in rescore[itemid]:
@@ -645,14 +692,16 @@ def build_list():
                     itemtype = ""
                     try:
                         itemclass = item_class[int(item["class"]["@id"])]
+                        itemtype = inv_type[int(item["inventorySlot"]["@id"])]
 
-                        if int(item["subclass"]) > 0:
-                            if int(item["class"]["@id"]) == 2:
+                        if int(item["subclass"]) >= 0:
+                            if (int(item["class"]["@id"]) == 2) or (int(item["class"]["@id"]) == 0):
                                 itemsubclass = item2_subclass[int(item["subclass"])]
                             elif int(item["class"]["@id"]) == 4:
                                 itemsubclass = item4_subclass[int(item["subclass"])]
+                            #else:
+                            #    print("Invalid subclass id: %s - type = %s, class = %s, subclass = %s" % (itemid, item["inventorySlot"]["@id"], item["class"]["@id"], item["subclass"]))
 
-                        itemtype = inv_type[int(item["inventorySlot"]["@id"])]
                     except:
                         print("id = %s" % item["id"])
                         print("class = %s" % item["class"])
@@ -825,7 +874,7 @@ for cclass in classs.values():
     for spec in bis_list[cclass].keys():
         print("%s - %s" % (cclass, spec))
         output = ""
-        for phase in {"0", "1"}:   # select items from P0 to P5
+        for phase in {"0", "1", "2"}:   # select items from P0 to P5
             p = "P" + phase
             output += gen_header(p, cclass, spec)
             #print("%s %s" % (spec, cclass))

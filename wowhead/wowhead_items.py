@@ -20,6 +20,7 @@ from classes.paladin_retribution import paladin_retribution
 from classes.priest_discipline import priest_discipline
 from classes.priest_shadow import priest_shadow
 from classes.rogue_assassination import rogue_assassination
+from classes.rogue_combat import rogue_combat
 from classes.shaman_elemental import shaman_elemental
 from classes.shaman_enhancement import shaman_enhancement
 from classes.shaman_restoration import shaman_restoration
@@ -49,6 +50,7 @@ specs = {
     "priest_discipline": priest_discipline,
     "priest_shadow": priest_shadow,
     "rogue_assassination": rogue_assassination,
+    "rogue_combat": rogue_combat,
     "shaman_elemental": shaman_elemental,
     "shaman_enhancement": shaman_enhancement,
     "shaman_restoration": shaman_restoration,

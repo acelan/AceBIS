@@ -42,6 +42,13 @@ function AceBIS:InitOptions()
 				set = "SetPhase",
 				get = "GetPhase"
 			},
+			P2 = {
+				name = "Phase 2",
+				type = "toggle",
+				desc = "show phase 2 gears",
+				set = "SetPhase",
+				get = "GetPhase"
+			},
 			Warrior = {
 				name = L["Warrior"],
 				type = "group",
@@ -160,8 +167,15 @@ function AceBIS:InitOptions()
 				name = L["Rogue"],
 				type = "group",
 				args = {
-					Combat = {
+					Assassination = {
 						name = L["AssassinationRogue"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					Combat = {
+						name = L["CombatRogue"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",

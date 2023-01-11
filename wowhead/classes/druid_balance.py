@@ -6,7 +6,7 @@ druid_balance = {
    "agi": 0,
    "spi": 0.34,
    "spldmg": 1,
-   "hastertng": 0.6,
+   "hastertng": 0.77,
    "critstrkrtng": 0.69,
    "hitrtng": 0,
    "mleatkpwr": 0,
