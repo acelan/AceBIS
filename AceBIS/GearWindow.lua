@@ -299,7 +299,6 @@ local function UpdateModelFrame()
     AceBIS.GearWindow.Model:SetUnit("PLAYER")
     AceBIS.GearWindow.Model:SetCustomCamera(1)
     AceBIS.GearWindow.Model:SetPosition(0,0,0)
-    AceBIS.GearWindow.Model:SetLight(true, false, 0, 0.8, -1, 1, 1, 1, 1, 0.3, 1, 1, 1)
 end
 
 function AceBIS.GearWindow.ConfirmDelete:RemoveSet(setName)
@@ -571,7 +570,7 @@ end
 local function InitFullUI()
     InitFrame(AceBIS.GearWindow, true, "AceBIS Gears", 520, 360, "AceBISSheet")
     
-    AceBIS.GearWindow.frame:SetMinResize(300,520)
+    AceBIS.GearWindow.frame:SetResizeBounds(300,520)
 
     AceBIS.GearWindow.LeftSlots = CreateSimpleGroup("list", 45, 0)
     AceBIS.GearWindow.BottomSlots = CreateSimpleGroup("flow", 195, 45)
