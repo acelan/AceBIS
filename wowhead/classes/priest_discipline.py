@@ -4,7 +4,7 @@ priest_discipline = {
    "int": 2.73,
    "sta": 0,
    "agi": 0,
-   "spi": 1.61,
+   "spi": 1.63,
    "spldmg": 1,
    "hastertng": 0.28,
    "critstrkrtng": 0.75,

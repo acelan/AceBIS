@@ -7,7 +7,7 @@ shaman_enhancement = {
    "spi": 0,
    "spldmg": 1.13,
    "hastertng": 1.61,
-   "critstrkrtng": 0.91,
+   "critstrkrtng": 0.81,
    "hitrtng": 1.38,
    "mleatkpwr": 1,
    "armorpenrtng": 0.48,

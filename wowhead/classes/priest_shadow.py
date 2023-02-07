@@ -5,7 +5,7 @@ priest_shadow = {
    "agi": 0,
    "spi": 0.47,
    "spldmg": 1,
-   "hastertng": 1.56,
+   "hastertng": 1.65,
    "critstrkrtng": 0.74,
    "hitrtng": 0.87,
    "mleatkpwr": 0,
