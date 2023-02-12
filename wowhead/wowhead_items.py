@@ -31,7 +31,7 @@ from classes.warrior_protection import warrior_protection
 
 
 item_id = 0
-first_id = 1000
+first_id = 20000
 final_id = 100000
 wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
 
@@ -116,7 +116,11 @@ def get_one_item(items, item_id, cached, update):
         print("retriving item_id %s from wowhead" % item_id)
         url = wowhead_wotlk % item_id
         r = requests.get(url)
-        root = xmltodict.parse(r.text)
+        try:
+            root = xmltodict.parse(r.text)
+        except:
+            print("Error: %s" % r.text)
+            return
 
         if "item" not in root["wowhead"]:
             return

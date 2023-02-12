@@ -1,7 +1,7 @@
 ## Interface: 30401
 ## Interface-Wrath: 30401
 ## Title: AceBIS
-## Version: 4.3.1
+## Version: 4.3.2
 ## SavedVariablesPerCharacter: AceBISGears
 
 ## X-Credits: Fazers for all the data. Zentarg for paper doll window from BisTracker

@@ -22,7 +22,7 @@ warrior_protection = {
    "resirtng": 0,
    "mledps": 6.081,
    "mledmgmax": 0,
-   "socket": 16,
+   "socket": 56,
 }
 
 # 4352

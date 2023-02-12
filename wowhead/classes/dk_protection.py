@@ -23,5 +23,5 @@ dk_protection = {
    "resirtng": 0,
    "mledps": 3.10,
    "mledmgmax": 0,
-   "socket": 16,
+   "socket": 24,
 }

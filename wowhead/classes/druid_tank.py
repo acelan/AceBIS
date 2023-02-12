@@ -23,5 +23,5 @@ druid_tank = {
    "resirtng": 0,
    "mledps": 0,
    "mledmgmax": 0,
-   "socket": 168,
+   "socket": 175,
 }

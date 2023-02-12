@@ -21,7 +21,7 @@ priest_shadow = {
    "resirtng": 0,
    "mledps": 0,
    "mledmgmax": 0,
-   "socket": 19,
+   "socket": 26.4,
 }
 
 # 6936

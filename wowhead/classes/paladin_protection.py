@@ -23,7 +23,7 @@ paladin_protection = {
    "resirtng": 0,
    "mledps": 3.33,
    "mledmgmax": 0,
-   "socket": 18,
+   "socket": 27,
 }
 
 # 4176
