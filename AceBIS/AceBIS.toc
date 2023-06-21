@@ -1,5 +1,5 @@
-## Interface: 30401
-## Interface-Wrath: 30401
+## Interface: 30402
+## Interface-Wrath: 30402
 ## Title: AceBIS
 ## Version: 4.4.0
 ## SavedVariablesPerCharacter: AceBISGears

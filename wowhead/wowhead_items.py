@@ -190,7 +190,7 @@ def get_one_item(items, item_id, cached, update):
 
     item = items[item_id]
 
-    #print(item)
+    print(item)
 
 def get_all_items(items, cached, update):
     item_id = first_id

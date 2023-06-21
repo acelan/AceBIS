@@ -366,6 +366,12 @@ rephase = {
     51806: '2',
     51807: '2',
     51808: '2',
+    54801: '2',     # 54801 ~ 54806 仲夏火焰節
+    54802: '2',
+    54803: '2',
+    54804: '2',
+    54805: '2',
+    54806: '2',
 }
 
 # to better score trinket
@@ -866,9 +872,10 @@ def build_list():
 
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
-                    #if itemid in [44253, 37220]:
-                    #    print("after %s %s" % (itemid, score))
-                    #    print("%s %s %s %s %s %s" % (spec, cclass, itemid, score, phase, item["speed"]))
+                    #if itemid in [54801, 54802, 54803, 54804, 54805]:
+                    #if itemid in [54805]:
+                        #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
+                        #print("after %s %s" % (itemid, score))
 
     #print(list(bis_list["Warrior"]["Fury"]["1"]))
     return bis_list
@@ -946,7 +953,7 @@ for cclass in classs.values():
                     #output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, bis_list[cclass][spec][phase][s][itemid]["type"])
                     output += "AceBIS:BISitem(bis_%s, \"%s\", \"%s\", \"%s\", \"%s\")\n" % (p, index, itemid, p, s)
                     #if cclass == "Warrior" and spec == "Fury" and s == "OffHand":
-                    #if itemid == 33475:
+                    #if itemid == 54805:
                     #    print("%s %s %s %s %s #%s" % (spec, cclass, itemid, items[itemid]["score"], p, index))
                     #print(output)
                     index += 1
