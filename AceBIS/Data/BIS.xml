@@ -9,6 +9,7 @@
   <Script file="ElementalShaman.lua" />
   <Script file="EnhancementShaman.lua" />
   <Script file="FeralDruid.lua" />
+  <Script file="FireMage.lua" />
   <Script file="FuryWarrior.lua" />
   <Script file="HolyPaladin.lua" />
   <Script file="ProtectionPaladin.lua" />

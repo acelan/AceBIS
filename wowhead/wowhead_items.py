@@ -14,6 +14,7 @@ from classes.druid_tank import druid_tank
 from classes.druid_restoration import druid_restoration
 from classes.hunter_survival import hunter_survival
 from classes.mage_arcane import mage_arcane
+from classes.mage_fire import mage_fire
 from classes.paladin_holy import paladin_holy
 from classes.paladin_protection import paladin_protection
 from classes.paladin_retribution import paladin_retribution
@@ -44,6 +45,7 @@ specs = {
     "druid_restoration": druid_restoration,
     "hunter_survival": hunter_survival,
     "mage_arcane": mage_arcane,
+    "mage_fire": mage_fire,
     "paladin_holy": paladin_holy,
     "paladin_protection": paladin_protection,
     "paladin_retribution": paladin_retribution,
