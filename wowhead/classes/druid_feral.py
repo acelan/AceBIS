@@ -1,18 +1,18 @@
 
 druid_feral = {
-   "str": 2.4,
+   "str": 1.85,
    "int": 0,
    "sta": 0,
-   "agi": 2.39,
+   "agi": 1.91,
    "spi": 0,
    "spldmg": 0,
-   "hastertng": 1.83,
-   "critstrkrtng": 2.23,
-   "hitrtng": 2.51,
-   "mleatkpwr": 1,
-   "armorpenrtng": 2.08,
+   "hastertng": 1.42,
+   "critstrkrtng": 1.5,
+   "hitrtng": 2.19,
+   "mleatkpwr": 0.93,
+   "armorpenrtng": 2.35,
    "armor": 0,
-   "exprtng": 2.44,
+   "exprtng": 2.19,
    "manargn": 0,
    "defrtng": 0,
    "dodgertng": 0,
@@ -22,7 +22,7 @@ druid_feral = {
    "resirtng": 0,
    "mledps": 0,
    "mledmgmax": 0,
-   "socket": 38,
+   "socket": 47,
 }
 
 # 7570

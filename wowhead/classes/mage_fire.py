@@ -23,7 +23,7 @@ mage_fire= {
    "resirtng": 0,
    "mledps": 0,
    "mledmgmax": 0,
-   "socket": 19,
+   "socket": 23,
 }
 
 

@@ -902,10 +902,13 @@ def build_list():
                                 continue
 
                     if spec == "Protection" and "defrtng" not in item and "dodgertng" not in item and "parryrtng" not in item and "blockrtng" not in item and "blockamount" not in item:
-                        if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket"]:
+                        if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket", "Ranged"]:
                             continue
-                        if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
+                        # Only Warrior's weapon requires those attributes
+                        if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"] and cclass == "Warrior":
                             continue
+                        if itemclass == "Weapon" and cclass == "Paladin" and "agi" in item:
+                            score = score + int(item["agi"])
 
                     # special setting for current assassination rogue weapon
                     if cclass == "Rogue" and spec == "Assassination":

@@ -1,14 +1,14 @@
 
 warlock_affliction = {
    "str": 0,
-   "int": 0.18,
+   "int": 0.55,
    "sta": 0.01,
    "agi": 0,
-   "spi": 0.54,
-   "spldmg": 1,
-   "hastertng": 0.81,
-   "critstrkrtng": 0.53,
-   "hitrtng": 0.93,
+   "spi": 1.35,
+   "spldmg": 2.45,
+   "hastertng": 1.97,
+   "critstrkrtng": 1.49,
+   "hitrtng": 3.46,
    "mleatkpwr": 0,
    "rgdatkpwr": 0,
    "armorpenrtng": 0,
@@ -23,7 +23,7 @@ warlock_affliction = {
    "resirtng": 0,
    "mledps": 0,
    "mledmgmax": 0,
-   "socket": 19,
+   "socket": 70,
 }
 
 # 8291

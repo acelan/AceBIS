@@ -22,7 +22,7 @@ paladin_protection = {
    "blockamount": 0.28,
    "resirtng": 0,
    "mledps": 3.33,
-   "mledmgmax": 0,
+   "mledmgmax": 1,
    "socket": 27,
 }
 
