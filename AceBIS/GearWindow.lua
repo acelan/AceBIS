@@ -499,15 +499,15 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
         else
             local val, startval, endval, stepval = Rank
 
-            -- keep search  it only happens when there are less than 15 listed items
+            -- keep search  it only happens when there are less than 30 listed items
             while true do
                 if IsControlKeyDown() then
-                    startval = 16
+                    startval = 31
                     endval = 1
                     stepval = -1
                 else
                     startval = 0
-                    endval = 15
+                    endval = 30
                     stepval = 1
                 end
                 if val == endval then
@@ -522,7 +522,7 @@ local function CreateSlotIcon(slot, image, imagex, imagey, width, height)
                         return
                     else
                         -- No item on this slot, eg. TwoHand weapon for Fury Warrior
-                        if (rank == 1 and stepval == 1) or (rank == 15 and stepval == -1) then
+                        if (rank == 1 and stepval == 1) or (rank == 30 and stepval == -1) then
                             return
                         end
                         val = endval

@@ -20,7 +20,7 @@ warrior_fury = {
    "blockamount": 0,
    "resirtng": 0,
    "mledps": 6.29,
-   "mledmgmax": 0,
+   "mledmgmax": 1,
    "socket": 45.6,
 }
 

@@ -843,7 +843,7 @@ def build_list():
                             if itemsubclass in ["Mace"]:
                                 continue
 
-                    if itemtype in ["MainHand", "OneHand", "OffHand"]:
+                    if itemtype in ["MainHand", "OneHand", "OffHand", "TwoHand"]:
                         if cclass in ["Rogue", "Druid"]:
                             if itemsubclass in ["Axe"]:
                                 continue
@@ -860,6 +860,9 @@ def build_list():
                                 continue
                         if cclass in ["Hunter"]:
                             if itemsubclass in ["Mace"]:
+                                continue
+                        if cclass in ["DK"]:
+                            if itemsubclass in ["Staff"]:
                                 continue
 
                     #if itemid == 36871:
@@ -1027,6 +1030,6 @@ for cclass in classs.values():
                     #    print("%s %s %s %s %s #%s" % (spec, cclass, itemid, items[itemid]["score"], p, index))
                     #print(output)
                     index += 1
-                    if index > 15:
+                    if index > 30:
                         break
         write_file(spec + cclass, output)
