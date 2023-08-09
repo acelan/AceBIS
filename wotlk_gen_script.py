@@ -862,7 +862,7 @@ def build_list():
                             if itemsubclass in ["Mace"]:
                                 continue
                         if cclass in ["DK"]:
-                            if itemsubclass in ["Staff"]:
+                            if itemsubclass in ["Staff", "Fist"]:
                                 continue
 
                     #if itemid == 36871:
