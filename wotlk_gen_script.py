@@ -653,6 +653,12 @@ classs = {
     1024: "Druid",
 }
 
+sides = {
+    0: "Neutral",
+    1: "Ally",
+    2: "Horde",
+}
+
 inv_type = {
     1: "Head",                      # {'@id': '1', '#text': 'Head'}
     2: "Neck",                      # {'@id': '2', '#text': 'Neck'}
@@ -787,6 +793,11 @@ def build_list():
                         if not (int(keys[0]) & int(item["reqclass"])):
                             #print("item class = %s, class = %s" % (int(item["reqclass"]),int(keys[0])))
                             continue
+
+                    # item is only for Ally or Horde
+                    side = "Neutral"
+                    if "side" in item:
+                        side = sides[int(item["side"])]
 
                     spec = i.split("_")[1].capitalize()
 
@@ -952,7 +963,7 @@ def build_list():
                                 score = score * 1.3
                             score = score + int(item["mledps"])
 
-                    item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score}
+                    item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score, "side": side}
                     if itemtype == "Head":
                         itemtype = "Helm"
                     elif itemtype == "Wrist":
@@ -988,7 +999,7 @@ for cclass in classs.values():
     for spec in bis_list[cclass].keys():
         print("%s - %s" % (cclass, spec))
         output = ""
-        for phase in {"0", "1", "2", "3"}:   # select items from P0 to P5
+        for phase in {"0", "1", "2", "3", "4"}:   # select items from P0 to P5
             p = "P" + phase
             output += gen_header(p, cclass, spec)
             #print("%s %s" % (spec, cclass))
