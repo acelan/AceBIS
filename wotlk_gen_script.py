@@ -968,9 +968,11 @@ def build_list():
 
                     if itemtype in ["MainHand", "OneHand", "OffHand", "TwoHand"]:
                         if cclass in ["Rogue", "Druid"]:
-                            if itemsubclass in ["Axe"]:
+                            if itemsubclass in ["Axe"] and cclass in ["Druid"]:
                                 continue
                             if spec in ["Assassination"] and itemsubclass not in ["Dagger"]:
+                                continue
+                            if spec in ["Combat"] and itemsubclass in ["Dagger"]:
                                 continue
                         if cclass in ["Mage", "Warlock"]:
                             if itemsubclass in ["Axe", "Mace", "Fist"]:
@@ -1045,6 +1047,20 @@ def build_list():
                             elif float(item["speed"]) == 1.3:       # for fastest weapon
                                 score = score * 1.3
                             score = score + int(item["mledps"])
+                    if cclass == "Rogue" and spec == "Combat":
+                        if itemsubclass  in ["Axe", "Sword", "Fist", "Mace"]:
+                            if float(item["speed"]) < 2.0:          # fast weapon on off hand only
+                                if itemtype == "OneHand":
+                                    itemtype = "OffHand"
+                                if float(item["speed"]) <= 1.5:
+                                    score = score * 1.5
+                                elif float(item["speed"]) <= 1.8:
+                                    score = score * 1.2
+                            else:                                       # slow weapons
+                                if itemtype in ["OffHand"]:             # lower off hand weapon score
+                                    score = score * 0.8
+                                elif itemtype in ["OneHand"]:
+                                    itemtype = "MainHand"
 
                     item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score, "side": side}
                     if itemtype == "Head":
@@ -1069,7 +1085,7 @@ def build_list():
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
                     #if itemid in [54801, 54802, 54803, 54804, 54805]:
-                    #if itemid in [47569]:
+                    #if itemid in [50736]:
                         #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
                         #print("after %s %s" % (itemid, score))
 

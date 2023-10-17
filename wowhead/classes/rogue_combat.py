@@ -21,7 +21,7 @@ rogue_combat = {
    "blockamount": 0,
    "resirtng": 0,
    "mledps": 2.94,
-   "mledmgmax": 1,
+   "mledmgmax": 2,
    "socket": 29.92,
 }
 
