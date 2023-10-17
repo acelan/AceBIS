@@ -603,17 +603,7 @@ rescore = {
 
     # P3
     # Sigils for Unholy Death Knight DPS Phase 3
-    47528: {"UnholyDK": 3000},
-    47526: {"UnholyDK": 3000},
-    47475: {"UnholyDK": 2999},
-    47156: {"UnholyDK": 2999},
-    48513: {"UnholyDK": 2998},
-    47472: {"UnholyDK": 2997},
-    47001: {"UnholyDK": 2997},
-    46097: {"UnholyDK": 2996},
-    45947: {"UnholyDK": 2995},
-    48050: {"UnholyDK": 2994},
-    47973: {"UnholyDK": 2994},
+    47673: {"UnholyDK": 3000},
     # Relics for Blood Death Knight Tanks in Phase 3
     47672: {"ProtectionDK": 3000},
     # Idols for Balance Druid DPS Phase 3
@@ -1084,9 +1074,8 @@ def build_list():
 
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
-                    #if itemid in [54801, 54802, 54803, 54804, 54805]:
-                    #if itemid in [50736]:
-                        #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
+                    if itemid in [47526, 50672]:
+                        print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
                         #print("after %s %s" % (itemid, score))
 
     #print(list(bis_list["Warrior"]["Fury"]["1"]))
