@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
 import json
-import re
 import os
-import struct
 import collections
 
 bis_list = {}
@@ -420,7 +418,7 @@ rescore = {
     49076: {"BalanceDruid": 993, "ArcaneMage": 996, "AfflictionWarlock": 996, "FireMage": 996},
     37835: {"BalanceDruid": 992, "RestorationDruid": 996, "DisciplinePriest": 994, "RestorationShaman": 994},
     42988: {"BalanceDruid": 991, "RestorationDruid": 995, "DisciplinePriest": 995},
-    37660: {"BalanceDruid": 990},
+    37660: {"BalanceDruid": 990, "DisciplinePriest": 991},
     44322: {"BalanceDruid": 1988, "RestorationDruid": 997},
     36972: {"BalanceDruid": 988},
     # Darkmoon Card: Greatness(+str)
@@ -454,7 +452,7 @@ rescore = {
     # Incisor Fragment
     37723: {"UnholyDK": 994, "FeralDruid": 994},
     40531: {"FeralDruid": 993, "AssassinationRogue": 997, "EnhancementShaman": 993, "UnholyDK": 1997},
-    37111: {"RestorationDruid": 3995, "HolyPaladin": 3999, "RestorationShaman": 999, "RestorationShaman": 1998},
+    37111: {"RestorationDruid": 3995, "HolyPaladin": 3999, "RestorationShaman": 1998},
     37675: {"RestorationDruid": 998, "RestorationShaman": 993},
     44254: {"RestorationDruid": 1990, "ShadowPriest": 993},
     40258: {"RestorationDruid": 993, "DisciplinePriest": 993, "RestorationShaman": 996},
@@ -474,7 +472,6 @@ rescore = {
     42132: {"DisciplinePriest": 999},
     40382: {"DisciplinePriest": 997, "RestorationShaman": 995},
     40685: {"DisciplinePriest": 992, "RestorationShaman": 997},
-    37660: {"DisciplinePriest": 991},
     37657: {"DisciplinePriest": 990, "RestorationDruid": 1989},
     37844: {"RestorationShaman": 992},
 
@@ -603,15 +600,14 @@ rescore = {
 
     # P3
     # Sigils for Unholy Death Knight DPS Phase 3
-    47673: {"UnholyDK": 3000},
+    47673: {"UnholyDK": 3999},
     # Relics for Blood Death Knight Tanks in Phase 3
     47672: {"ProtectionDK": 3000},
     # Idols for Balance Druid DPS Phase 3
     47670: {"BalanceDruid": 1000},
     # Idols for Feral Druid DPS Phase 3
-    47668: {"FeralDruid": 3000},
+    47668: {"FeralDruid": 3000, "TankDruid": 2998},
     # Idols for Feral Druid Tank Phase 3
-    47668: {"TankDruid": 2998},
     # Idols for Restoration Druid Healer Phase 3
     47671: {"RestorationDruid": 2999},
     # Librams for Holy Paladin Healer Phase 3
@@ -634,12 +630,11 @@ rescore = {
     # Sigil options for Blood Death Knight Tanks in Phase 4
     50462: {"ProtectionDK": 4000},
     # Trinkets for Unholy Death Knight DPS Phase 4
-    50363: {"UnholyDK": 4000, "SurvivalHunter": 4000, "CombatRogue": 4000, "EnhancementShaman": 4000, "ArmsWarrior": 4000, "FuryWarrior": 4000},
+    50363: {"UnholyDK": 4000, "SurvivalHunter": 4000, "CombatRogue": 4000, "EnhancementShaman": 4000, "ArmsWarrior": 4000, "FuryWarrior": 4000, "FeralDruid": 4000, "RetributionPaladin": 3997, "AssassinationRogue": 4000},
     50343: {"UnholyDK": 3996, "FeralDruid": 3998, "SurvivalHunter": 3997, "RetributionPaladin": 3998, "AssassinationRogue": 3998, "CombatRogue": 3999, "EnhancementShaman": 3999, "ArmsWarrior": 3998, "FuryWarrior": 3998},
     50355: {"UnholyDK": 3995, "FeralDruid": 3994, "SurvivalHunter": 3995, "AssassinationRogue": 3997, "CombatRogue": 3995, "EnhancementShaman": 3996},
     # Sigils for Unholy Death Knight DPS Phase 4
     50459: {"UnholyDK": 4000},
-    47673: {"UnholyDK": 3999},
     # Trinkets for Balance Druid DPS Phase 4
     50348: {"BalanceDruid": 4000, "ArcaneMage": 4000, "FireMage": 4000, "ShadowPriest": 3999, "ElementalShaman": 4000, "AfflictionWarlock": 3999},
     50365: {"BalanceDruid": 3999, "FireMage": 3999, "ShadowPriest": 4000, "ElementalShaman": 3999, "EnhancementShaman": 3998, "AfflictionWarlock": 4000},
@@ -649,7 +644,6 @@ rescore = {
     # Idols for Balance Druid DPS Phase 4
     50457: {"BalanceDruid": 4000},
     # Trinkets for Feral Druid DPS Phase 4
-    50363: {"FeralDruid": 4000, "RetributionPaladin": 3997, "AssassinationRogue": 4000},
     50362: {"FeralDruid": 3999, "SurvivalHunter": 3998, "AssassinationRogue": 3995, "CombatRogue": 3998, "ArmsWarrior": 3999, "FuryWarrior": 3999},
     50342: {"FeralDruid": 3995, "AssassinationRogue": 3993, "CombatRogue": 3994},
     # Idols for Feral Druid DPS Phase 4
@@ -892,8 +886,8 @@ def build_list():
                                 itemsubclass = item4_subclass[int(item["subclass"])]
                             #else:
                             #    print("Invalid subclass id: %s - type = %s, class = %s, subclass = %s" % (itemid, item["inventorySlot"]["@id"], item["class"]["@id"], item["subclass"]))
-
-                    except:
+                    except Exception as err:
+                        print(f"Unexpected {err=}, {type(err)=}")
                         print("id = %s" % item["id"])
                         print("class = %s" % item["class"])
                         print("subclass = %s" % item["subclass"])
@@ -1074,8 +1068,8 @@ def build_list():
 
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
-                    if itemid in [47526, 50672]:
-                        print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
+                    #if itemid in [47526, 50672]:
+                        #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
                         #print("after %s %s" % (itemid, score))
 
     #print(list(bis_list["Warrior"]["Fury"]["1"]))

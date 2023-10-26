@@ -120,14 +120,15 @@ def get_one_item(items, item_id, cached, update):
         r = requests.get(url)
         try:
             root = xmltodict.parse(r.text)
-        except:
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
             print("Error: %s" % r.text)
             return
 
         if "item" not in root["wowhead"]:
             return
 
-        item = root["wowhead"]["item"];
+        item = root["wowhead"]["item"]
 
         # do not store command or green items
         if int(item["quality"]["@id"]) <= 2:
@@ -152,7 +153,7 @@ def get_one_item(items, item_id, cached, update):
 
         value = item["htmlTooltip"]
         m = re.search('Phase \d', value)
-        if m != None:
+        if m is not None:
             value = m.group(0).split(' ')[1]
         else:
             value = "0"
