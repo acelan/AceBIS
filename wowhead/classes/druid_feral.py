@@ -20,7 +20,7 @@ druid_feral = {
    "blockrtng": 0,
    "blockamount": 0,
    "resirtng": 0,
-   "mledps": 0,
+   "mledps": 1,
    "mledmgmax": 0,
    "socket": 47,
 }

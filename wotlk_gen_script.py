@@ -944,7 +944,7 @@ def build_list():
                             if itemsubclass in ["Axe", "Sword", "Mace", "Polearm"]:
                                 continue
                         if cclass in ["Druid", "Shaman"]:
-                            if itemsubclass in ["Sword", "Polearm"]:
+                            if itemsubclass in ["Sword", "Axe"]:
                                 continue
                         if cclass in ["Hunter"]:
                             if itemsubclass in ["Mace"]:
@@ -952,7 +952,9 @@ def build_list():
 
                     if itemtype in ["MainHand", "OneHand", "OffHand", "TwoHand"]:
                         if cclass in ["Rogue", "Druid"]:
-                            if itemsubclass in ["Axe"] and cclass in ["Druid"]:
+                            if itemsubclass in ["Axe"]:
+                                continue
+                            if itemsubclass in ["Sword"] and cclass in ["Druid"]:
                                 continue
                             if spec in ["Assassination"] and itemsubclass not in ["Dagger"]:
                                 continue
@@ -1006,6 +1008,9 @@ def build_list():
                                 continue
                         if cclass in ["Warrior", "Rogue", "Hunter"]:
                             if itemsubclass in ["Wand"]:
+                                continue
+                        if cclass in ["Hunter"]:
+                            if itemsubclass in ["Thrown"]:
                                 continue
 
                     # For Warrior, Paladin, and DK
@@ -1068,7 +1073,7 @@ def build_list():
 
                     #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                     #    print("after %s %s" % (itemid, score))
-                    #if itemid in [47526, 50672]:
+                    #if itemid in [50735]:
                         #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
                         #print("after %s %s" % (itemid, score))
 
