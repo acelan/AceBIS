@@ -952,7 +952,7 @@ def build_list():
 
                     if itemtype in ["MainHand", "OneHand", "OffHand", "TwoHand"]:
                         if cclass in ["Rogue", "Druid"]:
-                            if itemsubclass in ["Axe"]:
+                            if itemsubclass in ["Axe"] and cclass in ["Druid"]:
                                 continue
                             if itemsubclass in ["Sword"] and cclass in ["Druid"]:
                                 continue
