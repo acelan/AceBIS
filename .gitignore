@@ -1,2 +1,3 @@
 wowhead/itemdata.txt
 wowhead/classes/__pycache__/*
+.vscode/*
