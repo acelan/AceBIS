@@ -1,9 +1,9 @@
 
-dk_unholy = {
+dk_frost = {
    "str": 3.22,
    "int": 0,
-   "sta": 0,
-   "agi": 0,
+   "sta": 1,
+   "agi": 0.6,
    "spi": 0,
    "spldmg": 0,
    "hastertng": 1.85,
@@ -11,7 +11,7 @@ dk_unholy = {
    "hitrtng": 1.92,
    "mleatkpwr": 1,
    "rgdatkpwr": 0,
-   "armorpenrtng": 0.77,
+   "armorpenrtng": 0.19,
    "armor": 0.01,
    "exprtng": 1.13,
    "manargn": 0,
@@ -21,9 +21,7 @@ dk_unholy = {
    "blockrtng": 0,
    "blockamount": 0,
    "resirtng": 0,
-   "mledps": 0,
-   "mledmgmax": 3.10,
-   "socket": 51,
+   "mledps": 3.10,
+   "mledmgmax": 0,
+   "socket": 24,
 }
-
-# 8502

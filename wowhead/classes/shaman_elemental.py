@@ -14,7 +14,7 @@ shaman_elemental = {
    "armor": 0,
    "exprtng": 0,
    "manargn": 0.08,
-   "defrtng": 0,
+   "mastery": 0,
    "dodgertng": 0,
    "parryrtng": 0,
    "blockrtng": 0,

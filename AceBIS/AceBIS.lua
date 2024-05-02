@@ -134,6 +134,13 @@ function AceBIS:InitOptions()
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
+					},
+					Frost = {
+						name = L["FrostMage"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
 					}
 				}
 			},
@@ -143,6 +150,20 @@ function AceBIS:InitOptions()
 				args = {
 					Affliction = {
 						name = L["AfflictionWarlock"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					Demonology = {
+						name = L["DemonologyWarlock"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					Destruction = {
+						name = L["DestructionWarlock"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -202,6 +223,13 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
+					Subtlety = {
+						name = L["SubtletyRogue"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
 				}
 			},
 			Hunter = {
@@ -210,6 +238,20 @@ function AceBIS:InitOptions()
 				args = {
 					Survival = {
 						name = L["SurvivalHunter"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					BeastMastery = {
+						name = L["BeastmasteryHunter"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
+					Marksmanship = {
+						name = L["MarksmanshipHunter"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -282,13 +324,20 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
-					Protection = {
-						name = L["ProtectionDK"],
+					Blood = {
+						name = L["BloodDK"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
-					}
+					},
+					Frost = {
+						name = L["FrostDK"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
+					},
 				}
 			},
 		}

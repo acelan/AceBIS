@@ -1,29 +1,27 @@
 
-rogue_assassination = {
+rogue_subtlety = {
    "str": 1.05,
    "int": 0,
    "sta": 0,
-   "agi": 2.58,
+   "agi": 3.7,
    "spi": 0,
    "spldmg": 0,
-   "hastertng": 1.1,
-   "critstrkrtng": 0.62,
-   "hitrtng": 0.70,
+   "hastertng": 1.27,
+   "critstrkrtng": 1.04,
+   "hitrtng": 0.77,
    "mleatkpwr": 1,
    "armorpenrtng": 0,
    "armor": 0,
-   "exprtng": 1.04,
+   "exprtng": 1.33,
    "manargn": 0,
-   "mastery": 1.23,
+   "mastery": 0.79,
    "dodgertng": 0,
    "parryrtng": 0,
    "blockrtng": 0,
    "blockamount": 0,
    "resirtng": 0,
-   "mledps": 2.49,
-   "mledmgmax": 0,
-   "socket": 38,
+   "mledps": 7.0,
+   "mledmgmax": 2,
+   "socket": 29.92,
 }
-
-# 7970
 

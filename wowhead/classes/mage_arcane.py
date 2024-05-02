@@ -15,7 +15,7 @@ mage_arcane = {
    "armor": 0,
    "exprtng": 0,
    "manargn": 0.09,
-   "defrtng": 0,
+   "mastery": 0.8,
    "dodgertng": 0,
    "parryrtng": 0,
    "blockrtng": 0,

@@ -1,8 +1,8 @@
 
-dk_protection = {
+dk_blood = {
    "str": 0.33,
    "int": 0,
-   "sta": 1,
+   "sta": 1.0,
    "agi": 0.6,
    "spi": 0,
    "spldmg": 0,
@@ -11,17 +11,19 @@ dk_protection = {
    "hitrtng": 0.67,
    "mleatkpwr": 0.06,
    "rgdatkpwr": 0,
-   "armorpenrtng": 0.19,
+   "armorpenrtng": 0.77,
    "armor": 0.05,
    "exprtng": 0.67,
    "manargn": 0,
-   "defrtng": 0.8,
+   "defrtng": 0,
    "dodgertng": 0.7,
    "parryrtng": 0.58,
-   "blockrtng": 0.35,
-   "blockamount": 0.59,
+   "blockrtng": 0,
+   "blockamount": 0,
    "resirtng": 0,
-   "mledps": 3.10,
-   "mledmgmax": 0,
-   "socket": 24,
+   "mledps": 0,
+   "mledmgmax": 3.10,
+   "socket": 51,
 }
+
+# 8502

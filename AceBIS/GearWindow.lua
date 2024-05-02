@@ -8,6 +8,7 @@ AceBIS.GearWindow.ConfirmDelete = AceBIS.AceGUI:Create("Window")
 AceBIS.GearWindow:Hide()
 AceBIS.GearWindow.EditSlot:Hide()
 AceBIS.GearWindow.ConfirmDelete:Hide()
+AceBIS.GearWindow.Model = CreateFrame("DressUpModel",nil,AceBIS.GearWindow.frame)    
 
 local PhaseList = {"P0", "P1", "P2", "P3", "P4", "P5"}
 
@@ -643,7 +644,6 @@ local function InitFullUI()
         end
     end
 	
-    AceBIS.GearWindow.Model = CreateFrame("DressUpModel",nil,AceBIS.GearWindow.frame)    
     AceBIS.GearWindow.Model:SetScript("OnMousewheel", function(self, offset)
         if ((self:GetCameraDistance() - offset/10) > 0.35 and (self:GetCameraDistance() - offset/10) < 4) then
             self:SetCameraDistance(self:GetCameraDistance()-offset/10)

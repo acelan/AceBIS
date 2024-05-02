@@ -7,14 +7,18 @@ import json
 import re
 import os
 from classes.dk_unholy import dk_unholy
-from classes.dk_protection import dk_protection
+from classes.dk_blood import dk_blood
+from classes.dk_frost import dk_frost
 from classes.druid_balance import druid_balance
 from classes.druid_feral import druid_feral
 from classes.druid_tank import druid_tank
 from classes.druid_restoration import druid_restoration
 from classes.hunter_survival import hunter_survival
+from classes.hunter_beastmastery import hunter_beastmastery
+from classes.hunter_marksmanship import hunter_marksmanship
 from classes.mage_arcane import mage_arcane
 from classes.mage_fire import mage_fire
+from classes.mage_frost import mage_frost
 from classes.paladin_holy import paladin_holy
 from classes.paladin_protection import paladin_protection
 from classes.paladin_retribution import paladin_retribution
@@ -22,30 +26,38 @@ from classes.priest_discipline import priest_discipline
 from classes.priest_shadow import priest_shadow
 from classes.rogue_assassination import rogue_assassination
 from classes.rogue_combat import rogue_combat
+from classes.rogue_subtlety import rogue_subtlety
 from classes.shaman_elemental import shaman_elemental
 from classes.shaman_enhancement import shaman_enhancement
 from classes.shaman_restoration import shaman_restoration
 from classes.warlock_affliction import warlock_affliction
+from classes.warlock_demonology import warlock_demonology
+from classes.warlock_destruction import warlock_destruction
 from classes.warrior_arms import warrior_arms
 from classes.warrior_fury import warrior_fury
 from classes.warrior_protection import warrior_protection
 
 
 item_id = 0
-first_id = 20000
-final_id = 100000
-wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
+first_id = 1000
+final_id = 500000
+#wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
+wowhead_cata="https://www.wowhead.com/cata/item=%s&xml"
 
 specs = {
     "dk_unholy": dk_unholy,
-    "dk_protection": dk_protection,
+    "dk_blood": dk_blood,
+    "dk_frost": dk_frost,
     "druid_balance": druid_balance,
     "druid_feral": druid_feral,
     "druid_tank": druid_tank,
     "druid_restoration": druid_restoration,
     "hunter_survival": hunter_survival,
+    "hunter_beastmastery": hunter_beastmastery,
+    "hunter_marksmanship": hunter_marksmanship,
     "mage_arcane": mage_arcane,
     "mage_fire": mage_fire,
+    "mage_frost": mage_frost,
     "paladin_holy": paladin_holy,
     "paladin_protection": paladin_protection,
     "paladin_retribution": paladin_retribution,
@@ -53,10 +65,13 @@ specs = {
     "priest_shadow": priest_shadow,
     "rogue_assassination": rogue_assassination,
     "rogue_combat": rogue_combat,
+    "rogue_subtlety": rogue_subtlety,
     "shaman_elemental": shaman_elemental,
     "shaman_enhancement": shaman_enhancement,
     "shaman_restoration": shaman_restoration,
     "warlock_affliction": warlock_affliction,
+    "warlock_demonology": warlock_demonology,
+    "warlock_destruction": warlock_destruction,
     "warrior_arms": warrior_arms,
     "warrior_fury": warrior_fury,
     "warrior_protection": warrior_protection,
@@ -116,7 +131,8 @@ def get_one_item(items, item_id, cached, update):
     # item doesn't exist in cache and not for update score
     if not item and not update:
         print("retriving item_id %s from wowhead" % item_id)
-        url = wowhead_wotlk % item_id
+        #url = wowhead_wotlk % item_id
+        url = wowhead_cata % item_id
         r = requests.get(url)
         try:
             root = xmltodict.parse(r.text)

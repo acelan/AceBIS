@@ -1,5 +1,5 @@
 
-hunter_survival = {
+hunter_marksmanship = {
    "str": 0,
    "int": 1.1,
    "sta": 0.5,
@@ -9,9 +9,9 @@ hunter_survival = {
    "hastertng": 1.39,
    "critstrkrtng": 1.5,
    "hitrtng": 2,
-   "mleatkpwr": 0,
+   "mleatkpwr": 1,
    "rgdatkpwr": 1,
-   "mastery": 1.32,
+   "mastery": 0,
    "armor": 0,
    "exprtng": 0,
    "manargn": 0,

@@ -1,6 +1,6 @@
 
 shaman_enhancement = {
-   "str": 1.1,
+   "str": 0,
    "int": 1.48,
    "sta": 0,
    "agi": 1.59,
@@ -14,7 +14,7 @@ shaman_enhancement = {
    "armor": 0,
    "exprtng": 0,
    "manargn": 0,
-   "defrtng": 0,
+   "mastery": 0,
    "dodgertng": 0,
    "parryrtng": 0,
    "blockrtng": 0,
