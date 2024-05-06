@@ -381,7 +381,7 @@ local function CreateLabel(text, centered, r, g, b, font)
     local o = AceBIS.AceGUI:Create("Label")
     o:SetText(text)
     if (centered ~= nil and centered ~= false) then
-        o:SetJustifyH("TOP")
+        o:SetJustifyH("CENTER")
     end 
     if (font ~= nil) then
         o:SetFontObject(font)
@@ -396,7 +396,7 @@ local function CreateInteractiveLabel(text, centered, r, g, b, font)
     local o = AceBIS.AceGUI:Create("InteractiveLabel")
     o:SetText(text)
     if (centered ~= nil and centered ~= false) then
-        o:SetJustifyH("TOP")
+        o:SetJustifyH("CENTER")
     end 
     if (font ~= nil) then
         o:SetFontObject(font)
