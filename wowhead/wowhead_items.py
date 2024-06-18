@@ -40,7 +40,7 @@ from classes.warrior_protection import warrior_protection
 
 item_id = 0
 first_id = 1000
-final_id = 500000
+final_id = 100000
 #wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
 wowhead_cata="https://www.wowhead.com/cata/item=%s&xml"
 
@@ -130,7 +130,6 @@ def get_one_item(items, item_id, cached, update):
 
     # item doesn't exist in cache and not for update score
     if not item and not update:
-        print("retriving item_id %s from wowhead" % item_id)
         #url = wowhead_wotlk % item_id
         url = wowhead_cata % item_id
         r = requests.get(url)
@@ -142,7 +141,10 @@ def get_one_item(items, item_id, cached, update):
             return
 
         if "item" not in root["wowhead"]:
+            print("item_id %s not found on wowhead" % item_id)
             return
+
+        print("retriving item_id %s from wowhead" % item_id)
 
         item = root["wowhead"]["item"]
 
@@ -151,7 +153,7 @@ def get_one_item(items, item_id, cached, update):
             return
 
         # do not store low item level items
-        if int(item["level"]) <= 130:
+        if int(item["level"]) <= 230:
             return
 
         #value = item["name"]
