@@ -11,7 +11,7 @@ warrior_protection = {
    "hitrtng": 1.432,
    "mleatkpwr": 0.32,
    "armorpenrtng": 0,
-   "armor": 0.15,
+   "armor": 0.174,
    "exprtng": 1.44,
    "manargn": 0,
    "defrtng": 3.305,

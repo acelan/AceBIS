@@ -170,6 +170,7 @@ blacklist = [
     45175,
     45350,
     45499,
+    45939,
     46230,
     46231,
     46232,
@@ -252,9 +253,18 @@ blacklist = [
     46309,
     46844,
     47058,
+    47506,
+    47513,
+    47521,
+    47523,
     47542,
     47543,
     47544,
+    48422,
+    48697,
+    48699,
+    48711,
+    48714,
     48725,
     48726,
     48727,
@@ -297,6 +307,8 @@ blacklist = [
     50330,
     50331,
     50332,
+    51395,
+    51450,
     52567,
     52686,
     53055,
@@ -326,9 +338,13 @@ blacklist = [
     53924,
     54592,
     54848,
+    65743,
     # 57682 ~ 57754
     # 58504 ~ 58778
     # 61635 ~ 61919
+    # 69255 ~ 69263
+    # 51516 ~ 51529
+    # 51440 ~ 51448
 ]
 
 rephase = {
@@ -778,12 +794,18 @@ def build_list():
             if "reqlevel" in item and item["reqlevel"] > 80:
                 continue
             # treat TBC items as P0 items, the highest ilv is 164
-            if item["level"] < 170:
-                phase = '0'
-            if item["level"] > 285:
-                continue
+            #if item["level"] < 170:
+            #    phase = '0'
+            #if item["level"] > 285:
+            #    continue
 
-            if itemid in blacklist or 57682 <= itemid <= 57754 or 58504 <= itemid <= 58778 or 61635 <= itemid <= 61919:
+            if itemid in blacklist \
+                or 51440 <= itemid <= 51448 \
+                or 51516 <= itemid <= 51529 \
+                or 57682 <= itemid <= 57754 \
+                or 58504 <= itemid <= 58778 \
+                or 61635 <= itemid <= 61919 \
+                or 69255 <= itemid <= 69263:
                 continue
 
             item_tmp = {}
@@ -1011,7 +1033,7 @@ for cclass in classs.values():
     for spec in bis_list[cclass].keys():
         print("%s - %s" % (cclass, spec))
         output = ""
-        for phase in ["0"]:   # select items from P0 to P5
+        for phase in ["0", "1"]:   # select items from P0 to P5
             p = "P" + phase
             output += gen_header(p, cclass, spec)
             #print("%s %s" % (spec, cclass))

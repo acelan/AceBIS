@@ -11,7 +11,7 @@ AceBIS.GearWindow.ConfirmDelete:Hide()
 AceBIS.GearWindow.Model = CreateFrame("DressUpModel",nil,AceBIS.GearWindow.frame)    
 
 --local PhaseList = {"P0", "P1", "P2", "P3", "P4", "P5"}
-local PhaseList = {"P0"}
+local PhaseList = {"P0", "P1"}
 
 AceBIS.SelectedPhase = 0
 AceBIS.SelectedPhaseName = ""

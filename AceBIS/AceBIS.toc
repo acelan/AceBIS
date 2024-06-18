@@ -1,7 +1,7 @@
 ## Interface: 40400
 ## Interface-Wrath: 40400
 ## Title: AceBIS
-## Version: 5.0.3
+## Version: 5.0.4
 ## SavedVariablesPerCharacter: AceBISGears
 
 ## X-Credits: Fazers for all the data. Zentarg for paper doll window from BisTracker
