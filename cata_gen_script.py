@@ -339,6 +339,7 @@ blacklist = [
     54592,
     54848,
     65743,
+    78534,
     # 57682 ~ 57754
     # 58504 ~ 58778
     # 61635 ~ 61919
@@ -791,13 +792,6 @@ def build_list():
 
             if itemid in rephase:
                 phase = rephase[itemid]
-            if "reqlevel" in item and item["reqlevel"] > 80:
-                continue
-            # treat TBC items as P0 items, the highest ilv is 164
-            #if item["level"] < 170:
-            #    phase = '0'
-            #if item["level"] > 285:
-            #    continue
 
             if itemid in blacklist \
                 or 51440 <= itemid <= 51448 \
@@ -814,7 +808,6 @@ def build_list():
             #print("inventorySlot = %s" % item["inventorySlot"])
             for i in {'dk_unholy', 'dk_blood', 'dk_frost', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_tank', 'hunter_survival', 'hunter_beastmastery', 'hunter_marksmanship', 'mage_arcane', 'mage_fire', 'mage_frost', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'rogue_combat', 'rogue_subtlety', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warlock_demonology', 'warlock_destruction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                 score = item[i]
-                #print("itemid = %s" % itemid)
 
                 cclass = i.split("_")[0].capitalize()
                 if cclass == "Dk":
@@ -1020,7 +1013,7 @@ def build_list():
 
                 #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
                 #    print("after %s %s" % (itemid, score))
-                #if itemid in [50735]:
+                #if itemid in [61472]:
                     #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
                     #print("after %s %s" % (itemid, score))
 
