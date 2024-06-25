@@ -11,7 +11,7 @@ from classes.dk_blood import dk_blood
 from classes.dk_frost import dk_frost
 from classes.druid_balance import druid_balance
 from classes.druid_feral import druid_feral
-from classes.druid_tank import druid_tank
+from classes.druid_guardian import druid_guardian
 from classes.druid_restoration import druid_restoration
 from classes.hunter_survival import hunter_survival
 from classes.hunter_beastmastery import hunter_beastmastery
@@ -24,6 +24,7 @@ from classes.paladin_protection import paladin_protection
 from classes.paladin_retribution import paladin_retribution
 from classes.priest_discipline import priest_discipline
 from classes.priest_shadow import priest_shadow
+from classes.priest_holy import priest_holy
 from classes.rogue_assassination import rogue_assassination
 from classes.rogue_combat import rogue_combat
 from classes.rogue_subtlety import rogue_subtlety
@@ -50,7 +51,7 @@ specs = {
     "dk_frost": dk_frost,
     "druid_balance": druid_balance,
     "druid_feral": druid_feral,
-    "druid_tank": druid_tank,
+    "druid_guardian": druid_guardian,
     "druid_restoration": druid_restoration,
     "hunter_survival": hunter_survival,
     "hunter_beastmastery": hunter_beastmastery,
@@ -63,6 +64,7 @@ specs = {
     "paladin_retribution": paladin_retribution,
     "priest_discipline": priest_discipline,
     "priest_shadow": priest_shadow,
+    "priest_holy": priest_holy,
     "rogue_assassination": rogue_assassination,
     "rogue_combat": rogue_combat,
     "rogue_subtlety": rogue_subtlety,
@@ -79,26 +81,30 @@ specs = {
 
 # socket{1,2,3} : 1 - meta, 2 - red, 3 - yellow, 4 - blue
 
-def calculate_epv(spec, item):
+def calculate_epv(spec, item, name):
     if not spec:
         return 0
 
     epv = 0
     for key in spec:
         if key in item:
-            epv = epv + spec[key] * item[key]
+            epv = epv + float(spec[key]) * item[key]
         # item needs to be activated, usually persists for 20s with 2min colddown
         if "use_" + key in item:
             #print("use_%s = %s, ep = %s" % (key, item["use_" + key], item["use_" + key] * 20 / 120))
-            epv = epv + spec[key] * item["use_" + key] * 20 / 120
+            epv = epv + float(spec[key]) * item["use_" + key] * 20 / 120
 
-    for idx in [ "1", "2", "3", "4"]:
-        if "socket" + idx in item:
-            if item["socket" + idx] == 1:
-                epv = epv + 40
-            else:
-                epv = epv + spec["socket"] 
+    if "nsockets" in item:
+        epv = epv + 500 * float(item["nsockets"])
+    #for idx in [ "1", "2", "3", "4"]:
+    #    if "socket" + idx in item:
+    #        if item["socket" + idx] == 1:
+    #            epv = epv + 40
+    #        elif "socket" in spec:
+    #            epv = epv + float(spec["socket"]) 
 
+    if name == "priest_holy":
+        print(f"{name} = {epv}")
     return epv
 
 def write_itemdata(data):
@@ -170,7 +176,7 @@ def get_one_item(items, item_id, cached, update):
             return
 
         value = item["htmlTooltip"]
-        m = re.search('Phase \d', value)
+        m = re.search(r'Phase \d', value)
         if m is not None:
             value = m.group(0).split(' ')[1]
         else:
@@ -205,11 +211,11 @@ def get_one_item(items, item_id, cached, update):
         return
 
     for spec in specs:
-        item[spec] = calculate_epv(specs[spec], item)
+        item[spec] = calculate_epv(specs[spec], item, spec)
 
     items[item_id] = item
 
-    item = items[item_id]
+    #item = items[item_id]
 
     print(item)
 

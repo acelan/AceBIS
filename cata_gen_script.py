@@ -806,7 +806,7 @@ def build_list():
             #print("id = %s" % item["id"])
             #print("subclass = %s" % item["subclass"])
             #print("inventorySlot = %s" % item["inventorySlot"])
-            for i in {'dk_unholy', 'dk_blood', 'dk_frost', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_tank', 'hunter_survival', 'hunter_beastmastery', 'hunter_marksmanship', 'mage_arcane', 'mage_fire', 'mage_frost', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'rogue_assassination', 'rogue_combat', 'rogue_subtlety', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warlock_demonology', 'warlock_destruction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
+            for i in {'dk_unholy', 'dk_blood', 'dk_frost', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_guardian', 'hunter_survival', 'hunter_beastmastery', 'hunter_marksmanship', 'mage_arcane', 'mage_fire', 'mage_frost', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'priest_holy', 'rogue_assassination', 'rogue_combat', 'rogue_subtlety', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warlock_demonology', 'warlock_destruction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
                 score = item[i]
 
                 cclass = i.split("_")[0].capitalize()
@@ -940,15 +940,11 @@ def build_list():
                         if itemsubclass in ["Staff", "Fist"]:
                             continue
 
-                #if itemid == 36871:
+                #if itemid == 60470:
                 #    print("%s" % (item.keys()))
                 if "mleatkpwr" in item or "agi" in item or "str" in item:
                     if cclass in ["Priest", "Mage", "Warlock"]:
                         continue
-                if "spldmg" not in item:
-                    if cclass in ["Priest", "Mage", "Warlock"]:
-                        if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket"]:
-                            continue
                 if "spldmg" in item:
                     if cclass in ["Warrior", "DK", "Rogue"]:
                         continue

@@ -58,11 +58,11 @@ local function UpdateSelectedSetList()
 
     --AceBIS:Print("Update SetList to " .. AceBIS.SelectedClass .. " " .. AceBIS.SelectedSetName .. " " .. AceBIS.SelectedPhaseName)
 
-    if AceBISGears["Gears"] == nil then
-        AceBISGears["Gears"] = {}
+    if AceBISGears_cata["Gears"] == nil then
+        AceBISGears_cata["Gears"] = {}
     end
 
-    for gear, rank in pairs(AceBISGears["Gears"]) do
+    for gear, rank in pairs(AceBISGears_cata["Gears"]) do
         local matched = true
         local class = ({ string.split(":", gear) })[1]
         local spec = ({ string.split(":", gear) })[2]
@@ -123,41 +123,41 @@ end
 
 local function SetSelectedSet(set)
     --AceBIS:Print("Set " .. AceBIS.SelectedClass .. " to spec " .. set)
-    AceBISGears[AceBIS.SelectedClass .. "Set"] = set
+    AceBISGears_cata[AceBIS.SelectedClass .. "Set"] = set
 end
 
 local function GetSelectedSet()
-    if AceBISGears[AceBIS.SelectedClass .. "Set"] == nil then
+    if AceBISGears_cata[AceBIS.SelectedClass .. "Set"] == nil then
         --AceBIS:Print("Get " .. AceBIS.SelectedClass .. " spec is nil")
         return nil
     end
-    --AceBIS:Print("Get " .. AceBIS.SelectedClass .. " to spec " .. AceBISGears[AceBIS.SelectedClass .. "Set"])
-    return AceBISGears[AceBIS.SelectedClass .. "Set"]
+    --AceBIS:Print("Get " .. AceBIS.SelectedClass .. " to spec " .. AceBISGears_cata[AceBIS.SelectedClass .. "Set"])
+    return AceBISGears_cata[AceBIS.SelectedClass .. "Set"]
 end
 
 local function SetConfig(class, set, phase, slot, rank)
-    if AceBISGears["Gears"] == nil then
-        AceBISGears["Gears"] = {}
+    if AceBISGears_cata["Gears"] == nil then
+        AceBISGears_cata["Gears"] = {}
     end
 
     if rank == 1 then
-        AceBISGears["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = nil
+        AceBISGears_cata["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = nil
     else
-        AceBISGears["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = rank
+        AceBISGears_cata["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = rank
     end
     --AceBIS:Print("Set " .. slot .. " to " .. AceBIS.ClassSetList[class][set][phase][tostring(rank)][slot])
 end
 
 local function GetConfig(class, set, phase, slot)
-    if AceBISGears["Gears"] == nil then
-        AceBISGears["Gears"] = {}
+    if AceBISGears_cata["Gears"] == nil then
+        AceBISGears_cata["Gears"] = {}
     end
 
-    if AceBISGears["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] == nil then
-        AceBISGears["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = 1
+    if AceBISGears_cata["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] == nil then
+        AceBISGears_cata["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot] = 1
     end
 
-    return AceBISGears["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot]
+    return AceBISGears_cata["Gears"][class .. ":" .. set .. ":" .. phase .. ":" .. slot]
 end
 
 AceBIS.AceGUI:RegisterLayout("AceBISSheet",

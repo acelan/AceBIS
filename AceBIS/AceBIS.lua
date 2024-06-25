@@ -16,7 +16,7 @@ local iconpath = "Interface\\GLUES\\CHARACTERCREATE\\UI-CharacterCreate-Classes"
 local iconCutoff = 6
 local class, tag, spec, build, comment
 
-AceBISGears = {}
+AceBISGears_cata = {}
 
 function AceBIS:PrintError(text)
     AceBIS:Print("|cffff0000An error has occured: |cffffffff" .. text)
@@ -116,6 +116,13 @@ function AceBIS:InitOptions()
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
 						get = "Get"
+					},
+					Holy = {
+						name = L["HolyPriest"],
+						type = "toggle",
+						desc = "Show gears for this class/spec on tooltips",
+						set = "Set",
+						get = "Get"
 					}
 				}
 			},
@@ -191,8 +198,8 @@ function AceBIS:InitOptions()
 						set = "Set",
 						get = "Get"
 					},
-					Tank = {
-						name = L["TankDruid"],
+					Guardian = {
+						name = L["GuardianDruid"],
 						type = "toggle",
 						desc = "Show gears for this class/spec on tooltips",
 						set = "Set",
@@ -357,14 +364,14 @@ function AceBIS:OnInitialize()
 end
 
 function AceBIS:SetPhase(info, val)
-	AceBISGears[info[#info]] = val
+	AceBISGears_cata[info[#info]] = val
 end
 
 function AceBIS:GetPhase(info)
-	if AceBISGears[info[#info]] == nil then
-		AceBISGears[info[#info]] = true
+	if AceBISGears_cata[info[#info]] == nil then
+		AceBISGears_cata[info[#info]] = true
 	end
-	return AceBISGears[info[#info]]
+	return AceBISGears_cata[info[#info]]
 end
 
 local function dump(o)
@@ -390,7 +397,7 @@ function AceBIS:Set(info, val)
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
 	build = spec .. L[class]
-	AceBISGears[build] = val
+	AceBISGears_cata[build] = val
 end
 
 function AceBIS:Get(info)
@@ -398,10 +405,10 @@ function AceBIS:Get(info)
 	tag = info[#info]
 	spec = info["options"]["args"][class]["args"][tag]["name"]
 	build = spec .. L[class]
-	if AceBISGears[build] == nil then
-		AceBISGears[build] = true
+	if AceBISGears_cata[build] == nil then
+		AceBISGears_cata[build] = true
 	end
-	return AceBISGears[build]
+	return AceBISGears_cata[build]
 end
 
 local function iconOffset(col, row)
@@ -463,13 +470,13 @@ local function AttachTooltip(self)
 					spec = spec .. "(" .. L[slot] .. ")"
 				end
 			end
-			if AceBISGears[build] == nil then
-				AceBISGears[build] = true
+			if AceBISGears_cata[build] == nil then
+				AceBISGears_cata[build] = true
 			end
-			if AceBISGears[entry.phase] == nil then
-				AceBISGears[entry.phase] = true
+			if AceBISGears_cata[entry.phase] == nil then
+				AceBISGears_cata[entry.phase] = true
 			end
-			if AceBISGears[build] and AceBISGears[entry.phase] then
+			if AceBISGears_cata[build] and AceBISGears_cata[entry.phase] then
 				self:AddDoubleLine(classfontstring .. " " .. L[entry.class] .. " " .. spec, v, color.r, color.g, color.b, color.r, color.g, color.b, true)
 			end
 		end

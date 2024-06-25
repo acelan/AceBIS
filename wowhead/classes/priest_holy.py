@@ -1,4 +1,4 @@
-priest_discipline = {
+priest_holy = {
     "int": "0.11",
     "spi": "0.47",
     "spldmg": "1",

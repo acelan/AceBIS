@@ -1,28 +1,9 @@
 priest_shadow = {
-   "str": 0,
-   "int": 1,
-   "sta": 0,
-   "agi": 0,
-   "spi": 0.47,
-   "spldmg": 1,
-   "hastertng": 0.87,
-   "critstrkrtng": 0.74,
-   "hitrtng": 0.87,
-   "mleatkpwr": 0,
-   "armorpenrtng": 0,
-   "armor": 0,
-   "exprtng": 0,
-   "manargn": 0,
-   "mastery": 0.58,
-   "dodgertng": 0,
-   "parryrtng": 0,
-   "blockrtng": 0,
-   "blockamount": 0,
-   "resirtng": 0,
-   "mledps": 0,
-   "mledmgmax": 0,
-   "socket": 26.4,
+    "int": "1.0",
+    "spi": "0.9",
+    "spldmg": "0.79",
+    "hitrtng": "0.85",
+    "critstrkrtng": "0.42",
+    "hastertng": "0.76",
+    "mastrtng": "0.48"
 }
-
-# 6936
-

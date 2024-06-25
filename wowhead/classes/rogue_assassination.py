@@ -1,29 +1,10 @@
-
 rogue_assassination = {
-   "str": 1.05,
-   "int": 0,
-   "sta": 0,
-   "agi": 2.58,
-   "spi": 0,
-   "spldmg": 0,
-   "hastertng": 1.1,
-   "critstrkrtng": 0.62,
-   "hitrtng": 0.70,
-   "mleatkpwr": 1,
-   "armorpenrtng": 0,
-   "armor": 0,
-   "exprtng": 1.04,
-   "manargn": 0,
-   "mastery": 1.23,
-   "dodgertng": 0,
-   "parryrtng": 0,
-   "blockrtng": 0,
-   "blockamount": 0,
-   "resirtng": 0,
-   "mledps": 2.49,
-   "mledmgmax": 0,
-   "socket": 38,
+    "agi": "2.58",
+    "str": "1.05",
+    "mleatkpwr": "1",
+    "critstrkrtng": "0.62",
+    "hitrtng": "1.43",
+    "hastertng": "1.1",
+    "mastrtng": "1.23",
+    "exprtng": "2.0"
 }
-
-# 7970
-

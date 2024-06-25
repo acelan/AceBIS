@@ -1,29 +1,9 @@
-
 shaman_elemental = {
-   "str": 0,
-   "int": 0.22,
-   "sta": 0,
-   "agi": 0,
-   "spi": 0,
-   "spldmg": 1,
-   "hastertng": 1.29,
-   "critstrkrtng": 0.67,
-   "hitrtng": 0,
-   "mleatkpwr": 0,
-   "armorpenrtng": 0,
-   "armor": 0,
-   "exprtng": 0,
-   "manargn": 0.08,
-   "mastery": 0,
-   "dodgertng": 0,
-   "parryrtng": 0,
-   "blockrtng": 0,
-   "blockamount": 0,
-   "resirtng": 0,
-   "mledps": 0,
-   "mledmgmax": 0,
-   "socket": 16,
+    "int": "1.24",
+    "spldmg": "1",
+    "critstrkrtng": "0.34",
+    "hastertng": "0.57",
+    "hitrtng": "0.59",
+    "spi": "0.59",
+    "mastrtng": "0.49"
 }
-
-# 6501
-
