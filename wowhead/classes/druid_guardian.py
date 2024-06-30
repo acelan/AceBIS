@@ -1,15 +1,15 @@
 druid_guardian = {
-    "StatHealth": "0.04",
-    "sta": "0.99",
+    "StatHealth": "0.02",
+    "sta": "0.76",
     "agi": "1.0",
-    "armor": "1.02",
-    "StatBonusArmor": "0.23",
-    "dodgertng": "0.97",
-    "mastrtng": "0.35",
-    "str": "0.11",
-    "mleatkpwr": "0.1",
-    "hitrtng": "0.195",
-    "exprtng": "0.15",
-    "critstrkrtng": "0.11",
-    "hastertng": "0.0"
+    "armor": "0.62",
+    "StatBonusArmor": "0.14",
+    "dodgertng": "0.59",
+    "mastrtng": "0.20",
+    "str": "0.21",
+    "mleatkpwr": "0.20",
+    "hitrtng": "0.60",
+    "exprtng": "0.93",
+    "critstrkrtng": "0.25",
+    "hastertng": "0.03"
 }

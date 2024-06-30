@@ -95,7 +95,7 @@ def calculate_epv(spec, item, name):
             epv = epv + float(spec[key]) * item["use_" + key] * 20 / 120
 
     if "nsockets" in item:
-        epv = epv + 500 * float(item["nsockets"])
+        epv = epv + 100 * float(item["nsockets"])
     #for idx in [ "1", "2", "3", "4"]:
     #    if "socket" + idx in item:
     #        if item["socket" + idx] == 1:
