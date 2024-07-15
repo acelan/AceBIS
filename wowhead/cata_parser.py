@@ -92,7 +92,7 @@ def stripcomments(text):
 def extract_stats(content):
     stats_array = {}
     for line in content.split('\n'):
-        if "Stat.Stat" in line:
+        if "[Stat.Stat" in line:
             line = line.replace('[', '').replace(']', '').replace('Stat.', '').replace('PseudoStat.', '').replace(',','')
             line = line.split(":")
 
