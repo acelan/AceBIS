@@ -955,7 +955,7 @@ def build_list():
                         continue
 
                 if itemtype in ["OffHand"]:
-                    if cclass in ["Priest", "Mage", "Warlock"]:
+                    if cclass in ["Priest", "Mage", "Warlock", "Druid"]:
                         if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
                             continue
 

@@ -184,6 +184,7 @@ def get_one_item(items, item_id, cached, update):
 
         #print("phase = %s" % value)
         item["phase"] = value
+
         value = '{' + item["json"] + '}'
         #print("json = %s" % value)
         item_json = json.loads(value)
@@ -209,6 +210,9 @@ def get_one_item(items, item_id, cached, update):
 
     if len(item) == 0:
         return
+
+    if int(item["level"]) > 379 and int(item["phase"]) <= 1:
+        item["phase"] = '2'
 
     for spec in specs:
         item[spec] = calculate_epv(specs[spec], item, spec)
