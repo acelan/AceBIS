@@ -358,308 +358,422 @@ rephase = {
 
 # to better score trinket
 rescore = {
-    # Mirror of Truth
-    40684: {"AssassinationRogue": 1000, "SurvivalHunter": 996, "EnhancementShaman": 1000, "UnholyDK": 996, "FeralDruid": 998, "FuryWarrior": 996, "ArmsWarrior": 996, "RetributionPaladin": 3991},
-    # Fury of the Five Flights
-    40431: {"AssassinationRogue": 998, "RetributionPaladin": 999, "UnholyDK": 997, "FeralDruid": 995, "SurvivalHunter": 998, "EnhancementShaman": 996, "FuryWarrior": 998, "ArmsWarrior": 998},
-    # Dying Curse
-    40255: {"BalanceDruid": 1000, "ArcaneMage": 1995, "ShadowPriest": 1996, "ElementalShaman": 2998, "AfflictionWarlock": 1993, "RestorationDruid": 992, "EnhancementShaman": 999, "FireMage": 1997},
-    # Illustration of the Dragon Soul
-    40432: {"BalanceDruid": 999, "ShadowPriest": 1995, "ElementalShaman": 999, "AfflictionWarlock": 2996, "RestorationDruid": 1998, "ArcaneMage": 1996, "DisciplinePriest": 3998, "RestorationShaman": 3991, "FireMage": 1996},
-    40682: {"BalanceDruid": 998, "ArcaneMage": 997, "ShadowPriest": 1993, "ElementalShaman": 997, "AfflictionWarlock": 997, "FireMage": 997},
-    40373: {"BalanceDruid": 996, "ShadowPriest": 994},
-    37873: {"BalanceDruid": 995, "ShadowPriest": 996, "ElementalShaman": 996},
-    42395: {"BalanceDruid": 994, "ShadowPriest": 993, "ElementalShaman": 995},
-    49076: {"BalanceDruid": 993, "ArcaneMage": 996, "AfflictionWarlock": 996, "FireMage": 996},
-    37835: {"BalanceDruid": 992, "RestorationDruid": 996, "DisciplinePriest": 994, "RestorationShaman": 994},
-    42988: {"BalanceDruid": 991, "RestorationDruid": 995, "DisciplinePriest": 995},
-    37660: {"BalanceDruid": 990, "DisciplinePriest": 991},
-    44322: {"BalanceDruid": 1988, "RestorationDruid": 997},
-    36972: {"BalanceDruid": 988},
-    # Darkmoon Card: Greatness(+str)
-    42987: {"FeralDruid": 1996, "RetributionPaladin": 3996, "FuryWarrior": 2000, "UnholyDK": 3994, "ProtectionPaladin": 3991, "ArmsWarrior": 2000},
-    # Embrace of the Spider
-    39229: {"ArcaneMage": 1000, "BalanceDruid": 997, "ShadowPriest": 1994, "ElementalShaman": 998, "RestorationShaman": 998, "AfflictionWarlock": 2994, "FireMage": 998},
-    # Figurine - Monarch Crab
-    44063: {"ProtectionPaladin": 1998, "ProtectionWarrior": 1998, "ProtectionDK": 1000},
-    # Essence of Gossamer
-    37220: {"ProtectionPaladin": 1997, "TankDruid": 999, "ProtectionWarrior": 997},
-    # Darkmoon Card: Greatness(+agi)
-    44253: {"AssassinationRogue": 999, "TankDruid": 1000, "SurvivalHunter": 3996, "EnhancementShaman": 997, "ProtectionWarrior": 998, "FeralDruid": 1994},
-    # Meteorite Whetstone
-    37390: {"EnhancementShaman": 998, "UnholyDK": 1998, "FeralDruid": 996, "AssassinationRogue": 992},
-    # Grim Toll
-    40256: {"FuryWarrior": 999, "UnholyDK": 998, "FeralDruid": 1997, "SurvivalHunter": 997, "AssassinationRogue": 993, "ArmsWarrior": 999},
-    # Defender's Code
-    40257: {"ProtectionWarrior": 1996, "ProtectionPaladin": 1993},
-    # Figurine - Ruby Hare
-    42341: {"ProtectionDK": 999, "ProtectionWarrior": 996, "ProtectionPaladin": 1996},
-    # Essence of Gossamer
-    37720: {"ProtectionDK": 998},
-    # Valor Medal of the First War
-    40683: {"ProtectionDK": 997, "ProtectionPaladin": 993},
-    # Seal of the Pantheon
-    36993: {"ProtectionDK": 996, "ProtectionWarrior": 994},
-    # Sonic Booster
-    40767: {"ProtectionDK": 995},
-    # Loatheb's Shadow
-    39257: {"UnholyDK": 995, "FeralDruid": 997, "SurvivalHunter": 999, "AssassinationRogue": 994, "FuryWarrior": 997, "ArmsWarrior": 997},
-    # Incisor Fragment
-    37723: {"UnholyDK": 994, "FeralDruid": 994},
-    40531: {"FeralDruid": 993, "AssassinationRogue": 997, "EnhancementShaman": 993, "UnholyDK": 1997},
-    37111: {"RestorationDruid": 3995, "HolyPaladin": 3999, "RestorationShaman": 1998},
-    37675: {"RestorationDruid": 998, "RestorationShaman": 993},
-    44254: {"RestorationDruid": 1990, "ShadowPriest": 993},
-    40258: {"RestorationDruid": 993, "DisciplinePriest": 993, "RestorationShaman": 996},
-    42990: {"ShadowPriest": 996},
-    37264: {"ShadowPriest": 995},
-    34427: {"AssassinationRogue": 996},
-    40371: {"AssassinationRogue": 995, "EnhancementShaman": 994, "RetributionPaladin": 998},
-    37166: {"AssassinationRogue": 991, "EnhancementShaman": 995, "FuryWarrior": 995, "ArmsWarrior": 995},
-    43573: {"EnhancementShaman": 992},
-    37872: {"ProtectionWarrior": 995},
-    39292: {"ProtectionWarrior": 993, "ProtectionPaladin": 994},
-    44255: {"HolyPaladin": 3996, "DisciplinePriest": 3992},
-    42413: {"HolyPaladin": 1997, "DisciplinePriest": 998},
-    28823: {"HolyPaladin": 997},
-    29387: {"ProtectionPaladin": 995},
-    40372: {"ProtectionPaladin": 992},
-    42132: {"DisciplinePriest": 999},
-    40382: {"DisciplinePriest": 997, "RestorationShaman": 995},
-    40685: {"DisciplinePriest": 992, "RestorationShaman": 997},
-    37657: {"DisciplinePriest": 990, "RestorationDruid": 1989},
-    37844: {"RestorationShaman": 992},
-
-    # P2
-    45466: {"BalanceDruid": 2000, "ShadowPriest": 3995, "ArcaneMage": 1999, "ElementalShaman": 1998, "RestorationShaman": 3996, "AfflictionWarlock": 3996, "FireMage": 2998},
-    45518: {"BalanceDruid": 3994, "ShadowPriest": 3998, "ElementalShaman": 3996, "ArcaneMage": 3996, "AfflictionWarlock": 3994, "FireMage": 3996},
-    45931: {"FeralDruid": 3000, "SurvivalHunter": 3992, "AssassinationRogue": 3987, "EnhancementShaman": 1996, "ArmsWarrior": 1999, "FuryWarrior": 1999, "CombatRogue": 3990},
-    45609: {"FeralDruid": 3993, "UnholyDK": 3997, "AssassinationRogue": 3994, "SurvivalHunter": 1997, "RetributionPaladin": 3995, "EnhancementShaman": 3994, "ArmsWarrior": 3996, "FuryWarrior": 3996, "CombatRogue": 3997},
-    45158: {"TankDruid": 3993, "ProtectionPaladin": 3995, "ProtectionWarrior": 3997, "ProtectionDK": 2998},
-    46021: {"TankDruid": 1999, "ProtectionPaladin": 3994, "ProtectionWarrior": 2995, "ProtectionDK": 2997},
-    45522: {"RetributionPaladin": 1996, "UnholyDK": 1994, "FeralDruid": 1993, "ProtectionPaladin": 1991, "AssassinationRogue": 3989, "EnhancementShaman": 1997, "CombatRogue": 3988},
-    46038: {"AssassinationRogue": 3990, "UnholyDK": 1995, "FeralDruid": 2996, "SurvivalHunter": 3993, "RetributionPaladin": 3993, "EnhancementShaman": 3991, "ArmsWarrior": 1997, "FuryWarrior": 1997, "CombatRogue": 3989},
-    45490: {"BalanceDruid": 1998, "RestorationDruid": 2996, "ArcaneMage": 1998, "ShadowPriest": 2996, "RestorationShaman": 3994, "AfflictionWarlock": 1997},
-    45308: {"BalanceDruid": 1997, "DisciplinePriest": 1998, "ElementalShaman": 1997, "RestorationShaman": 3992, "AfflictionWarlock": 2993, "ArcaneMage": 1997, "ShadowPriest": 2995, "FireMage": 2997},
-    45263: {"UnholyDK": 1996, "FeralDruid": 1995, "SurvivalHunter": 1996, "RetributionPaladin": 3992, "AssassinationRogue": 1995, "EnhancementShaman": 1998},
-    45286: {"UnholyDK": 1993, "ProtectionPaladin": 1990, "RetributionPaladin": 1995, "AssassinationRogue": 2993},
-    45703: {"RestorationDruid": 3994, "DisciplinePriest": 3991},
-    45535: {"RestorationDruid": 3995, "DisciplinePriest": 3994, "ShadowPriest": 1992, "RestorationShaman": 3997},
-    45929: {"RestorationDruid": 1997, "DisciplinePriest": 1997, "ShadowPriest": 1991, "RestorationShaman": 3993},
-    46051: {"RestorationDruid": 3996, "HolyPaladin": 4000, "DisciplinePriest": 3993},
-    40430: {"RestorationDruid": 1994},
-    19288: {"RestorationDruid": 1993},
-    45292: {"RestorationDruid": 1992},
-    45148: {"ArcaneMage": 1996, "ShadowPriest": 1998, "AfflictionWarlock": 2992, "FireMage": 1995},
-    45313: {"ProtectionPaladin": 1995, "ProtectionWarrior": 1997},
-    45507: {"ProtectionPaladin": 1994},
-    46132: {"ShadowPriest": 1997},
-    45866: {"AfflictionWarlock": 1994},
-
-    # P3
-    47464: {"UnholyDK": 3999, "FeralDruid": 3997, "TankDruid": 2999, "SurvivalHunter": 3999, "ProtectionPaladin": 3993, "RetributionPaladin": 3999, "AssassinationRogue": 3992, "ArmsWarrior": 3997, "FuryWarrior": 3997, "CombatRogue": 3996},
-    47131: {"UnholyDK": 3999, "FeralDruid": 3997, "TankDruid": 2999, "SurvivalHunter": 3999, "ProtectionPaladin": 3993, "RetributionPaladin": 3999, "AssassinationRogue": 3992, "ArmsWarrior": 3997, "FuryWarrior": 3997, "CombatRogue": 3996},
-    47303: {"UnholyDK": 3998, "FeralDruid": 3994, "SurvivalHunter": 2998, "ProtectionPaladin": 3992, "AssassinationRogue": 3991, "CombatRogue": 3991},
-    47115: {"UnholyDK": 3998, "FeralDruid": 3994, "SurvivalHunter": 2998, "ProtectionPaladin": 3992, "AssassinationRogue": 3991, "CombatRogue": 3991},
-    47088: {"ProtectionDK": 3998, "TankDruid": 4000, "ProtectionPaladin": 3999, "ProtectionWarrior": 3998},
-    47451: {"ProtectionDK": 3998, "TankDruid": 4000, "ProtectionPaladin": 3999, "ProtectionWarrior": 3998},
-    47080: {"ProtectionDK": 2999, "ProtectionPaladin": 3995, "ProtectionWarrior": 2999, "TankDruid": 3998},
-    47290: {"ProtectionDK": 2999, "ProtectionPaladin": 3995, "ProtectionWarrior": 2999, "TankDruid": 3998},
-    47735: {"ProtectionDK": 2996, "TankDruid": 2997, "ProtectionPaladin": 2995, "ProtectionWarrior": 3995},
-    47477: {"BalanceDruid": 3997, "ArcaneMage": 3999, "ShadowPriest": 3993, "ElementalShaman": 3997, "EnhancementShaman": 3995, "AfflictionWarlock": 3993, "FireMage": 3997},
-    47188: {"BalanceDruid": 3997, "ArcaneMage": 3999, "ShadowPriest": 3993, "ElementalShaman": 3997, "EnhancementShaman": 3995, "AfflictionWarlock": 3993, "FireMage": 3997},
-    47316: {"BalanceDruid": 2998, "ShadowPriest": 2998, "AfflictionWarlock": 3991, "ArcaneMage": 3998, "FireMage": 3995, "ElementalShaman": 3995, "EnhancementShaman": 3993},
-    47182: {"BalanceDruid": 2998, "ShadowPriest": 2998, "AfflictionWarlock": 3991, "ArcaneMage": 3998, "FireMage": 3995, "ElementalShaman": 3995, "EnhancementShaman": 3993},
-    47261: {"TankDruid": 2996},
-    47059: {"BalanceDruid": 4000, "DisciplinePriest": 3999, "RestorationShaman": 3999, "AfflictionWarlock": 2991},
-    47432: {"BalanceDruid": 4000, "DisciplinePriest": 3999, "RestorationShaman": 3999, "AfflictionWarlock": 2991},
-    48724: {"BalanceDruid": 2995, "HolyPaladin": 3998},
-    47216: {"ProtectionPaladin": 2996, "ProtectionWarrior": 2996},
-    47213: {"ShadowPriest": 2995, "AfflictionWarlock": 2995},
-    47734: {"AssassinationRogue": 3988, "FeralDruid": 3996, "CombatRogue": 3987},
-    47948: {"AssassinationRogue": 2991},
-    48020: {"AssassinationRogue": 2991},
-    47725: {"AssassinationRogue": 2990},
-    47881: {"AssassinationRogue": 2990},
-    47214: {"AssassinationRogue": 2989},
-    48722: {"AfflictionWarlock": 2990, "FeralDruid": 3996},
-    49487: {"ProtectionWarrior": 2994},
-
-    # P2
-    # Sigils for Unholy Death Knight
-    45254: {"UnholyDK": 2000},
-    42621: {"UnholyDK": 1999},
-    # Relics for Blood Death Knight Tank
-    45144: {"ProtectionDK": 2000},
-    # Idols for Balance Druid DPS
-    # Idols for Feral Druid DPS
-    # Idols for Feral Druid Tank
-    45509: {"TankDruid": 3000},
-    # Idols for Restoration Druid Healer
-    46138: {"RestorationDruid": 1997},
-    # Librams for Holy Paladin Healer
-    # Librams for Protection Paladin Tank
-    45145: {"ProtectionPaladin": 2000},
-    # Librams for Retribution Paladin
-    42853: {"RetributionPaladin": 2000},
-    # Totems for Elemental Shaman DPS
-    # Totems for Enhancement Shaman DPS
-    42608: {"EnhancementShaman": 2000},
-    # Totems for Restoration Shaman Healer
-    45114: {"RestorationShaman": 2999},
-
-    # Sigils for Unholy Death Knight
-    42620: {"UnholyDK": 1000},
-    40207: {"UnholyDK": 999, "ProtectionDK": 999},
-    40867: {"UnholyDK": 998},
-    # Relics for Blood Death Knight Tank
-    40714: {"ProtectionDK": 1000},
-    40822: {"ProtectionDK": 998},
-    40715: {"ProtectionDK": 997},
-    # Idols for Balance Druid DPS
-    40321: {"BalanceDruid": 1000},
-    40712: {"BalanceDruid": 999},
-    32387: {"BalanceDruid": 998},
-    27518: {"BalanceDruid": 997},
-    38360: {"BalanceDruid": 996},
-    # Idols for Feral Druid DPS
-    39757: {"FeralDruid": 1000},
-    40713: {"FeralDruid": 999},
-    38295: {"FeralDruid": 998},
-    # Idols for Feral Druid Tank
-    38365: {"TankDruid": 2999},
-    33509: {"TankDruid": 999},
-    # Idols for Restoration Druid Healer
-    40342: {"RestorationDruid": 3000},
-    33508: {"RestorationDruid": 1999},
-    25643: {"RestorationDruid": 1998},
-    # Librams for Holy Paladin Healer
-    40705: {"HolyPaladin": 4000},
-    # Librams for Protection Paladin Tank
-    40707: {"ProtectionPaladin": 1000},
-    # Librams for Retribution Paladin
-    42852: {"RetributionPaladin": 1000},
-    42851: {"RetributionPaladin": 999},
-    42611: {"RetributionPaladin": 998},
-    # Totems for Elemental Shaman DPS
-    40267: {"ElementalShaman": 1000},
-    40708: {"ElementalShaman": 999, "EnhancementShaman": 999},
-    32330: {"ElementalShaman": 998},
-    # Totems for Enhancement Shaman DPS
-    40322: {"EnhancementShaman": 1000},
-    33507: {"EnhancementShaman": 997},
-    37575: {"EnhancementShaman": 996},
-    # Totems for Restoration Shaman Healer
-    40709: {"RestorationShaman": 3999},
-    38368: {"RestorationShaman": 999},
-
-    # P3
-    # Sigils for Unholy Death Knight DPS Phase 3
-    47673: {"UnholyDK": 3999},
-    # Relics for Blood Death Knight Tanks in Phase 3
-    47672: {"ProtectionDK": 3000},
-    # Idols for Balance Druid DPS Phase 3
-    47670: {"BalanceDruid": 1000},
-    # Idols for Feral Druid DPS Phase 3
-    47668: {"FeralDruid": 3000, "TankDruid": 2998},
-    # Idols for Feral Druid Tank Phase 3
-    # Idols for Restoration Druid Healer Phase 3
-    47671: {"RestorationDruid": 2999},
-    # Librams for Holy Paladin Healer Phase 3
-    # Librams for Protection Paladin Tank Phase 3
-    47664: {"ProtectionPaladin": 3998},
-    47661: {"ProtectionPaladin": 4000, "RetributionPaladin": 3000},
-    # Librams for Retribution Paladin
-    42854: {"RetributionPaladin": 2999},
-    # Totems for Elemental Shaman DPS in Phase 3
-    47666: {"ElementalShaman": 3000, "EnhancementShaman": 3000},
-    # Totems for Enhancement Shaman DPS in Phase 3
-    # Totems for Restoration Shaman Healer in Phase 3
-    47665: {"RestorationShaman": 4000},
-
-    # P4
-    # Trinket options for Blood Death Knight Tanks in Phase 4
-    50364: {"ProtectionDK": 4000, "TankDruid": 3999, "ProtectionPaladin": 4000, "ProtectionWarrior": 4000},
-    50344: {"ProtectionDK": 3999, "TankDruid": 3996, "ProtectionPaladin": 3996, "ProtectionWarrior": 3999},
-    50356: {"ProtectionDK": 3997, "TankDruid": 3995, "ProtectionPaladin": 3997, "ProtectionWarrior": 3996},
-    # Sigil options for Blood Death Knight Tanks in Phase 4
-    50462: {"ProtectionDK": 4000},
-    # Trinkets for Unholy Death Knight DPS Phase 4
-    50363: {"UnholyDK": 4000, "SurvivalHunter": 4000, "CombatRogue": 4000, "EnhancementShaman": 4000, "ArmsWarrior": 4000, "FuryWarrior": 4000, "FeralDruid": 4000, "RetributionPaladin": 3997, "AssassinationRogue": 4000},
-    50343: {"UnholyDK": 3996, "FeralDruid": 3998, "SurvivalHunter": 3997, "RetributionPaladin": 3998, "AssassinationRogue": 3998, "CombatRogue": 3999, "EnhancementShaman": 3999, "ArmsWarrior": 3998, "FuryWarrior": 3998},
-    50355: {"UnholyDK": 3995, "FeralDruid": 3994, "SurvivalHunter": 3995, "AssassinationRogue": 3997, "CombatRogue": 3995, "EnhancementShaman": 3996},
-    # Sigils for Unholy Death Knight DPS Phase 4
-    50459: {"UnholyDK": 4000},
-    # Trinkets for Balance Druid DPS Phase 4
-    50348: {"BalanceDruid": 4000, "ArcaneMage": 4000, "FireMage": 4000, "ShadowPriest": 3999, "ElementalShaman": 4000, "AfflictionWarlock": 3999},
-    50365: {"BalanceDruid": 3999, "FireMage": 3999, "ShadowPriest": 4000, "ElementalShaman": 3999, "EnhancementShaman": 3998, "AfflictionWarlock": 4000},
-    50360: {"BalanceDruid": 3998, "AfflictionWarlock": 3998},
-    50353: {"BalanceDruid": 3996, "AfflictionWarlock": 3997},
-    50345: {"BalanceDruid": 3995, "ArcaneMage": 3997, "FireMage": 3998, "ShadowPriest": 3997, "ElementalShaman": 3998, "AfflictionWarlock": 3995},
-    # Idols for Balance Druid DPS Phase 4
-    50457: {"BalanceDruid": 4000},
-    # Trinkets for Feral Druid DPS Phase 4
-    50362: {"FeralDruid": 3999, "SurvivalHunter": 3998, "AssassinationRogue": 3995, "CombatRogue": 3998, "ArmsWarrior": 3999, "FuryWarrior": 3999},
-    50342: {"FeralDruid": 3995, "AssassinationRogue": 3993, "CombatRogue": 3994},
-    # Idols for Feral Druid DPS Phase 4
-    50456: {"FeralDruid": 4000, "TankDruid": 4000},
-    # Trinkets for Feral Druid Tank Phase 4
-    50361: {"TankDruid": 3997, "ProtectionPaladin": 3998},
-    50341: {"TankDruid": 3993},
-    # Idols for Feral Druid Tank Phase 4
-    # Trinkets for Restoration Druid Healer Phase 4
-    50366: {"RestorationDruid": 3999, "DisciplinePriest": 4000, "RestorationShaman": 4000},
-    50358: {"RestorationDruid": 3998, "DisciplinePriest": 3995},
-    50346: {"RestorationDruid": 3997, "DisciplinePriest": 3996},
-    # Idols for Restoration Druid Healer Phase 4
-    50454: {"RestorationDruid": 4000},
-    # Trinkets for Survival Hunter DPS Phase 4
-    # Trinkets for Arcane Mage DPS Phase 4
-    # Rings for Fire Mage DPS Phase 4
-    50398: {"FireMage": 4000},
-    50664: {"FireMage": 3999},
-    50614: {"FireMage": 3998},
-    50644: {"FireMage": 3997},
-    50714: {"FireMage": 3996},
-    50636: {"FireMage": 3995},
-    51849: {"FireMage": 3994},
-    47489: {"FireMage": 3993},
-    47237: {"FireMage": 3993},
-    45495: {"FireMage": 3992},
-    46046: {"FireMage": 3991},
-    47372: {"FireMage": 3990},
-    47054: {"FireMage": 3990},
-    # Trinkets for Fire Mage DPS Phase 4
-    # Trinkets for Holy Paladin Healer Phase 4
-    # Librams for Holy Paladin Healer Phase 4
-    47662: {"HolyPaladin": 3999},
-    # Trinkets for Protection Paladin Tank Phase 4
-    50706: {"ProtectionPaladin": 3993, "RetributionPaladin": 4000, "AssassinationRogue": 3999, "CombatRogue": 3993},
-    # Librams for Protection Paladin Tank Phase 4
-    50461: {"ProtectionPaladin": 3999},
-    # Trinkets for Retribution Paladin Phase 4
-    # Libram
-    50455: {"RetributionPaladin": 4000},
-    # Trinkets for Discipline Priest Healer Phase 4
-    47041: {"DisciplinePriest": 3997, "RestorationShaman": 3998},
-    47271: {"DisciplinePriest": 3997, "RestorationShaman": 3998},
-    # Trinkets for Shadow Priest DPS Phase 4
-    50259: {"ShadowPriest": 3996, "AfflictionWarlock": 3990},
-    50357: {"ShadowPriest": 3994, "EnhancementShaman": 3997},
-    # Trinkets for Assassination Rogue DPS Phase 4
-    50351: {"AssassinationRogue": 3996, "CombatRogue": 3992},
-    # Trinkets for Combat Rogue DPS Phase 4
-    # Trinket for Elemental Shaman DPS in Phase 4
-    # Totems for Elemental Shaman DPS in Phase 4
-    50458: {"ElementalShaman": 4000, "EnhancementShaman": 4000},
-    # Trinket for Enhancement Shaman DPS in Phase 4
-    # Totems for Enhancement Shaman DPS in Phase 4
-    # Trinket for Restoration Shaman Healer in Phase 4
-    # Totems for Restoration Shaman Healer in Phase 4
-    50375: {"AfflictionWarlock": 3992},
-    # Trinkets for Arms Warrior DPS in Phase 4
-    # Trinkets for Fury Warrior DPS in Phase 4
-    # Trinkets for Protection Warrior Tank in Phase 4
+    "dk_blood": {
+        62471: 10000,
+        62466: 9999,
+        65048: 9998,
+        65109: 9997,
+        58483: 9996,
+        56347: 9995,
+        52352: 9994
+    },
+    "dk_frost": {
+        65072: 10000,
+        68712: 9999,
+        65118: 9998,
+        56393: 9997,
+        58180: 9996,
+        56100: 9995,
+        56345: 9994
+    },
+    "dk_unholy": {
+        65072: 10000,
+        56393: 9999,
+        58180: 9998,
+        65118: 9997,
+        68712: 9996,
+        56100: 9995,
+        56345: 9994
+    },
+    "druid_balance": {
+        62047: 10000,
+        65053: 9999,
+        65110: 9998,
+        65105: 9997,
+        56400: 9996,
+        56320: 9995,
+        56462: 9994,
+        64645: 9993,
+        68710: 9992,
+        56339: 9991,
+        56407: 9990
+    },
+    "druid_feral": {
+        65140: 10000,
+        65026: 9999,
+        56328: 9998,
+        59520: 9997,
+        58181: 9996,
+        62468: 9995,
+        56394: 9994
+    },
+    "druid_guardian": {
+        65048: 10000,
+        65109: 9999,
+        62471: 9998,
+        56347: 9997,
+        62468: 9996
+    },
+    "druid_restoration": {
+        59500: 10000,
+        64645: 9999,
+        62050: 9998,
+        60233: 9997,
+        68777: 9996,
+        58184: 9995,
+        62467: 9994,
+        56351: 9993,
+        65124: 9992,
+        62044: 9991,
+        65804: 9990
+    },
+    "hunter_beastmastery": {
+        65140: 10000,
+        65026: 9999,
+        56394: 9998,
+        56328: 9997,
+        62051: 9996,
+        56440: 9995
+    },
+    "hunter_marksmanship": {
+        65140: 10000,
+        65026: 9999,
+        56394: 9998,
+        56328: 9997,
+        62051: 9996,
+        56440: 9995,
+        62468: 9994,
+        62463: 9993
+    },
+    "hunter_survival": {
+        65140: 10000,
+        65026: 9999,
+        56394: 9998,
+        56328: 9997,
+        62051: 9996,
+        56440: 9995,
+        62468: 9994,
+        62463: 9993
+    },
+    "mage_arcane": {
+        65053: 10000,
+        65105: 9999,
+        58183: 9998,
+        62465: 9997,
+        62047: 9996,
+        62470: 9995,
+        62021: 9994,
+        56320: 9993,
+        56339: 9992,
+        56407: 9991
+    },
+    "mage_fire": {
+        65105: 10000,
+        62047: 9999,
+        65053: 9998,
+        62465: 9997,
+        58183: 9996,
+        56400: 9995,
+        62021: 9994,
+        62470: 9993,
+        56320: 9992,
+        56462: 9991,
+        56407: 9990,
+        56339: 9989
+    },
+    "mage_frost": {
+        62047: 10000,
+        65053: 9999,
+        62021: 9998,
+        58183: 9997,
+        62465: 9996,
+        62470: 9995,
+        56320: 9994,
+        56407: 9993,
+        56462: 9992,
+        56339: 9991
+    },
+    "paladin_holy": {
+        60233: 10000,
+        65124: 9999,
+        62050: 9998,
+        62044: 9997,
+        64645: 9996,
+        59500: 9995,
+        68777: 9994,
+        58184: 9993,
+        56351: 9992,
+        56320: 9991,
+        62467: 9990
+    },
+    "paladin_protection": {
+        58483: 10000,
+        62466: 9999,
+        62471: 9998,
+        65048: 9997,
+        65109: 9996,
+        59332: 9995,
+        59515: 9994,
+        62464: 9993,
+        62469: 9992,
+        52352: 9991,
+        56347: 9990
+    },
+    "paladin_retribution": {
+        68712: 10000,
+        56393: 9999,
+        65072: 9998,
+        65118: 9997,
+        58180: 9996,
+        59461: 9995,
+        59224: 9994,
+        52351: 9993,
+        56285: 9992,
+        56345: 9991
+    },
+    "priest_discipline": {
+        65124: 10000,
+        60233: 9999,
+        62050: 9998,
+        65029: 9997,
+        65105: 9996,
+        59500: 9995,
+        64645: 9994,
+        68777: 9993,
+        59519: 9992,
+        58184: 9991,
+        59354: 9990,
+        56320: 9989,
+        56351: 9988,
+        52354: 9987,
+        56414: 9986,
+        56462: 9985,
+        58183: 9984,
+        56339: 9983,
+        56400: 9982,
+        56290: 9981,
+        65804: 9980,
+        63839: 9979,
+        55787: 9978
+    },
+    "priest_holy": {
+        65124: 10000,
+        60233: 9999,
+        65029: 9998,
+        62050: 9997,
+        65105: 9996,
+        59500: 9995,
+        59519: 9994,
+        64645: 9993,
+        68777: 9992,
+        58184: 9991,
+        59354: 9990,
+        56351: 9989,
+        56320: 9988,
+        52354: 9987,
+        56462: 9986,
+        56414: 9985,
+        58183: 9984,
+        56339: 9983,
+        56400: 9982,
+        56290: 9981,
+        65804: 9980,
+        63839: 9979,
+        55787: 9978
+    },
+    "priest_shadow": {
+        62047: 10000,
+        65053: 9999,
+        56400: 9998,
+        65105: 9997,
+        58183: 9996,
+        59326: 9995,
+        52353: 9994,
+        59519: 9993,
+        68777: 9992,
+        56320: 9991,
+        62465: 9990,
+        62470: 9989,
+        56290: 9988,
+        65110: 9987,
+        59514: 9986,
+        64645: 9985,
+        56407: 9984,
+        56462: 9983,
+        56339: 9982,
+        55889: 9981,
+        65804: 9980,
+        63839: 9979,
+        55787: 9978
+    },
+    "rogue_assassination": {
+        58181: 10000,
+        65026: 9999,
+        68709: 9998,
+        56328: 9997,
+        56394: 9996,
+        59441: 9995,
+        59520: 9994,
+        56427: 9993,
+        65140: 9992,
+        68776: 9991,
+        59473: 9990,
+        56440: 9989,
+        56295: 9988,
+        52199: 9987
+    },
+    "rogue_combat": {
+        58181: 10000,
+        65026: 9999,
+        59441: 9998,
+        65140: 9997,
+        56427: 9996,
+        56394: 9995,
+        56328: 9994,
+        59520: 9993,
+        59473: 9992,
+        68776: 9991,
+        68709: 9990,
+        56440: 9989,
+        56295: 9988,
+        52199: 9987
+    },
+    "rogue_subtlety": {
+        58181: 10000,
+        65140: 9999,
+        65026: 9998,
+        59441: 9997,
+        68709: 9996,
+        56427: 9995,
+        56328: 9994,
+        59520: 9993,
+        59473: 9992,
+        56394: 9991,
+        68776: 9990,
+        56440: 9989,
+        56295: 9988,
+        52199: 9987
+    },
+    "shaman_elemental": {
+        62047: 10000,
+        65053: 9999,
+        65110: 9998,
+        65105: 9997,
+        58183: 9996,
+        56320: 9995,
+        56462: 9994,
+        68777: 9993,
+        68710: 9992,
+        56339: 9991,
+        56407: 9990,
+        64645: 9989,
+        65804: 9988
+    },
+    "shaman_enhancement": {
+        65140: 10000,
+        58181: 9999,
+        65026: 9998,
+        59520: 9997,
+        56427: 9996,
+        56394: 9995,
+        62463: 9994,
+        56440: 9993,
+        56328: 9992,
+        62051: 9991
+    },
+    "shaman_restoration": {
+        60233: 10000,
+        64645: 9999,
+        65124: 9998,
+        62050: 9997,
+        62044: 9996,
+        68777: 9995,
+        58184: 9994,
+        62467: 9993,
+        56351: 9992,
+        65804: 9991
+    },
+    "warlock_affliction": {
+        62047: 10000,
+        65053: 9999,
+        59326: 9998,
+        65105: 9997,
+        59519: 9996,
+        62465: 9995,
+        58183: 9994,
+        56320: 9993,
+        56407: 9992,
+        56462: 9991,
+        56339: 9990,
+        52353: 9989
+    },
+    "warlock_demonology": {
+        62047: 10000,
+        65053: 9999,
+        58183: 9998,
+        59326: 9997,
+        65105: 9996,
+        59519: 9995,
+        62465: 9994,
+        56320: 9993,
+        56407: 9992,
+        56339: 9991,
+        56462: 9990,
+        52353: 9989,
+        65804: 9988
+    },
+    "warlock_destruction": {
+        62047: 10000,
+        65053: 9999,
+        59326: 9998,
+        65105: 9997,
+        59519: 9996,
+        62465: 9995,
+        58183: 9994,
+        56320: 9993,
+        56407: 9992,
+        56462: 9991,
+        56339: 9990,
+        52353: 9989
+    },
+    "warrior_arms": {
+        60572: 10000,
+        59461: 9999,
+        65072: 9998,
+        65118: 9997,
+        58180: 9996,
+        68712: 9995,
+        56393: 9994,
+        62049: 9993,
+        56100: 9992,
+        56345: 9991
+    },
+    "warrior_fury": {
+        60572: 10000,
+        59461: 9999,
+        65072: 9998,
+        65118: 9997,
+        58180: 9996,
+        68712: 9995,
+        56393: 9994
+    },
+    "warrior_protection": {
+        65048: 10000,
+        65109: 9999,
+        68713: 9998,
+        58182: 9997,
+        59332: 9996,
+        59515: 9995,
+        56347: 9994,
+        62471: 9993,
+        58483: 9992,
+        52352: 9991,
+        50364: 9990,
+        56280: 9989,
+        56449: 9988,
+        62048: 9987,
+        56370: 9986
+    }
 }
 
 classs = {
@@ -831,9 +945,10 @@ def build_list():
 
                 spec = i.split("_")[1].capitalize()
 
-                if itemid in rescore:
-                    if spec + cclass in rescore[itemid]:
-                        score = rescore[itemid][spec + cclass]
+                class_spec = f"{cclass}_{spec}".lower()
+                if class_spec in rescore.keys():
+                    if itemid in rescore[class_spec]:
+                        score = rescore[class_spec][itemid]
 
                 itemclass = ""
                 itemsubclass = ""
