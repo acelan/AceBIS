@@ -1141,7 +1141,7 @@ for cclass in classs.values():
     for spec in bis_list[cclass].keys():
         print("%s - %s" % (cclass, spec))
         output = ""
-        for phase in ["0", "1"]:   # select items from P0 to P5
+        for phase in ["0", "1", "2"]:   # select items from P0 to P5
             p = "P" + phase
             output += gen_header(p, cclass, spec)
             #print("%s %s" % (spec, cclass))
