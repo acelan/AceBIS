@@ -103,8 +103,6 @@ def calculate_epv(spec, item, name):
     #        elif "socket" in spec:
     #            epv = epv + float(spec["socket"]) 
 
-    if name == "priest_holy":
-        print(f"{name} = {epv}")
     return epv
 
 def write_itemdata(data):
@@ -113,7 +111,7 @@ def write_itemdata(data):
 
 def read_itemdata():
     if not os.path.exists("itemdata.txt"):
-        return False
+        return {}
 
     with open("itemdata.txt") as file:
         userdata = file.read()
@@ -138,12 +136,12 @@ def get_one_item(items, item_id, cached, update):
     if not item and not update:
         #url = wowhead_wotlk % item_id
         url = wowhead_cata % item_id
-        r = requests.get(url)
         try:
+            r = requests.get(url)
+            r.raise_for_status()
             root = xmltodict.parse(r.text)
-        except Exception as err:
-            print(f"Unexpected {err=}, {type(err)=}")
-            print("Error: %s" % r.text)
+        except (requests.RequestException, xmltodict.ParsingError) as err:
+            print(f"Error retrieving item {item_id}: {err}")
             return
 
         if "item" not in root["wowhead"]:
@@ -224,11 +222,8 @@ def get_one_item(items, item_id, cached, update):
     print(item)
 
 def get_all_items(items, cached, update):
-    item_id = first_id
-    while item_id < final_id:
-        #print("item id = %s" % item_id)
+    for item_id in range(first_id, final_id):
         get_one_item(items, item_id, cached, update)
-        item_id = item_id + 1
 
 def main():
     parser = argparse.ArgumentParser(description='Get items from wowhead website.')
