@@ -876,263 +876,304 @@ item2_subclass = {
 def nested_dict():
     return collections.defaultdict(nested_dict)
 
-def write_slot(item):
-    #print(item)
-    filename = "wotlk-" + item["inventorySlot"]["#text"]
-    with open(filename, 'a+') as file:
-        file.write(json.dumps(item, ensure_ascii=False)) # use `json.loads` to do the reverse
-
 def read_itemdata():
     filename = "wowhead/itemdata.txt"
     if not os.path.exists(filename):
         return False
 
     with open(filename) as file:
-        userdata = file.read()
-        #print("read data: %s" % userdata)
-        return json.loads(userdata)
+        return json.loads(file.read())
 
 def gen_header(phase, classes, spec):
     return "local bis_%s = AceBIS:RegisterBIS(\"%s\", \"%s\", \"%s\")\n" % (phase, classes, spec+classes, phase)
 
 def write_file(classes, output):
-    file1 = open("AceBIS/Data/" + classes + ".lua", "w")
-    file1.write(output)
-    file1.close()
+    with open(f"AceBIS/Data/{classes}.lua", "w") as file:
+        file.write(output)
 
 def build_list():
     bis_list = nested_dict()
     items = read_itemdata()
-    for s in slots:
-        for item in items.values():
-            itemid = item["id"]
-            phase = item["phase"]
 
-            if itemid in rephase:
-                phase = rephase[itemid]
+    def is_blacklisted(itemid):
+        return (itemid in blacklist or
+                51440 <= itemid <= 51448 or
+                51516 <= itemid <= 51529 or
+                57682 <= itemid <= 57754 or
+                58504 <= itemid <= 58778 or
+                61635 <= itemid <= 61919 or
+                69255 <= itemid <= 69263)
 
-            if itemid in blacklist \
-                or 51440 <= itemid <= 51448 \
-                or 51516 <= itemid <= 51529 \
-                or 57682 <= itemid <= 57754 \
-                or 58504 <= itemid <= 58778 \
-                or 61635 <= itemid <= 61919 \
-                or 69255 <= itemid <= 69263:
+    def get_class_spec(i):
+        cclass, spec = i.split("_")
+        return "DK" if cclass == "dk" else cclass.capitalize(), spec.capitalize()
+
+    def get_item_details(item):
+        itemclass = item_class[int(item["class"]["@id"])]
+        itemtype = inv_type[int(item["inventorySlot"]["@id"])]
+        itemsubclass = ""
+
+        if int(item["subclass"]) >= 0:
+            if int(item["class"]["@id"]) in [0, 2]:
+                itemsubclass = item2_subclass[int(item["subclass"])]
+            elif int(item["class"]["@id"]) == 4:
+                itemsubclass = item4_subclass[int(item["subclass"])]
+
+        if int(item["subclass"]) == -5 and int(item["class"]["@id"]) == 4:
+            itemclass, itemtype, itemsubclass = "Weapon", "OffHand", "OffHand"
+        if int(item["subclass"]) == -6 and int(item["class"]["@id"]) == 4:
+            itemclass, itemtype, itemsubclass = "Armor", "Back", "Cloth"
+
+        if itemsubclass in ["Relic", "Thrown"]:
+            itemtype = "Ranged"
+
+        itemtype = {"Head": "Helm", "Wrist": "Bracers", "Legs": "Pants", "Feet": "Boots"}.get(itemtype, itemtype)
+
+        return itemclass, itemtype, itemsubclass
+
+    def is_valid_for_class_spec(cclass, spec, itemclass, itemtype, itemsubclass, item):
+        if itemtype == "Ammo":
+            return False
+
+        if cclass == "DK":
+            if "spldmg" in item:
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Plate" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemtype == "Ranged" and itemsubclass != "Relic":
+                    return False
+                if itemsubclass in ["Shield", "Staff", "Fist", "Dagger"]:
+                    return False
+        elif cclass == "Druid":
+            if "spldmg" in item and spec == "Feral":
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Leather" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemtype == "Ranged" and itemsubclass != "Relic":
+                    return False
+                if itemsubclass == "Shield":
+                    return False
+                if itemsubclass in ["Axe", "Sword"]:
+                    return False
+                if itemtype == "TwoHand" and itemsubclass in ["Axe", "Sword"]:
+                    return False
+                if itemtype == "OffHand":
+                    if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
+                        return False
+        elif cclass == "Hunter":
+            if itemclass == "Armor":
+                if itemsubclass != "Mail" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Shield":
+                    return False
+                if itemsubclass  == "Mace":
+                    return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Wand", "Thrown"]:
+                        return False
+        elif cclass == "Mage":
+            if "mleatkpwr" in item or "agi" in item or "str" in item:
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Cloth" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Shield":
+                    return False
+                if itemtype == "TwoHand" and itemsubclass in ["Axe", "Sword", "Mace", "Polearm"]:
+                    return False
+                if itemsubclass in ["Axe", "Mace", "Fist"]: # for MainHand and OneHand
+                    return False
+                if itemtype == "OffHand":
+                    if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
+                        return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown"]:
+                        return False
+        elif cclass == "Paladin":
+            if itemclass == "Armor":
+                if itemsubclass != "Plate" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if spec == "Protection" and "dodgertng" not in item and "parryrtng" not in item and "blockrtng" not in item:
+                    if itemtype not in ["Amulet", "Trinket", "Ranged", "OffHand"]:
+                        return False
+            elif itemclass == "Weapon":
+                if itemtype == "Ranged" and itemsubclass != "Relic":
+                    return False
+        elif cclass == "Priest":
+            if "mleatkpwr" in item or "agi" in item or "str" in item:
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Cloth" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Shield":
+                    return False
+                if itemsubclass in ["Axe", "Sword", "Fist"]: # for MainHand and OneHand
+                    return False
+                if itemtype == "TwoHand" and itemsubclass in ["Axe", "Sword", "Mace", "Polearm"]:
+                    return False
+                if itemtype == "OffHand":
+                    if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
+                        return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown"]:
+                        return False
+        elif cclass == "Rogue":
+            if "spldmg" in item:
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Leather" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Shield":
+                    return False
+                if itemtype == "TwoHand":
+                    return False
+                if spec == "Assassination" and itemtype in ["MainHand", "OneHand", "OffHand"] and itemsubclass != "Dagger":
+                    return False
+                if spec == "Combat" and itemtype in ["MainHand", "OneHand", "OffHand"] and itemsubclass == "Dagger":
+                    return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Wand"]:
+                        return False
+        elif cclass == "Shaman":
+            if "spldmg" not in item and itemtype != "Ranged" and spec == "Restoration":
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Mail" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "Ranged", "OffHand"]:
+                    return False
+                if itemtype == "Ranged" and itemsubclass != "Relic":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Sword":
+                    return False
+                if itemtype == "TwoHand" and itemsubclass in ["Axe", "Sword"]:
+                    return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown", "Wand"]:
+                        return False
+        elif cclass == "Warlock":
+            if "mleatkpwr" in item or "agi" in item or "str" in item:
+                return False
+
+            if itemclass == "Armor":
+                if itemsubclass != "Cloth" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+                if itemtype == "OffHand" and itemsubclass == "Shield":
+                    return False
+            elif itemclass == "Weapon":
+                if itemsubclass == "Shield":
+                    return False
+                if itemsubclass in ["Axe", "Mace", "Fist"]: # for MainHand and OneHand
+                    return False
+                if itemtype == "TwoHand" and itemsubclass in ["Axe", "Sword", "Mace", "Polearm"]:
+                    return False
+                if itemtype == "OffHand":
+                    if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
+                        return False
+                if itemtype == "Ranged":
+                    if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown"]:
+                        return False
+        elif cclass == "Warrior":
+            if "spldmg" in item:
+                return False
+
+            if spec == "Protection" and "dodgertng" not in item and "parryrtng" not in item and "blockrtng" not in item:
+                if itemtype not in ["Amulet", "Trinket", "Ranged", "OffHand"]:
+                    return False
+            if itemclass == "Armor":
+                if itemsubclass != "Plate" and itemtype not in ["Back", "Finger", "Neck", "Trinket", "Ranged", "OffHand"]:
+                    return False
+                if itemsubclass == "Relic":
+                    return False
+            elif itemclass == "Weapon":
+                if itemtype == "Ranged":
+                    if itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"]:
+                        return False
+
+        return True
+
+    for item in items.values():
+        itemid = item["id"]
+        phase = rephase.get(itemid, item["phase"])
+
+        if is_blacklisted(itemid):
+            continue
+
+        for i in {'dk_unholy', 'dk_blood', 'dk_frost', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_guardian', 'hunter_survival', 'hunter_beastmastery', 'hunter_marksmanship', 'mage_arcane', 'mage_fire', 'mage_frost', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'priest_holy', 'rogue_assassination', 'rogue_combat', 'rogue_subtlety', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warlock_demonology', 'warlock_destruction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
+            score = item[i]
+            cclass, spec = get_class_spec(i)
+
+            if "reqclass" in item and not (int([k for k, v in classs.items() if v == cclass][0]) & int(item["reqclass"])):
                 continue
 
-            item_tmp = {}
-            #print("id = %s" % item["id"])
-            #print("subclass = %s" % item["subclass"])
-            #print("inventorySlot = %s" % item["inventorySlot"])
-            for i in {'dk_unholy', 'dk_blood', 'dk_frost', 'druid_balance', 'druid_feral', 'druid_restoration', 'druid_guardian', 'hunter_survival', 'hunter_beastmastery', 'hunter_marksmanship', 'mage_arcane', 'mage_fire', 'mage_frost', 'paladin_holy', 'paladin_protection', 'paladin_retribution', 'priest_discipline', 'priest_shadow', 'priest_holy', 'rogue_assassination', 'rogue_combat', 'rogue_subtlety', 'shaman_elemental', 'shaman_enhancement', 'shaman_restoration', 'warlock_affliction', 'warlock_demonology', 'warlock_destruction', 'warrior_arms', 'warrior_fury', 'warrior_protection'}:
-                score = item[i]
+            side = sides[int(item["side"])] if "side" in item else "Neutral"
 
-                cclass = i.split("_")[0].capitalize()
-                if cclass == "Dk":
-                    cclass = "DK"
+            class_spec = f"{cclass}_{spec}".lower()
+            if class_spec in rescore and itemid in rescore[class_spec]:
+                score = rescore[class_spec][itemid]
 
-                # continue if the item if for specific class
-                keys = [k for k, v in classs.items() if v == cclass]
-                if "reqclass" in item:
-                    if not (int(keys[0]) & int(item["reqclass"])):
-                        #print("item class = %s, class = %s" % (int(item["reqclass"]),int(keys[0])))
-                        continue
+            try:
+                itemclass, itemtype, itemsubclass = get_item_details(item)
+            except Exception as err:
+                print(f"Error processing item {itemid}: {err}")
+                continue
 
-                # item is only for Ally or Horde
-                side = "Neutral"
-                if "side" in item:
-                    side = sides[int(item["side"])]
+            if not is_valid_for_class_spec(cclass, spec, itemclass, itemtype, itemsubclass, item):
+                continue
 
-                spec = i.split("_")[1].capitalize()
+            if score == 0:
+                continue
 
-                class_spec = f"{cclass}_{spec}".lower()
-                if class_spec in rescore.keys():
-                    if itemid in rescore[class_spec]:
-                        score = rescore[class_spec][itemid]
+            item_tmp = {
+                "id": itemid, "phase": phase, "class": cclass, "spec": spec,
+                "slot": itemtype, "type": itemtype, "itemclass": itemclass,
+                "subclass": itemsubclass, "score": score, "side": side
+            }
 
-                itemclass = ""
-                itemsubclass = ""
-                itemtype = ""
-                try:
-                    itemclass = item_class[int(item["class"]["@id"])]
-                    itemtype = inv_type[int(item["inventorySlot"]["@id"])]
 
-                    if int(item["subclass"]) >= 0:
-                        if (int(item["class"]["@id"]) == 2) or (int(item["class"]["@id"]) == 0):
-                            itemsubclass = item2_subclass[int(item["subclass"])]
-                        elif int(item["class"]["@id"]) == 4:
-                            itemsubclass = item4_subclass[int(item["subclass"])]
-                    if int(item["subclass"]) == -5 and int(item["class"]["@id"]) == 4:
-                        itemclass = "Weapon"
-                        itemtype = "OffHand"
-                        itemsubclass = "OffHand"
-
-                    #else:
-                    #    print("Invalid subclass id: %s - type = %s, class = %s, subclass = %s" % (itemid, item["inventorySlot"]["@id"], item["class"]["@id"], item["subclass"]))
-                except Exception as err:
-                    print(f"Unexpected {err=}, {type(err)=}")
-                    print("id = %s" % item["id"])
-                    print("class = %s" % item["class"])
-                    print("subclass = %s" % item["subclass"])
-                    print("inventorySlot = %s" % item["inventorySlot"])
-                    exit(0)
-
-                if itemtype == "Ammo":
-                    continue
-                if itemtype == "Thrown":
-                    itemtype = "Ranged"
-                if itemtype == "Ranged" and cclass in ["Paladin", "DK", "Shaman", "Druid"]:
-                    continue
-
-                if itemsubclass in ["Libram", "Sigil", "Totem", "Idol"]:
-                    if cclass not in ["Paladin", "DK", "Shaman", "Druid"]:
-                        continue
-                    if score == 0:
-                        score = itemid/100
-                    if cclass == "Paladin" and itemsubclass == "Libram":
-                        itemtype = "Ranged"
-                    elif cclass == "DK" and itemsubclass == "Sigil":
-                        itemtype = "Ranged"
-                    elif cclass == "Shaman" and itemsubclass == "Totem":
-                        itemtype = "Ranged"
-                    elif cclass == "Druid" and itemsubclass == "Idol":
-                        itemtype = "Ranged"
-                    else:
-                        continue
-
-                if score == 0:
-                    continue
-
-                if itemclass == "Armor" and itemtype not in ["Back", "Finger", "Neck", "Trinket"]:
-                    if cclass in ["Mage", "Priest", "Warlock"]:
-                        if itemsubclass not in ["Cloth"]:
-                            continue
-                    if cclass in ["Rogue", "Druid"]:
-                        if itemsubclass not in ["Leather"]:
-                            continue
-                    if cclass in ["Hunter", "Shaman"]:
-                        if itemsubclass not in ["Mail"]:
-                            continue
-                    if cclass in ["Paladin", "Warrior", "DK"]:
-                        if itemsubclass not in ["Plate"]:
-                            continue
-
-                if itemsubclass == "Shield" and cclass not in ["Warrior", "Paladin", "Shaman"]:
-                    continue
-
+            if cclass == "Warrior" and spec == "Fury":
                 if itemtype == "TwoHand":
-                    if cclass in ["Rogue"]:
-                        continue
-                    if cclass in ["Mage", "Priest", "Warlock"]:
-                        if itemsubclass in ["Axe", "Sword", "Mace", "Polearm"]:
-                            continue
-                    if cclass in ["Druid", "Shaman"]:
-                        if itemsubclass in ["Sword", "Axe"]:
-                            continue
-                    if cclass in ["Hunter"]:
-                        if itemsubclass in ["Mace"]:
-                            continue
+                    itemtype = "OneHand"
+                elif itemtype in ["MainHand", "OneHand"]:
+                    continue
 
-                if itemtype in ["MainHand", "OneHand", "OffHand", "TwoHand"]:
-                    if cclass in ["Rogue", "Druid"]:
-                        if itemsubclass in ["Axe"] and cclass in ["Druid"]:
-                            continue
-                        if itemsubclass in ["Sword"] and cclass in ["Druid"]:
-                            continue
-                        if spec in ["Assassination"] and itemsubclass not in ["Dagger"]:
-                            continue
-                        if spec in ["Combat"] and itemsubclass in ["Dagger"]:
-                            continue
-                    if cclass in ["Mage", "Warlock"]:
-                        if itemsubclass in ["Axe", "Mace", "Fist"]:
-                            continue
-                    if cclass in ["Priest"]:
-                        if itemsubclass in ["Axe", "Sword", "Fist"]:
-                            continue
-                    if cclass in ["Shaman"]:
-                        if itemsubclass in ["Sword"]:
-                            continue
-                    if cclass in ["Hunter"]:
-                        if itemsubclass in ["Mace"]:
-                            continue
-                    if cclass in ["DK"]:
-                        if itemsubclass in ["Staff", "Fist"]:
-                            continue
+            bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
 
-                #if itemid == 60470:
-                #    print("%s" % (item.keys()))
-                if "mleatkpwr" in item or "agi" in item or "str" in item:
-                    if cclass in ["Priest", "Mage", "Warlock"]:
-                        continue
-                if "spldmg" in item:
-                    if cclass in ["Warrior", "DK", "Rogue"]:
-                        continue
-                    if cclass == "Druid" and spec == "Feral":
-                        continue
-                if cclass == "Shaman" and spec == "Restoration":
-                    if "spldmg" not in item and itemtype not in "Ranged":
-                        continue
-
-                if itemtype in ["OffHand"]:
-                    if cclass in ["Priest", "Mage", "Warlock", "Druid"]:
-                        if itemsubclass in ["Axe", "Sword", "Mace", "Dagger", "Fist"]:
-                            continue
-
-                if itemtype in ["Ranged"]:
-                    if cclass in ["Priest", "Mage", "Warlock"]:
-                        if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown"]:
-                            continue
-                    if cclass in ["Druid", "Shaman", "Paladin"]:
-                        if itemsubclass in ["Gun", "Bow", "Crossbow", "Thrown", "Wand"]:
-                            continue
-                    if cclass in ["Warrior", "Rogue", "Hunter"]:
-                        if itemsubclass in ["Wand"]:
-                            continue
-                    if cclass in ["Hunter"]:
-                        if itemsubclass in ["Thrown"]:
-                            continue
-
-                # For Warrior, Paladin, and DK
-                if spec == "Protection" and itemclass == "Armor":
-                        if itemsubclass in ["Cloth", "Leather", "Mail"]:
-                            continue
-
-                if spec == "Protection" and "dodgertng" not in item and "parryrtng" not in item and "blockrtng" not in item:
-                    if itemclass == "Armor" and itemtype not in ["Amulet", "Trinket", "Ranged"]:
-                        continue
-                    # Only Warrior's weapon requires those attributes
-                    if itemclass == "Weapon" and itemsubclass not in ["Gun", "Bow", "Crossbow", "Thrown"] and cclass == "Warrior":
-                        continue
-                    if itemclass == "Weapon" and cclass == "Paladin" and "agi" in item:
-                        score = score + int(item["agi"])
-
-                item_tmp = {"id": itemid, "phase": phase, "class": cclass, "spec": spec, "slot": s, "type": itemtype, "itemclass": itemclass, "subclass": itemsubclass, "score": score, "side": side}
-                if itemtype == "Head":
-                    itemtype = "Helm"
-                elif itemtype == "Wrist":
-                    itemtype = "Bracers"
-                elif itemtype == "Legs":
-                    itemtype = "Pants"
-                elif itemtype == "Feet":
-                    itemtype = "Boots"
-
-                # Fury Warrior can use TwoHand weapon as MainHand and OffHand weapon, so treat it as OneHand
-                if cclass == "Warrior" and spec == "Fury":
-                    if itemtype == "TwoHand":
-                        #bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
-                        itemtype = "OneHand"
-                    elif itemtype in ["MainHand", "OneHand"]:
-                        continue
-
-                bis_list[cclass][spec][phase][itemtype][itemid] = item_tmp
-
-                #if itemtype == "Trinket" and cclass == "Warlock" and spec == "Affliction":
-                #    print("after %s %s" % (itemid, score))
-                #if itemid in [61472]:
-                    #print("%s %s %s %s %s" % (spec, cclass, itemid, score, phase))
-                    #print("after %s %s" % (itemid, score))
-
-    #print(list(bis_list["Warrior"]["Fury"]["1"]))
     return bis_list
 
 bis_list = build_list()
@@ -1152,9 +1193,8 @@ for cclass in classs.values():
                     if s == "MainHand":
                         items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
                     if s == "OffHand":
-                        if cclass == "Shaman":
-                            if spec == "Enhancement":
-                                items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
+                        if cclass == "Shaman" and spec == "Enhancement":
+                            items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
                         else:
                             items = {**items, **bis_list[cclass][spec][phase]["OneHand"]}
                     if s == "OneHand":
