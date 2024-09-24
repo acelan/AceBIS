@@ -5,10 +5,10 @@ druid_guardian = {
     "armor": "0.62",
     "StatBonusArmor": "0.14",
     "dodgertng": "0.59",
-    "mastrtng": "0.20",
+    "mastrtng": "0.2",
     "str": "0.21",
-    "mleatkpwr": "0.20",
-    "hitrtng": "0.60",
+    "mleatkpwr": "0.2",
+    "hitrtng": "0.6",
     "exprtng": "0.93",
     "critstrkrtng": "0.25",
     "hastertng": "0.03"

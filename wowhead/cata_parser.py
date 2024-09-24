@@ -40,6 +40,12 @@ def convert_key(key):
             return "spldmg"
         case "StatMP5":
             return "manargn"
+        case "StatCritRating":
+            return "critstrkrtng"
+        case "StatHitRating":
+            return "hitrtng"
+        case "StatHasteRating":
+            return "hastertng"
         case "StatSpellHit":
             return "hitrtng"
         case "StatSpellCrit":
@@ -52,12 +58,16 @@ def convert_key(key):
             return "mleatkpwr"
         case "StatMeleeHit":
             return "hitrtng"
+        case "StatMasteryRating":
+            return "mastrtng"
         case "StatMastery":
             return "mastrtng"
         case "StatMeleeCrit":
             return "critstrkrtng"
         case "StatMeleeHaste":
             return "hastertng"
+        case "StatExpertiseRating":
+            return "exprtng"
         case "StatExpertise":
             return "exprtng"
         #case "StatMana":
@@ -68,8 +78,12 @@ def convert_key(key):
             return "rgdatkpwr"
         case "StatBlock":
             return "blockrtng"
+        case "StatDodgeRating":
+            return "dodgertng"
         case "StatDodge":
             return "dodgertng"
+        case "StatParryRating":
+            return "parryrtng"
         case "StatParry":
             return "parryrtng"
         case "StatResilience":

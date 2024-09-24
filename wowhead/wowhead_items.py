@@ -88,7 +88,7 @@ def calculate_epv(spec, item, name):
     epv = 0
     for key in spec:
         if key in item:
-            epv = epv + float(spec[key]) * item[key]
+            epv = epv + float(eval(spec[key])) * item[key]
         # item needs to be activated, usually persists for 20s with 2min colddown
         if "use_" + key in item:
             #print("use_%s = %s, ep = %s" % (key, item["use_" + key], item["use_" + key] * 20 / 120))

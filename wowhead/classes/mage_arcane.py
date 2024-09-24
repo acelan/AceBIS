@@ -3,6 +3,6 @@ mage_arcane = {
     "spldmg": "1",
     "hitrtng": "1.31",
     "critstrkrtng": "0.53",
-    "hastertng": "0.49",
+    "hastertng": "0.91",
     "mastrtng": "0.57"
 }

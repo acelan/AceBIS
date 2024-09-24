@@ -1,10 +1,10 @@
 warrior_fury = {
     "str": "2.21",
-    "agi": "1.23",
+    "agi": "1.14",
     "mleatkpwr": "1",
-    "exprtng": "1.59",
-    "hitrtng": "2.56",
-    "critstrkrtng": "1.59",
-    "hastertng": "1.15",
-    "mastrtng": "1.31"
+    "exprtng": "1.71",
+    "hitrtng": "2.66",
+    "critstrkrtng": "1.48",
+    "hastertng": "1.19",
+    "mastrtng": "1.17"
 }

@@ -1,10 +1,10 @@
 rogue_combat = {
-    "agi": "2.67",
+    "agi": "2.85",
     "str": "1.05",
     "mleatkpwr": "1",
-    "critstrkrtng": "0.75",
-    "hitrtng": "1.63",
-    "hastertng": "1.19",
-    "mastrtng": "1.18",
-    "exprtng": "1.3"
+    "critstrkrtng": "1.2",
+    "hitrtng": "2.21",
+    "hastertng": "1.44",
+    "mastrtng": "1.44",
+    "exprtng": "1.74"
 }

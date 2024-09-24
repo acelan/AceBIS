@@ -1,10 +1,10 @@
 rogue_subtlety = {
-    "agi": "3.7",
+    "agi": "3.84",
     "str": "1.05",
     "mleatkpwr": "1",
-    "critstrkrtng": "1.04",
-    "hitrtng": "1.67",
-    "hastertng": "1.27",
-    "mastrtng": "0.79",
-    "exprtng": "1.33"
+    "critstrkrtng": "1.42",
+    "hitrtng": "2.19",
+    "hastertng": "1.58",
+    "mastrtng": "0.95",
+    "exprtng": "1.76"
 }
