@@ -1,9 +1,9 @@
 shaman_elemental = {
-    "int": "1.24",
+    "int": "1.33",
     "spldmg": "1",
-    "critstrkrtng": "0.34",
+    "critstrkrtng": "0.54",
     "hastertng": "0.57",
-    "hitrtng": "0.59",
-    "spi": "0.59",
-    "mastrtng": "0.49"
+    "hitrtng": "1.09",
+    "spi": "1.09",
+    "mastrtng": "1"
 }

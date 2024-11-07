@@ -209,8 +209,8 @@ def get_one_item(items, item_id, cached, update):
     if len(item) == 0:
         return
 
-    if int(item["level"]) > 379 and int(item["phase"]) <= 2:
-        item["phase"] = '3'
+    if int(item["level"]) > 391 and int(item["phase"]) <= 3:
+        item["phase"] = '4'
 
     for spec in specs:
         item[spec] = calculate_epv(specs[spec], item, spec)

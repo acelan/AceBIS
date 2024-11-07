@@ -1,7 +1,7 @@
-## Interface: 40400
-## Interface-Wrath: 40400
+## Interface: 40401
+## Interface-Wrath: 40401
 ## Title: AceBIS
-## Version: 6.0.7
+## Version: 6.0.9
 ## OptionalDeps: Ace3
 ## SavedVariablesPerCharacter: AceBISGears_cata
 

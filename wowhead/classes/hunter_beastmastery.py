@@ -1,9 +1,8 @@
 hunter_beastmastery = {
-    "sta": "0.5",
-    "agi": "2.65",
+    "agi": "3.03",
     "rgdatkpwr": "1.0",
-    "hitrtng": "2.12",
-    "critstrkrtng": "1.19",
-    "hastertng": "0.97",
-    "mastrtng": "0.55"
+    "hitrtng": "2.52",
+    "critstrkrtng": "1.32",
+    "hastertng": "1.14",
+    "mastrtng": "0.64"
 }
