@@ -40,7 +40,7 @@ from classes.warrior_protection import warrior_protection
 
 
 item_id = 0
-first_id = 1000
+first_id = 10000
 final_id = 100000
 #wowhead_wotlk="https://www.wowhead.com/wotlk/item=%s&xml"
 wowhead_cata="https://www.wowhead.com/cata/item=%s&xml"

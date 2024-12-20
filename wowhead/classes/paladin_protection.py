@@ -10,7 +10,6 @@ paladin_protection = {
     "hitrtng": "0.75",
     "critstrkrtng": "0.2",
     "hastertng": "0.3",
-    "spldmg": "0",
     "dodgertng": "0.6",
     "parryrtng": "0.6"
 }

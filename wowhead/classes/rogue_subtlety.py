@@ -4,7 +4,7 @@ rogue_subtlety = {
     "mleatkpwr": "1",
     "critstrkrtng": "1.42",
     "hitrtng": "2.19",
-    "hastertng": "1.58",
-    "mastrtng": "0.95",
+    "hastertng": "1.67",
+    "mastrtng": "1.32",
     "exprtng": "1.76"
 }
