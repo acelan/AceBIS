@@ -144,9 +144,6 @@ local methods = {
 	end,
 
 	["SetJustifyH"] = function(self, justifyH)
-		if justifyH == "TOP" then
-			return
-		end
 		self.label:SetJustifyH(justifyH)
 	end,
 
