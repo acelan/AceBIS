@@ -4,7 +4,7 @@ rogue_assassination = {
     "mleatkpwr": "1",
     "critstrkrtng": "1.18",
     "hitrtng": "2.62",
-    "hastertng": "1.35",
-    "mastrtng": "1.45",
-    "exprtng": "2.0"
+    "hastertng": "1.39",
+    "mastrtng": "1.61",
+    "exprtng": "1.22"
 }

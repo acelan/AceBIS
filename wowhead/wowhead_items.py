@@ -209,7 +209,7 @@ def get_one_item(items, item_id, cached, update):
     if len(item) == 0:
         return
 
-    if int(item["level"]) > 391 and int(item["phase"]) <= 3:
+    if int(item["level"]) > 397 and int(item["phase"]) <= 3:
         item["phase"] = '4'
 
     for spec in specs:
