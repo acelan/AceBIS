@@ -56,7 +56,6 @@ function AceBIS:InitOptions()
 				set = "SetPhase",
 				get = "GetPhase"
 			},
---[[
 			P4 = {
 				name = "Phase 4",
 				type = "toggle",
@@ -64,6 +63,7 @@ function AceBIS:InitOptions()
 				set = "SetPhase",
 				get = "GetPhase"
 			},
+--[[
 			P5 = {
 				name = "Phase 5",
 				type = "toggle",
