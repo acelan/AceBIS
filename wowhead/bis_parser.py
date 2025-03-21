@@ -1,66 +1,122 @@
 from bs4 import BeautifulSoup
-import json
-from trinkets import dk
-from trinkets import druid
-from trinkets import hunter
-from trinkets import mage
-from trinkets import paladin
-from trinkets import priest
-from trinkets import rogue
-from trinkets import shaman
-from trinkets import warlock
-from trinkets import warrior
+import importlib
+import logging
 
-trinkets = {
-        "dk_blood": [dk.blood_p3, dk.blood_p1, dk.blood_p0],
-        "dk_frost": [dk.frost_p3, dk.frost_p1, dk.frost_p0],
-        "dk_unholy": [dk.unholy_p3, dk.unholy_p1, dk.unholy_p0],
-        "druid_balance": [druid.balance_p3, druid.balance_p1, druid.balance_p0],
-        "druid_feral": [druid.feral_p3, druid.feral_p1, druid.feral_p0],
-        "druid_guardian": [druid.guardian_p3, druid.guardian_p1, druid.guardian_p0],
-        "druid_restoration": [druid.restoration_p3, druid.restoration_p1, druid.restoration_p0],
-        "hunter_beastmastery": [hunter.beastmastery_p3, hunter.beastmastery_p1, hunter.beastmastery_p0],
-        "hunter_marksmanship": [hunter.marksmanship_p3, hunter.marksmanship_p1, hunter.marksmanship_p0],
-        "hunter_survival": [hunter.survival_p3, hunter.survival_p1, hunter.survival_p0],
-        "mage_arcane": [mage.arcane_p3, mage.arcane_p1, mage.arcane_p0],
-        "mage_fire": [mage.fire_p3, mage.fire_p1, mage.fire_p0],
-        "mage_frost": [mage.frost_p3, mage.frost_p1, mage.frost_p0],
-        "paladin_holy": [paladin.holy_p3, paladin.holy_p1, paladin.holy_p0],
-        "paladin_protection": [paladin.protection_p3, paladin.protection_p1, paladin.protection_p0],
-        "paladin_retribution": [paladin.retribution_p3, paladin.retribution_p1, paladin.retribution_p0],
-        "priest_discipline": [priest.discipline_p3, priest.discipline_p1, priest.discipline_p0],
-        "priest_holy": [priest.holy_p3, priest.holy_p1, priest.holy_p0],
-        "priest_shadow": [priest.shadow_p3, priest.shadow_p1, priest.shadow_p0],
-        "rogue_assassination": [rogue.assassination_p3, rogue.assassination_p1, rogue.assassination_p0],
-        "rogue_combat": [rogue.combat_p3, rogue.combat_p1, rogue.combat_p0],
-        "rogue_subtlety": [rogue.subtlety_p3, rogue.subtlety_p1, rogue.subtlety_p0],
-        "shaman_elemental": [shaman.elemental_p3, shaman.elemental_p1, shaman.elemental_p0],
-        "shaman_enhancement": [shaman.enhancement_p3, shaman.enhancement_p1, shaman.enhancement_p0],
-        "shaman_restoration": [shaman.restoration_p3, shaman.restoration_p1, shaman.restoration_p0],
-        "warlock_affliction": [warlock.affliction_p3, warlock.affliction_p1, warlock.affliction_p0],
-        "warlock_demonology": [warlock.demonology_p3, warlock.demonology_p1, warlock.demonology_p0],
-        "warlock_destruction": [warlock.destruction_p3, warlock.destruction_p1, warlock.destruction_p0],
-        "warrior_arms": [warrior.arms_p3, warrior.arms_p1, warrior.arms_p0],
-        "warrior_fury": [warrior.fury_p3, warrior.fury_p1, warrior.fury_p0],
-        "warrior_protection": [warrior.protection_p3, warrior.protection_p1, warrior.protection_p0],
-        }
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
-scored_trickets = {class_spec: {} for class_spec in trinkets.keys()}
+# Define phases in order of priority (highest to lowest)
+PHASES = ["p4", "p3", "p1", "p0"]
 
-for class_spec, ptrinkets in trinkets.items():
-    score = 10000
-    for phase_trinket in ptrinkets:
-        soup = BeautifulSoup(phase_trinket, 'html.parser')
-        for phase_trinket in soup.find_all('a'):
-            href = phase_trinket.get('href')
-            if href and 'item=' in href:
-                item_id = href.split('item=')[1].split('/')[0]
-                if item_id not in scored_trickets[class_spec]:
-                    scored_trickets[class_spec][item_id] = score
-                    score -= 1
+# Define class and specialization mappings
+CLASS_SPECS = {
+    "dk": ["blood", "frost", "unholy"],
+    "druid": ["balance", "feral", "guardian", "restoration"],
+    "hunter": ["beastmastery", "marksmanship", "survival"],
+    "mage": ["arcane", "fire", "frost"],
+    "paladin": ["holy", "protection", "retribution"],
+    "priest": ["discipline", "holy", "shadow"],
+    "rogue": ["assassination", "combat", "subtlety"],
+    "shaman": ["elemental", "enhancement", "restoration"],
+    "warlock": ["affliction", "demonology", "destruction"],
+    "warrior": ["arms", "fury", "protection"]
+}
 
-for class_spec, strinkets in scored_trickets.items():
-    print("\"%s\": {" % class_spec)
-    for itemid, score in strinkets.items():
-        print(f"    {itemid}: {score},")
-    print("},")
+def get_trinket_data():
+    """
+    Dynamically imports class modules and retrieves trinket data for all phases.
+
+    Returns:
+        dict: A dictionary mapping class_spec to a list of trinket data for each phase
+    """
+    trinkets = {}
+
+    # Import all class modules
+    modules = {}
+    for class_name in CLASS_SPECS:
+        try:
+            modules[class_name] = importlib.import_module(f"trinkets.{class_name}")
+            logger.info(f"Successfully imported module: trinkets.{class_name}")
+        except ImportError as e:
+            logger.error(f"Failed to import module trinkets.{class_name}: {e}")
+            continue
+
+    # Create trinket dictionary
+    for class_name, specs in CLASS_SPECS.items():
+        if class_name not in modules:
+            continue
+
+        for spec in specs:
+            class_spec = f"{class_name}_{spec}"
+            trinkets[class_spec] = []
+
+            # Add data for each phase in order
+            for phase in PHASES:
+                attr_name = f"{spec}_{phase}"
+                if hasattr(modules[class_name], attr_name):
+                    phase_data = getattr(modules[class_name], attr_name)
+                    trinkets[class_spec].append(phase_data)
+                    logger.debug(f"Added {attr_name} data for {class_spec}")
+                else:
+                    logger.warning(f"No {phase} data found for {class_spec}")
+
+    return trinkets
+
+def parse_trinkets(trinkets):
+    """
+    Parse trinket data and assign scores based on priority.
+
+    Args:
+        trinkets (dict): Dictionary of trinket data by class_spec
+
+    Returns:
+        dict: Dictionary of scored trinkets by class_spec
+    """
+    scored_trinkets = {class_spec: {} for class_spec in trinkets.keys()}
+
+    for class_spec, phase_trinkets in trinkets.items():
+        score = 10000
+
+        for phase_data in phase_trinkets:
+            try:
+                soup = BeautifulSoup(phase_data, 'html.parser')
+
+                for trinket_link in soup.find_all('a'):
+                    href = trinket_link.get('href')
+                    if href and 'item=' in href:
+                        try:
+                            item_id = href.split('item=')[1].split('/')[0]
+
+                            # Only add item if it hasn't been added before
+                            if item_id not in scored_trinkets[class_spec]:
+                                scored_trinkets[class_spec][item_id] = score
+                                score -= 1
+                        except IndexError:
+                            logger.warning(f"Failed to extract item ID from {href}")
+            except Exception as e:
+                logger.error(f"Error parsing trinket data for {class_spec}: {e}")
+
+    return scored_trinkets
+
+def output_trinkets(scored_trinkets):
+    """
+    Output scored trinkets in the required format.
+
+    Args:
+        scored_trinkets (dict): Dictionary of scored trinkets by class_spec
+    """
+    for class_spec, items in sorted(scored_trinkets.items()):
+        print(f"\"{class_spec}\": {{")
+        for item_id, score in sorted(items.items(), key=lambda x: -x[1]):
+            print(f"    {item_id}: {score},")
+        print("},")
+
+def main():
+    """Main function to orchestrate the trinket parsing process."""
+    trinkets = get_trinket_data()
+    scored_trinkets = parse_trinkets(trinkets)
+    output_trinkets(scored_trinkets)
+
+if __name__ == "__main__":
+    main()
